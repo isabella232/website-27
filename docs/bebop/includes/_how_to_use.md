@@ -15,11 +15,7 @@ To use the sdk, you will need to add the libraries to your project. To get the l
 5. You're all set ! 
 ![alt text](../images/ios_all_set.png "Let start coding !")
 
-You can now start reading the documentation for the product you want to control : 
-
-* [Bebop Drone](#bebop-drone)
-* [Jumping Sumo](#jumping-sumo)
-* [Rolling Spider](#rolling-spider)
+[Let's start coding](#start-coding) !
 
 ### Android
 
@@ -71,16 +67,10 @@ static
    }
 }
 ```
-You can now start reading the documentation for the product you want to control : 
+You're all set, [let's start coding](#start-coding) !
 
-* [Bebop Drone](#bebop-drone)
 
-<!---
-* [Jumping Sumo](#jumping-sumo)
-* [Rolling Spider](#rolling-spider)
--->
-
-##Bebop Drone
+##Start coding
 
 Here are the instruction about how to use the SDK to control the Bebop drone.
 
