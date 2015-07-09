@@ -19,7 +19,7 @@ search: true
 
 Welcome to the Flower Power Cloud API !
 
-You can use our API to connect to the Flower Power Cloud, and retrieve your sensors' data from it. 
+You can use our API to connect to the Flower Power Cloud, and retrieve your sensors' data from it.
 
 You can also receive alerts like those in the Flower Power mobile app.
 
@@ -27,11 +27,11 @@ we advise you to use requests package, it can be installed using pip :
 pip install requests
 
 ```python
-  _          _ _             
- | |__   ___| | | ___        
- | 	_ \ / _ \ | |/ _ \       
- | | | |  __/ | | (_) |      
- |_| |_|\___|_|_|\___/     _ 
+  _          _ _
+ | |__   ___| | | ___
+ | 	_ \ / _ \ | |/ _ \
+ | | | |  __/ | | (_) |
+ |_| |_|\___|_|_|\___/     _
  __      _____  _ __| | __| |
  \ \ /\ / / _ \|  __| |/ _  |
   \ V  V / (_) | |  | | (_| |
@@ -39,7 +39,7 @@ pip install requests
 ```
 
 ```shell
-see github repo : 
+see github repo :
 https://github.com/Parrot-Developers/node-flower-power
 https://github.com/Parrot-Developers/node-flower-power-cloud
 ```
@@ -48,7 +48,7 @@ https://github.com/Parrot-Developers/node-flower-power-cloud
 
 ```python
 import requests
-from pprint import pformat  # here only for aesthetic 
+from pprint import pformat  # here only for aesthetic
 
 # First we set our credentials
 username = 'YOUR_USERNAME'
@@ -80,9 +80,9 @@ auth_header = {'Authorization': 'Bearer {token}'.format(token=access_token)}
 
 ```json
 {
-    "access_token": "YOUR_ACCESS_TOKEN_", 
-    "expires_in": 2592000, 
-    "refresh_token": "YOUR_REFRESH_TOKEN" 
+    "access_token": "YOUR_ACCESS_TOKEN_",
+    "expires_in": 2592000,
+    "refresh_token": "YOUR_REFRESH_TOKEN"
 }
 ```
 
@@ -210,7 +210,7 @@ from pprint import pformat  # here only for aesthetic
 location_identifier = 'eg9dnEtyHy589153XXX'
 
 # Set your own authentication token
-req = requests.get('https://apiflowerpower.parrot.com/sensor_data/v4/sample/location/' + location_identifier, 
+req = requests.get('https://apiflowerpower.parrot.com/sensor_data/v2/sample/location/' + location_identifier, 
     headers={'Authorization': 'Bearer YOUR_ACCESS_TOKEN_'},
     params={'from_datetime_utc': '2014-03-01T14:42:42Z',
             'to_datetime_utc': '2014-04-13T06:30:00Z'})
@@ -236,7 +236,7 @@ print('Server response: \n {0}'.format(pformat(response)))
  "user_data_version": "YOURS"
  }
  ```
- 
+
 ### HTTP Request
 
 `GET https://apiflowerpower.parrot.com/sensor_data/v4/sample/location/:location_identifier`
@@ -298,7 +298,7 @@ print('Server response: \n {0}'.format(pformat(response)))
  "user_config_version": "YOURS"
  }
  ```
- 
+
 ### HTTP Request
 
 `GET https://apiflowerpower.parrot.com/sensor_data/v3/sync`
@@ -318,7 +318,7 @@ from pprint import pformat  # here only for aesthetic
 # Set your own authentication token
 req = requests.get('https://apiflowerpower.parrot.com/sensor_data/v4/garden_locations_status',
                    headers={'Authorization': 'Bearer YOUR_ACCESS_TOKEN_'})
-                   
+
 response = req.json()
 print('Server response: \n {0}'.format(pformat(response)))
 ```
@@ -381,7 +381,7 @@ print('Server response: \n {0}'.format(pformat(response)))
  "user_config_version": "YOURS"
  }
  ```
- 
+
 ### HTTP Request
 
 `GET https://apiflowerpower.parrot.com/v4/gardenlocation_status`
