@@ -41,7 +41,15 @@ To use the sdk, you will need to add the libraries to your project. To get the l
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-7.. And finally load the native libraries in your Application or in the main activity (and every other activity that can be launched by an external intent).
+7. Declare ARDiscoveryService in your manifest file
+
+> Declare ARDiscoveryService in your manifest file
+
+```java
+    <service android:name="com.parrot.arsdk.ardiscovery.ARDiscoveryService" />
+```
+
+8. And finally load the native libraries in your Application or in the main activity (and every other activity that can be launched by an external intent).
 
 > load the native libraries
 
@@ -776,13 +784,13 @@ _deviceController-> aRDrone3->sendMediaStreamingVideoEnable(_deviceController-> 
 ```
 
 ```java
-deviceController.getFeatureARDrone3().setPilotingPCMDYaw((byte) 50);
+deviceController.getFeatureARDrone3().sendMediaStreamingVideoEnable((byte)1);
 ```
 
 > Stop video stream
 
 ```objective_c
-deviceController.getFeatureARDrone3().sendMediaStreamingVideoEnable((byte)1);
+_deviceController-> aRDrone3->sendMediaStreamingVideoEnable(_deviceController-> aRDrone3, 0);
 ```
 
 ```java
