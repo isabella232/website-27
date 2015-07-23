@@ -12,7 +12,7 @@ To use the sdk, you will need to add the libraries to your project. To get the l
 ![alt text](../images/ios_drag_drop_frameworks.jpg "Drag and drop the framework folder")
 4. Click on finish
 ![alt text](../images/ios_choose_copy.png "Click on finish")
-5. You're all set ! 
+5. You're all set !
 ![alt text](../images/ios_all_set.png "Let start coding !")
 
 [Let's start coding](#start-coding) !
@@ -29,6 +29,12 @@ To use the sdk, you will need to add the libraries to your project. To get the l
    ![alt text](../images/android_non_project_file.png "Click on Ok")
 6. Add permissions in your manifest file
 
+7. Declare ARDiscoveryService in your manifest file
+
+8. And finally load the native libraries in your Application or in the main activity (and every other activity that can be launched by an external intent).
+
+<!-- Put code samples after the list to avoid going back to 1. -->
+
 > Add permissions in your manifest file
 
 ```java
@@ -41,15 +47,11 @@ To use the sdk, you will need to add the libraries to your project. To get the l
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-7. Declare ARDiscoveryService in your manifest file
-
 > Declare ARDiscoveryService in your manifest file
 
 ```java
     <service android:name="com.parrot.arsdk.ardiscovery.ARDiscoveryService" />
 ```
-
-8. And finally load the native libraries in your Application or in the main activity (and every other activity that can be launched by an external intent).
 
 > load the native libraries
 
