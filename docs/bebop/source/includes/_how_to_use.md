@@ -37,6 +37,14 @@ To use the sdk, you will need to add the libraries to your project. To get the l
 
 > Add permissions in your manifest file
 
+```c
+// Not needed in C
+```
+
+```objective_c
+// Not needed in Objective C
+```
+
 ```java
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH"/>
@@ -49,11 +57,27 @@ To use the sdk, you will need to add the libraries to your project. To get the l
 
 > Declare ARDiscoveryService in your manifest file
 
+```c
+// Not needed in C
+```
+
+```objective_c
+// Not needed in Objective C
+```
+
 ```java
     <service android:name="com.parrot.arsdk.ardiscovery.ARDiscoveryService" />
 ```
 
 > load the native libraries
+
+```c
+// Not needed in C
+```
+
+```objective_c
+// Not needed in Objective C
+```
 
 ```java
 static
@@ -88,6 +112,10 @@ Here are the instruction about how to use the SDK to control the Bebop drone.
 First of all, you will need to discover the drones around you. To do that, we will use the libARDiscovery.
 
 > Start discovery:
+
+```c
+// Not yet available in pure C
+```
 
 ```objective_c
 - (void)startDiscovery
@@ -147,6 +175,10 @@ private void startDiscovery()
 
 > The libARDiscovery will let you know when BLE and Wifi devices have been found on network:
 
+```c
+// Not yet available in pure C
+```
+
 ```objective_c
 - (void)registerReceivers
 {
@@ -156,7 +188,7 @@ private void startDiscovery()
 - (void)discoveryDidUpdateServices:(NSNotification *)notification
 {
     NSArray *deviceList = [[notification userInfo] objectForKey:kARDiscoveryServicesList];
-    
+
     // Do what you want with the device list (deviceList is an array of ARService*)
 }
 ```
@@ -184,18 +216,53 @@ public void onServicesDevicesListUpdated()
 }
 ```
 
-> Once you have the ARService you want to use, transform it into an ARDiscoveryDevice (you will need it at the [next step](#create_device_controller)) 
+> Once you have the ARService you want to use, transform it into an ARDiscoveryDevice (you will need it at the [next step](#create_device_controller))
+
+```c
+// No BLE support in C, so we use the device IP/Port
+// product should only be a wifi product (no Rolling Spider)
+ARDiscovery_Device_t* createDiscoveryDevice(eARDISCOVERY_PRODUCT product, const char *name, const char *ip, int port)
+{
+    eARDISCOVERY_ERROR errorDiscovery = ARDISCOVERY_OK;
+    ARDiscovery_Device_t *device = NULL;
+
+    if (ip == NULL || port == 0)
+    {
+        fprintf(stderr, "Bad parameters");
+        return device;
+    }
+    if (product < ARDISCOVERY_PRODUCT_NSNETSERVICE || product >= ARDISCOVERY_PRODUCT_BLESERVICE)
+    {
+        fprintf(stderr, "Bad product (not a wifi product)");
+        return device;
+    }
+
+    device = ARDISCOVERY_Device_New(&errorDiscovery);
+
+    if (errorDiscovery == ARDISCOVERY_OK)
+    {
+        errorDiscovery = ARDISCOVERY_Device_InitWifi (device, product, name, port);
+    }
+
+    if (errorDiscovery != ARDISCOVERY_OK)
+    {
+        ARDISCOVERY_Device_Delete(&device);
+    }
+
+    return device;
+}
+```
 
 ```objective_c
 // this should be called in background
 - (ARDISCOVERY_Device_t *)createDiscoveryDeviceWithService:(ARService*)service
 {
     ARDISCOVERY_Device_t *device = NULL;
-    
+
     eARDISCOVERY_ERROR errorDiscovery = ARDISCOVERY_OK;
-    
+
     device = ARDISCOVERY_Device_New (&errorDiscovery);
-    
+
     if (errorDiscovery == ARDISCOVERY_OK)
     {
         // init the discovery device
@@ -203,12 +270,12 @@ public void onServicesDevicesListUpdated()
         {
             // need to resolve service to get the IP
             BOOL resolveSucceeded = [self resolveService:service];
-            
+
             if (resolveSucceeded)
             {
                 NSString *ip = [[ARDiscovery sharedInstance] convertNSNetServiceToIp:service];
                 int port = (int)[(NSNetService *)service.service port];
-                
+
                 if (ip)
                 {
                     // create a Wifi discovery device
@@ -226,13 +293,13 @@ public void onServicesDevicesListUpdated()
                 errorDiscovery = ARDISCOVERY_ERROR;
             }
         }
-        
+
         if (errorDiscovery != ARDISCOVERY_OK)
         {
             ARDISCOVERY_Device_Delete(&device);
         }
     }
-    
+
     return device;
 }
 
@@ -243,18 +310,18 @@ public void onServicesDevicesListUpdated()
     _resolveSemaphore = dispatch_semaphore_create(0);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(discoveryDidResolve:) name:kARDiscoveryNotificationServiceResolved object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(discoveryDidNotResolve:) name:kARDiscoveryNotificationServiceNotResolved object:nil];
-    
+
     [[ARDiscovery sharedInstance] resolveService:service];
-    
+
     // this semaphore will be signaled in discoveryDidResolve and discoveryDidNotResolve
     dispatch_semaphore_wait(_resolveSemaphore, dispatch_time(DISPATCH_TIME_NOW, 10000000000));
-    
+
     NSString *ip = [[ARDiscovery sharedInstance] convertNSNetServiceToIp:service];
     if (ip != nil)
     {
         retval = YES;
     }
-    
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kARDiscoveryNotificationServiceResolved object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kARDiscoveryNotificationServiceNotResolved object:nil];
     _resolveSemaphore = nil;
@@ -277,7 +344,7 @@ public void onServicesDevicesListUpdated()
     private ARDiscoveryDevice createDiscoveryDevice(ARDiscoveryDeviceService service)
     {
         ARDiscoveryDevice device = null;
-        if ((service != null) && 
+        if ((service != null) &&
                 (ARDISCOVERY_PRODUCT_ENUM.ARDISCOVERY_PRODUCT_ARDRONE.equals(ARDiscoveryService.getProductFromProductID(service.getProductID()))))
         {
             try
@@ -300,6 +367,10 @@ public void onServicesDevicesListUpdated()
 ```
 
 > Clean everything:
+
+```c
+// Not needed in pure C as we currently don't use ARDiscovery
+```
 
 ```objective_c
 - (void)unregisterReceivers
@@ -342,11 +413,16 @@ private void closeServices()
 ```
 
 ### <a name="create_device_controller">Setup a device controller</a>
-The device controller is an object that will make the interface between the drone and you. 
+The device controller is an object that will make the interface between the drone and you.
 
 **After having [started](#start_device_controller) the device controller, you should receive all its states and settings through the command received callback.**
 
 > Create the device controller:
+
+```c
+eARCONTROLLER_ERROR error = ARCONTROLLER_OK;
+ARCONTROLLER_Device_t *deviceController = ARCONTROLLER_Device_New (discoveryDevice, &error);
+```
 
 ```objective_c
 eARCONTROLLER_ERROR error = ARCONTROLLER_OK;
@@ -366,6 +442,28 @@ catch (ARControllerException e)
 
 > Listen to the states changes:
 
+```c
+error = ARCONTROLLER_Device_AddStateChangedCallback(deviceController, stateChanged, NULL);
+
+// called when the state of the device controller has changed
+void stateChanged (eARCONTROLLER_DEVICE_STATE newState, eARCONTROLLER_ERROR error, void *customData)
+{
+    switch (newState)
+    {
+        case ARCONTROLLER_DEVICE_STATE_RUNNING:
+            break;
+        case ARCONTROLLER_DEVICE_STATE_STOPPED:
+            break;
+        case ARCONTROLLER_DEVICE_STATE_STARTING:
+            break;
+        case ARCONTROLLER_DEVICE_STATE_STOPPING:
+            break;
+        default:
+            break;
+    }
+}
+```
+
 ```objective_c
 error = ARCONTROLLER_Device_AddStateChangedCallback(deviceController, stateChanged, (__bridge void *)(self));
 
@@ -374,7 +472,7 @@ void stateChanged (eARCONTROLLER_DEVICE_STATE newState, eARCONTROLLER_ERROR erro
 {
     // SELF_TYPE is the class name of self
     SELF_TYPE *selfCpy = (__bridge SELF_TYPE *)customData;
-    
+
     switch (newState)
     {
         case ARCONTROLLER_DEVICE_STATE_RUNNING:
@@ -418,14 +516,12 @@ public void onStateChanged (ARDeviceController deviceController, ARCONTROLLER_DE
 
 > <a name="add_commands_receive_cb">Listen to the commands received from the drone (example of the battery level received)</a>
 
-```objective_c
-error = ARCONTROLLER_Device_AddCommandReceivedCallback(deviceController, onCommandReceived, (__bridge void *)(self));
+```c
+error = ARCONTROLLER_Device_AddCommandReceivedCallback(deviceController, onCommandReceived, NULL);
 
 // called when a command has been received from the drone
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    SELF_TYPE *selfCpy = (__bridge SELF_TYPE *)customData;
-    
     if (elementDictionary != NULL)
     {
         // if the command received is a battery state changed
@@ -433,14 +529,49 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
         {
             ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
             ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-            
+
             // get the command received in the device controller
             HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
             if (element != NULL)
             {
                 // get the value
                 HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_BATTERYSTATECHANGED_PERCENT, arg);
-                
+
+                if (arg != NULL)
+                {
+                    uint8_t batteryLevel = arg->value.U8;
+                    // do what you want with the battery level
+                }
+            }
+        }
+        // else if (commandKey == THE COMMAND YOU ARE INTERESTED IN)
+    }
+}
+```
+
+```objective_c
+error = ARCONTROLLER_Device_AddCommandReceivedCallback(deviceController, onCommandReceived, (__bridge void *)(self));
+
+// called when a command has been received from the drone
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    SELF_TYPE *selfCpy = (__bridge SELF_TYPE *)customData;
+
+    if (elementDictionary != NULL)
+    {
+        // if the command received is a battery state changed
+        if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_BATTERYSTATECHANGED)
+        {
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+
+            // get the command received in the device controller
+            HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+            if (element != NULL)
+            {
+                // get the value
+                HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_BATTERYSTATECHANGED_PERCENT, arg);
+
                 if (arg != NULL)
                 {
                     uint8_t batteryLevel = arg->value.U8;
@@ -485,11 +616,21 @@ public void onCommandReceived(ARDeviceController deviceController, ARCONTROLLER_
 
 > <a name="bebop_add_video_receive_cb">Listen to the video stream received from the drone
 
-```objective_c
-error = ARCONTROLLER_Device_SetVideoReceiveCallback (deviceController, didReceiveFrameCallback, NULL , void *customData);
+```c
+error = ARCONTROLLER_Device_SetVideoReceiveCallback (deviceController, didReceiveFrameCallback, NULL, NULL);
 
 void didReceiveFrameCallback (ARCONTROLLER_Frame_t *frame, void *customData)
 {
+    // display the frame
+}
+```
+
+```objective_c
+error = ARCONTROLLER_Device_SetVideoReceiveCallback (deviceController, didReceiveFrameCallback, NULL, (__bridge void *)(self));
+
+void didReceiveFrameCallback (ARCONTROLLER_Frame_t *frame, void *customData)
+{
+    SELF_TYPE *selfCpy = (__bridge SELF_TYPE *)customData;
     // display the frame
 }
 ```
@@ -512,6 +653,10 @@ public void onFrameTimeout(ARDeviceController deviceController)
 
 > <a name="start_device_controller">Finally, starts the device controller (after that call, the callback you set in ARCONTROLLER_Device_AddStateChangedCallback should be called)</a>.
 
+```c
+error = ARCONTROLLER_Device_Start (deviceController);
+```
+
 ```objective_c
 error = ARCONTROLLER_Device_Start (deviceController);
 if (error == ARCONTROLLER_OK)
@@ -526,20 +671,55 @@ ARCONTROLLER_ERROR_ENUM error = deviceController.start();
 
 > Cleanup when done:
 
+```c
+// This function will wait until the device controller is stopped
+void deleteDeviceController(ARCONTROLLER_Device_t *deviceController)
+{
+    if (deviceController == NULL)
+    {
+        return;
+    }
+
+    eARCONTROLLER_ERROR error = ARCONTROLLER_OK;
+
+    eARCONTROLLER_DEVICE_STATE state = ARCONTROLLER_Device_GetState(deviceController, &error);
+    if ((error == ARCONTROLLER_OK) && (state != ARCONTROLLER_DEVICE_STATE_STOPPED))
+    {
+        // after that, stateChanged should be called soon
+        error = ARCONTROLLER_Device_Stop (_deviceController);
+
+        if (error == ARCONTROLLER_OK)
+        {
+            sem_wait(&someSemaphore);
+        }
+        else
+        {
+            fprintf(stderr, "- error :%s", ARCONTROLLER_Error_ToString(error));
+        }
+    }
+
+    // once the device controller is stopped, we can delete it
+    ARCONTROLLER_Device_Delete(&deviceController);
+}
+
+// dont forget to create the semaphore and to sem_post it in the case ARCONTROLLER_DEVICE_STATE_STOPPED of the stateChanged function
+// DO NOT CALL ARCONTROLLER_Device_Delete FROM THE stateChanged FUNCTION !
+```
+
 ```objective_c
 - (void)deleteDeviceController
 {
     // in background
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         eARCONTROLLER_ERROR error = ARCONTROLLER_OK;
-        
+
         // if the device controller is not stopped, stop it
         eARCONTROLLER_DEVICE_STATE state = ARCONTROLLER_Device_GetState(_deviceController, &error);
         if ((error == ARCONTROLLER_OK) && (state != ARCONTROLLER_DEVICE_STATE_STOPPED))
         {
             // after that, stateChanged should be called soon
             error = ARCONTROLLER_Device_Stop (_deviceController);
-            
+
             if (error == ARCONTROLLER_OK)
             {
                 dispatch_semaphore_wait(_stateSem, DISPATCH_TIME_FOREVER);
@@ -549,7 +729,7 @@ ARCONTROLLER_ERROR_ENUM error = deviceController.start();
                 NSLog(@"- error :%s", ARCONTROLLER_Error_ToString(error));
             }
         }
-        
+
         // once the device controller is stopped, we can delete it
         if (_deviceController != NULL)
         {
@@ -572,15 +752,54 @@ In response, your drone will send you a state change (if it has taken off) : Sta
 
 > Take off
 
+
+```c
+eARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE getFlyingState(ARCONTROLLER_Device_t *deviceController)
+{
+    eARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE flyingState = ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_MAX;
+    eARCONTROLLER_ERROR error;
+    ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary = ARCONTROLLER_ARDrone3_GetCommandElements(deviceController->aRDrone3, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED, &error);
+    if (error == ARCONTROLLER_OK && elementDictionary != NULL)
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            // Get the value
+            HASH_FIND_STR(element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                // Enums are stored as I32
+                flyingState = arg->value.I32;
+            }
+        }
+    }
+    return flyingState
+}
+
+void takeOff(ARCONTROLLER_Device_t *deviceController)
+{
+    if (deviceController == NULL)
+    {
+        return;
+    }
+    if (getFlyingState(deviceController) == ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_LANDED)
+    {
+        deviceController->aRDrone3->sendPilotingTakeOff(deviceController->aRDrone3);
+    }
+}
+```
+
 ```objective_c
 - (eARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE)getFlyingState {
-    
+
     eARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE flyingState = ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_MAX;
-    
+
     eARCONTROLLER_ERROR error;
     // get the current flying state description
     ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary = ARCONTROLLER_ARDrone3_GetCommandElements(_deviceController->aRDrone3, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED, &error);
-    if (!error && elementDictionary != NULL)
+    if (error == ARCONTROLLER_OK && elementDictionary != NULL)
     {
         ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
         ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
@@ -589,7 +808,7 @@ In response, your drone will send you a state change (if it has taken off) : Sta
         {
             // get the value
             HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE, arg);
-            
+
             if (arg != NULL)
             {
                 // Enums are I32
@@ -597,7 +816,7 @@ In response, your drone will send you a state change (if it has taken off) : Sta
             }
         }
     }
-    
+
     return flyingState;
 }
 
@@ -643,7 +862,7 @@ private void takeoff()
     if (ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_ENUM.ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_LANDED.equals(getPilotingState()))
     {
         ARCONTROLLER_ERROR_ENUM error = deviceController.getFeatureARDrone3().sendPilotingTakeOff();
-        
+
         if (!error.equals(ARCONTROLLER_ERROR_ENUM.ARCONTROLLER_OK))
         {
             ARSALPrint.e(TAG, "Error while sending take off : " + error);
@@ -654,6 +873,33 @@ private void takeoff()
 
 > The drone changes its state. Flying state should be ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_TAKINGOFF, then ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_HOVERING or ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_FLYING.
 
+
+```c
+// called when a command has been received from the drone
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    // if the command received is a flying state changed
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+
+        // get the command received in the device controller
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            // get the value
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE, arg);
+
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE flyingState = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
 ```objective_c
 // called when a command has been received from the drone
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
@@ -663,14 +909,14 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
     {
         ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
         ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        
+
         // get the command received in the device controller
         HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
         if (element != NULL)
         {
             // get the value
             HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE, arg);
-            
+
             if (arg != NULL)
             {
                 eARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE flyingState = arg->value.I32;
@@ -708,6 +954,21 @@ After that, you can start piloting your drone.
 ### Landing
 
 When you're done flying, you will need to land. This is how you do it: simply send the landing command.
+
+```c
+void land(ARCONTROLLER_Device_t *deviceController)
+{
+    if (deviceController == NULL)
+    {
+        return;
+    }
+    eARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE flyingState = getFlyingState(deviceController);
+    if (flyingState == ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_FLYING || flyingState == ARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_HOVERING)
+    {
+        deviceController->aRDrone3->sendPilotingLanding(deviceController->aRDrone3);
+    }
+}
+```
 
 ```objective_c
 - (void)land
@@ -755,20 +1016,29 @@ Here is how you set the piloting angles:
 
 > Make the drone moves forward (50% of its max angle)
 
+```c
+deviceController->aRDrone3->setPilotingPCMDFlag(deviceController->aRDrone3, 1);
+deviceController->aRDrone3->setPilotingPCMDPitch(deviceController->aRDrone3, 50);
+```
+
 ```objective_c
-_deviceController-> aRDrone3->setPilotingPCMDFlag(_deviceController-> aRDrone3, 1);
+_deviceController->aRDrone3->setPilotingPCMDFlag(_deviceController->aRDrone3, 1);
 _deviceController->aRDrone3->setPilotingPCMDPitch(_deviceController->aRDrone3, 50);
 ```
 
 ```java
-deviceController.getFeatureARDrone3().setPilotingPCMDPitch((byte) 50);
 deviceController.getFeatureARDrone3().setPilotingPCMDFlag((byte) 1);
+deviceController.getFeatureARDrone3().setPilotingPCMDPitch((byte) 50);
 ```
 
 > Make the drone rotate to the right (50% of its max rotation speed)
 
+```c
+deviceController->aRDrone3->setPilotingPCMDYaw(deviceController->aRDrone3, 50);
+```
+
 ```objective_c
-_deviceController-> aRDrone3->setPilotingPCMDYaw(_deviceController-> aRDrone3, 50);
+_deviceController->aRDrone3->setPilotingPCMDYaw(_deviceController->aRDrone3, 50);
 ```
 
 ```java
@@ -781,8 +1051,12 @@ To start the video stream, you will need to send a command to the Bebop. When th
 
 > Start video stream
 
+```c
+deviceController->aRDrone3->sendMediaStreamingVideoEnable(deviceController->aRDrone3, 1);
+```
+
 ```objective_c
-_deviceController-> aRDrone3->sendMediaStreamingVideoEnable(_deviceController-> aRDrone3, 1);
+_deviceController->aRDrone3->sendMediaStreamingVideoEnable(_deviceController- aRDrone3, 1);
 ```
 
 ```java
@@ -791,8 +1065,12 @@ deviceController.getFeatureARDrone3().sendMediaStreamingVideoEnable((byte)1);
 
 > Stop video stream
 
+```c
+deviceController->aRDrone3->sendMediaStreamingVideoEnable(deviceController->aRDrone3, 0);
+```
+
 ```objective_c
-_deviceController-> aRDrone3->sendMediaStreamingVideoEnable(_deviceController-> aRDrone3, 0);
+_deviceController->aRDrone3->sendMediaStreamingVideoEnable(_deviceController->aRDrone3, 0);
 ```
 
 ```java
@@ -804,16 +1082,20 @@ deviceController.getFeatureARDrone3().sendMediaStreamingVideoEnable((byte)0);
 The drone lets you take pictures. Once the picture has been taken, its stores it on its internal memory. Pictures are stored in `internal_000/Bebop_Drone/media/`. <br/>
 To get the pictures, you can:
 
-* simply do a ftp request: 
-    * port: 21 
+* simply do a ftp request:
+    * port: 21
     * login: "anonymous"
     * no password
 * use libARDataTransfer which provides an abstraction of the ftp
 
 > Take a picture
 
+```c
+deviceController->aRDrone3->sendMediaRecordPicture(deviceController->aRDrone3, 0);
+```
+
 ```objective_c
-_deviceController-> aRDrone3->sendMediaRecordPicture(_deviceController->aRDrone3, 0);
+_deviceController->aRDrone3->sendMediaRecordPicture(_deviceController->aRDrone3, 0);
 ```
 
 ```java
