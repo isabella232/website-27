@@ -1081,14 +1081,7 @@ deviceController.getFeatureARDrone3().sendMediaStreamingVideoEnable((byte)0);
 
 ### Taking a picture
 
-The drone lets you take pictures. Once the picture has been taken, its stores it on its internal memory. Pictures are stored in `internal_000/Bebop_Drone/media/`. <br/>
-To get the pictures, you can:
-
-* simply do a ftp request:
-    * port: 21
-    * login: "anonymous"
-    * no password
-* use libARDataTransfer which provides an abstraction of the ftp
+The drone lets you take pictures. 
 
 > Take a picture
 
@@ -1102,4 +1095,593 @@ _deviceController->aRDrone3->sendMediaRecordPicture(_deviceController->aRDrone3,
 
 ```java
 deviceController.getFeatureARDrone3().sendMediaRecordPicture((byte)0);
+```
+
+### Download pictures and videos
+
+Once the picture or video has been taken, the Bebop stores it on its internal memory. Pictures are stored in `internal_000/Bebop_Drone/media/`. <br/>
+To get the pictures, you can:
+
+* simply do a ftp request:
+    * port: 21
+    * login: "anonymous"
+    * no password
+* use libARDataTransfer which provides an abstraction of the ftp
+
+**Please note that libARController is not including the data transfer for the moment, it will certainly in the future so this process will be simplified**
+
+Here is how to do it with libARDataTransfer.
+
+libARDataTransfer lets you get a list of all stored medias quite quickly. It also provides you a way to enrich the list of medias with their thumbnails. It also gives you the ability to download the media.
+
+<div></div>
+First, you will need to create the data transfer manager
+
+> Declare vars
+
+```objective_c
+#define DEVICE_PORT     21
+#define MEDIA_FOLDER    "internal_000"
+
+@property (nonatomic, assign) ARSAL_Thread_t threadRetreiveAllMedias;   // the thread that will do the media retrieving
+@property (nonatomic, assign) ARSAL_Thread_t threadGetThumbnails;       // the thread that will download the thumbnails
+@property (nonatomic, assign) ARSAL_Thread_t threadMediasDownloader;    // the thread that will download medias
+
+@property (nonatomic, assign) ARDATATRANSFER_Manager_t *manager;        // the data transfer manager
+@property (nonatomic, assign) ARUTILS_Manager_t *ftpListManager;        // an ftp that will do the list
+@property (nonatomic, assign) ARUTILS_Manager_t *ftpQueueManager;       // an ftp that will do the download
+```
+
+```java
+private static final int DEVICE_PORT = 21;
+private static final String MEDIA_FOLDER = "internal_000";
+
+private AsyncTask<Void, Float, ArrayList<ARMediaObject>> getMediaAsyncTask;
+private AsyncTask<Void, Float, Void> getThumbnailAsyncTask;
+private Handler mFileTransferThreadHandler;
+private HandlerThread mFileTransferThread;
+private boolean isRunning = false;
+private boolean isDownloading = false;
+private final Object lock = new Object();
+
+private ARDataTransferManager dataTransferManager;
+private ARUtilsManager ftpListManager;
+private ARUtilsManager ftpQueueManager;
+```
+
+> Create the data transfer manager
+
+```objective_c
+- (void)createDataTransferManager
+{
+    NSString *productIP = @"192.168.42.1";  // TODO: get this address from libARController
+    
+    eARDATATRANSFER_ERROR result = ARDATATRANSFER_OK;
+    _manager = ARDATATRANSFER_Manager_New(&result);
+    
+    if (result == ARDATATRANSFER_OK)
+    {
+        eARUTILS_ERROR ftpError = ARUTILS_OK;
+        _ftpListManager = ARUTILS_Manager_New(&ftpError);
+        if(ftpError == ARUTILS_OK)
+        {
+            _ftpQueueManager = ARUTILS_Manager_New(&ftpError);
+        }
+        
+        if(ftpError == ARUTILS_OK)
+        {
+            ftpError = ARUTILS_Manager_InitWifiFtp(_ftpListManager, [productIP UTF8String], DEVICE_PORT, ARUTILS_FTP_ANONYMOUS, "");
+        }
+        
+        if(ftpError == ARUTILS_OK)
+        {
+            ftpError = ARUTILS_Manager_InitWifiFtp(_ftpQueueManager, [productIP UTF8String], DEVICE_PORT, ARUTILS_FTP_ANONYMOUS, "");
+        }
+        
+        if(ftpError != ARUTILS_OK)
+        {
+            result = ARDATATRANSFER_ERROR_FTP;
+        }
+    }
+    // NO ELSE
+    
+    if (result == ARDATATRANSFER_OK)
+    {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *path = [paths lastObject];
+        
+        result = ARDATATRANSFER_MediasDownloader_New(_manager, _ftpListManager, _ftpQueueManager, MEDIA_FOLDER, [path UTF8String]);
+    }
+}
+```
+
+```java
+private void createDataTransferManager() {
+   String productIP = "192.168.42.1";  // TODO: get this address from libARController
+
+   ARDATATRANSFER_ERROR_ENUM result = ARDATATRANSFER_ERROR_ENUM.ARDATATRANSFER_OK;
+   try
+   {
+       dataTransferManager = new ARDataTransferManager();
+   }
+   catch (ARDataTransferException e)
+   {
+       e.printStackTrace();
+       result = ARDATATRANSFER_ERROR_ENUM.ARDATATRANSFER_ERROR;
+   }
+
+   if (result == ARDATATRANSFER_ERROR_ENUM.ARDATATRANSFER_OK)
+   {
+       try
+       {
+           ftpListManager = new ARUtilsManager();
+           ftpQueueManager = new ARUtilsManager();
+
+           ftpListManager.initWifiFtp(productIP, DEVICE_PORT, ARUtilsFtpConnection.FTP_ANONYMOUS, "");
+           ftpQueueManager.initWifiFtp(productIP, DEVICE_PORT, ARUtilsFtpConnection.FTP_ANONYMOUS, "");
+       }
+       catch (ARUtilsException e)
+       {
+           e.printStackTrace();
+           result = ARDATATRANSFER_ERROR_ENUM.ARDATATRANSFER_ERROR_FTP;
+       }
+   }
+   if (result == ARDATATRANSFER_ERROR_ENUM.ARDATATRANSFER_OK)
+   {
+       // direct to external directory
+       String externalDirectory = Environment.getExternalStorageDirectory().toString().concat("/ARSDKMedias/");
+       try
+       {
+           dataTransferManager.getARDataTransferMediasDownloader().createMediasDownloader(ftpListManager, ftpQueueManager, MEDIA_FOLDER, externalDirectory);
+       }
+       catch (ARDataTransferException e)
+       {
+           e.printStackTrace();
+           result = e.getError();
+       }
+   }
+
+   if (result == ARDATATRANSFER_ERROR_ENUM.ARDATATRANSFER_OK)
+   {
+       // create a thread for the download to run the download runnable
+       mFileTransferThread = new HandlerThread("FileTransferThread");
+       mFileTransferThread.start();
+       mFileTransferThreadHandler = new Handler(mFileTransferThread.getLooper());
+   }
+
+   if (result != ARDATATRANSFER_ERROR_ENUM.ARDATATRANSFER_OK)
+   {
+       // clean up here because an error happened
+   }
+}
+```
+
+<div></div>
+Then, we can get the list of all medias on the Bebop (without their thumbnail). This operation is quite quick.
+
+> Get the list of the medias 
+
+```objective_c
+- (void)startMediaListThread
+{
+    // first retrieve Medias without their thumbnails
+    ARSAL_Thread_Create(&_threadRetreiveAllMedias, ARMediaStorage_retreiveAllMediasAsync, (__bridge void *)self);
+}
+
+static void* ARMediaStorage_retreiveAllMediasAsync(void* arg)
+{
+    PilotingViewController *self = (__bridge PilotingViewController *)(arg);
+    [self getAllMediaAsync];
+    return NULL;
+}
+
+- (void)getAllMediaAsync
+{
+    eARDATATRANSFER_ERROR result = ARDATATRANSFER_OK;
+    int mediaListCount = 0;
+    
+    if (result == ARDATATRANSFER_OK)
+    {
+        mediaListCount = ARDATATRANSFER_MediasDownloader_GetAvailableMediasSync(_manager,0,&result);
+        if (result == ARDATATRANSFER_OK)
+        {
+            for (int i = 0 ; i < mediaListCount && result == ARDATATRANSFER_OK; i++)
+            {
+                ARDATATRANSFER_Media_t * mediaObject = ARDATATRANSFER_MediasDownloader_GetAvailableMediaAtIndex(_manager, i, &result);
+                NSLog(@"Media %i : %s", i, mediaObject->name);
+                // Do what you want with this mediaObject
+            }
+        }
+    }
+}
+```
+
+```java
+private void fetchMediasList() {
+   if (getMediaAsyncTask == null)
+   {
+       getMediaAsyncTask = new AsyncTask<Void, Float, ArrayList<ARMediaObject>>()
+       {
+           @Override
+           protected ArrayList<ARMediaObject> doInBackground(Void... params)
+           {
+               ArrayList<ARMediaObject> mediaList = null;
+               synchronized (lock)
+               {
+                   ARDataTransferMediasDownloader mediasDownloader = null;
+                   if (dataTransferManager != null)
+                   {
+                       mediasDownloader = dataTransferManager.getARDataTransferMediasDownloader();
+                   }
+
+                   if (mediasDownloader != null)
+                   {
+                       try
+                       {
+                           int mediaListCount = mediasDownloader.getAvailableMediasSync(false);
+                           mediaList = new ArrayList<>(mediaListCount);
+                           for (int i = 0; i < mediaListCount; i++)
+                           {
+                               ARDataTransferMedia currentMedia = mediasDownloader.getAvailableMediaAtIndex(i);
+                               final ARMediaObject currentARMediaObject = new ARMediaObject();
+                               currentARMediaObject.updateDataTransferMedia(getResources(), currentMedia);
+                               mediaList.add(currentARMediaObject);
+                           }
+                       }
+                       catch (ARDataTransferException e)
+                       {
+                           e.printStackTrace();
+                           mediaList = null;
+                       }
+                   }
+               }
+
+               return mediaList;
+           }
+
+           @Override
+           protected void onPostExecute(ArrayList<ARMediaObject> arMediaObjects)
+           {
+                // Do what you want with the list of media object
+           }
+       };
+   }
+
+   if (getMediaAsyncTask.getStatus() != AsyncTask.Status.RUNNING) {
+       getMediaAsyncTask.execute();
+   }
+}
+```
+
+<div></div>
+
+Once the list is received, we can start downloading the thumbnail (not needed if you don't display thumbnails).
+
+> Download thumbnails
+
+```objective_c
+- (void)startMediaThumbnailDownloadThread
+{
+    // first retrieve Medias without their thumbnails
+    ARSAL_Thread_Create(&_threadGetThumbnails, ARMediaStorage_retreiveMediaThumbnailsSync, (__bridge void *)self);
+}
+
+static void* ARMediaStorage_retreiveMediaThumbnailsSync(void* arg)
+{
+    PilotingViewController *self = (__bridge PilotingViewController *)(arg);
+    [self downloadThumbnails];
+    return NULL;
+}
+
+- (void)downloadThumbnails
+{
+    ARDATATRANSFER_MediasDownloader_GetAvailableMediasAsync(_manager, availableMediaCallback, (__bridge void *)self);
+}
+
+void availableMediaCallback (void* arg, ARDATATRANSFER_Media_t *media, int index)
+{
+    if (NULL != arg)
+    {
+        PilotingViewController *self = (__bridge PilotingViewController *)(arg);  
+        // you can alternatively call updateThumbnailWithARDATATRANSFER_Media_t if you use the ARMediaObjectDelegate
+        UIImage *newThumbnail = [UIImage imageWithData:[NSData dataWithBytes:media->thumbnail length:media->thumbnailSize]];
+        // Do what you want with the image
+    }
+}
+```
+
+```java
+private void fetchThumbnails() {
+   if (getThumbnailAsyncTask == null)
+   {
+       getThumbnailAsyncTask = new AsyncTask<Void, Float, Void>()
+       {
+           @Override
+           protected Void doInBackground(Void... params)
+           {
+               synchronized (lock)
+               {
+                   ARDataTransferMediasDownloader mediasDownloader = null;
+                   if (dataTransferManager != null)
+                   {
+                       mediasDownloader = dataTransferManager.getARDataTransferMediasDownloader();
+                   }
+
+                   if (mediasDownloader != null)
+                   {
+                       try
+                       {
+                           // availableMediaListener is a ARDataTransferMediasDownloaderAvailableMediaListener (you can pass YourActivity.this if YourActivity implements this interface)
+                           mediasDownloader.getAvailableMediasAsync(availableMediaListener, null);
+                       }
+                       catch (ARDataTransferException e)
+                       {
+                           e.printStackTrace();
+                       }
+                   }
+               }
+               return null;
+           }
+
+           @Override
+           protected void onPostExecute(Void param)
+           {
+               adapter.notifyDataSetChanged();
+           }
+       };
+   }
+
+   if (getThumbnailAsyncTask.getStatus() != AsyncTask.Status.RUNNING) {
+       getThumbnailAsyncTask.execute();
+   }
+}
+
+@Override
+public void didMediaAvailable(Object arg, final ARDataTransferMedia media, final int index)
+{
+   runOnUiThread(new Runnable()
+   {
+       @Override
+       public void run()
+       {
+           ARMediaObject mediaObject = getMediaAtIndex(index);
+           if (mediaObject != null)
+           {
+               mediaObject.updateThumbnailWithDataTransferMedia(getResources(), media);
+               // after that, you can retrieve the thumbnail through mediaObject.getThumbnail()
+           }
+       }
+   });
+}
+
+```
+
+<div></div>
+
+Next step is to download the medias.
+
+> Download medias
+
+```objective_c
+- (void)downloadMedias
+{
+    eARDATATRANSFER_ERROR result = ARDATATRANSFER_OK;
+    int mediasToDlCount = [self getMediaToDlCount];
+    for (int i = 0 ; i < mediasToDlCount && result == ARDATATRANSFER_OK; i++)
+    {
+        ARDATATRANSFER_Media_t *media = [self getMediaToDownload:i];
+        result = ARDATATRANSFER_MediasDownloader_AddMediaToQueue(_manager, media, medias_downloader_progress_callback, (__bridge void *)(self), medias_downloader_completion_callback,(__bridge void*)self);
+    }
+    
+    if (result == ARDATATRANSFER_OK)
+    {
+        if (_threadMediasDownloader == NULL)
+        {
+            // if not already started, start download thread in background
+            ARSAL_Thread_Create(&_threadMediasDownloader, ARDATATRANSFER_MediasDownloader_QueueThreadRun, _manager);
+        }
+    }
+}
+void medias_downloader_progress_callback(void* arg, ARDATATRANSFER_Media_t *media, float percent)
+{
+    // the media is downloading
+}
+
+void medias_downloader_completion_callback(void* arg, ARDATATRANSFER_Media_t *media, eARDATATRANSFER_ERROR error)
+{
+    // the media is downloaded
+}
+```
+
+```java
+/**
+* Add the medias to the transfer queue and, if needed, start the queue
+* @param mediaToDl list of media index to download
+*/
+private void downloadMedias(ArrayList<Integer> mediaToDl)
+{
+   ARDataTransferMediasDownloader mediasDownloader = null;
+   if (dataTransferManager != null)
+   {
+       mediasDownloader = dataTransferManager.getARDataTransferMediasDownloader();
+   }
+
+   if (mediasDownloader != null)
+   {
+       for (int i = 0; i < mediaToDl.size(); i++)
+       {
+           int mediaIndex = mediaToDl.get(i);
+           ARDataTransferMedia mediaObject = null;
+           try
+           {
+               mediaObject = dataTransferManager.getARDataTransferMediasDownloader().getAvailableMediaAtIndex(mediaIndex);
+           }
+           catch (ARDataTransferException e)
+           {
+               e.printStackTrace();
+           }
+
+           if (mediaObject != null)
+           {
+               try
+               {
+                   mediasDownloader.addMediaToQueue(mediaObject, progressListener, null, completeListener, null);
+               }
+               catch (ARDataTransferException e)
+               {
+                   e.printStackTrace();
+               }
+           }
+       }
+
+       if (!isRunning)
+       {
+           isRunning = true;
+           Runnable downloaderQueueRunnable = mediasDownloader.getDownloaderQueueRunnable();
+           mFileTransferThreadHandler.post(downloaderQueueRunnable);
+       }
+   }
+   isDownloading = true;
+}
+
+@Override
+public void didMediaComplete(Object arg, ARDataTransferMedia media, ARDATATRANSFER_ERROR_ENUM error)
+{
+    // the media is downloaded
+}
+
+@Override
+public void didMediaProgress(Object arg, ARDataTransferMedia media, float percent)
+{
+    // the media is downloading
+}
+```
+
+> Stop downloading medias
+
+```objective_c
+- (void)cancelCurrentDownload {
+    if (_threadMediasDownloader != NULL)
+    {
+        ARDATATRANSFER_MediasDownloader_CancelQueueThread(_manager);
+        
+        ARSAL_Thread_Join(_threadMediasDownloader, NULL);
+        ARSAL_Thread_Destroy(&_threadMediasDownloader);
+        _threadMediasDownloader = NULL;
+    }
+}
+```
+
+```java
+private void cancelCurrentDownload()
+{
+   dataTransferManager.getARDataTransferMediasDownloader().cancelQueueThread();
+   isDownloading = false;
+   isRunning = false;
+}
+```
+
+<div></div>
+
+When you don't need the data transfer anymore, don't forget to clean everything
+
+> Clean
+
+```objective_c
+- (void)clean
+{
+    if (_threadRetreiveAllMedias != NULL)
+    {
+        ARDATATRANSFER_MediasDownloader_CancelGetAvailableMedias(_manager);
+        
+        ARSAL_Thread_Join(_threadRetreiveAllMedias, NULL);
+        ARSAL_Thread_Destroy(&_threadRetreiveAllMedias);
+        _threadRetreiveAllMedias = NULL;
+    }
+    
+    if (_threadGetThumbnails != NULL)
+    {
+        ARDATATRANSFER_MediasDownloader_CancelGetAvailableMedias(_manager);
+        
+        ARSAL_Thread_Join(_threadGetThumbnails, NULL);
+        ARSAL_Thread_Destroy(&_threadGetThumbnails);
+        _threadGetThumbnails = NULL;
+    }
+    
+    if (_threadMediasDownloader != NULL)
+    {
+        ARDATATRANSFER_MediasDownloader_CancelQueueThread(_manager);
+        
+        ARSAL_Thread_Join(_threadMediasDownloader, NULL);
+        ARSAL_Thread_Destroy(&_threadMediasDownloader);
+        _threadMediasDownloader = NULL;
+    }
+    
+    ARDATATRANSFER_MediasDownloader_Delete(_manager);
+    
+    ARUTILS_Manager_CloseWifiFtp(_ftpListManager);
+    ARUTILS_Manager_CloseWifiFtp(_ftpQueueManager);
+    
+    ARUTILS_Manager_Delete(&_ftpListManager);
+    ARUTILS_Manager_Delete(&_ftpQueueManager);
+    ARDATATRANSFER_Manager_Delete(&_manager);
+}
+```
+
+```java
+private void clean()
+{
+   new Thread(new Runnable()
+   {
+       @Override
+       public void run()
+       {
+           cancelCurrentDownload();
+
+           if (dataTransferManager != null)
+           {
+               dataTransferManager.getARDataTransferMediasDownloader().cancelGetAvailableMedias();
+           }
+           if (getMediaAsyncTask != null && getMediaAsyncTask.getStatus() == AsyncTask.Status.RUNNING)
+           {
+               synchronized (lock)
+               {
+                   getMediaAsyncTask.cancel(true);
+               }
+           }
+           if (getThumbnailAsyncTask != null && getThumbnailAsyncTask.getStatus() == AsyncTask.Status.RUNNING)
+           {
+               synchronized (lock)
+               {
+                   getThumbnailAsyncTask.cancel(true);
+               }
+           }
+
+           if (ftpListManager != null)
+           {
+               ftpListManager.closeWifiFtp();
+
+               ftpListManager.dispose();
+               ftpListManager = null;
+           }
+           if (ftpQueueManager != null)
+           {
+               ftpQueueManager.closeWifiFtp();
+               ftpQueueManager.dispose();
+               ftpQueueManager = null;
+           }
+           if (dataTransferManager != null)
+           {
+               dataTransferManager.dispose();
+               dataTransferManager = null;
+           }
+
+           if (mFileTransferThread != null)
+           {
+               mFileTransferThread.quit();
+               mFileTransferThread = null;
+           }
+       }
+   }).start();
+}
 ```
