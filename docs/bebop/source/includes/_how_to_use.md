@@ -109,6 +109,7 @@ You're all set, [let's start coding](#start-coding) !
 Here are the instruction about how to use the SDK to control the Bebop drone.
 
 ### Discover the drones
+
 First of all, you will need to discover the drones around you. To do that, we will use the libARDiscovery.
 
 > Start discovery:
@@ -413,6 +414,7 @@ private void closeServices()
 ```
 
 ### <a name="create_device_controller">Setup a device controller</a>
+
 The device controller is an object that will make the interface between the drone and you.
 
 **After having [started](#start_device_controller) the device controller, you should receive all its states and settings through the command received callback.**
@@ -514,7 +516,7 @@ public void onStateChanged (ARDeviceController deviceController, ARCONTROLLER_DE
 }
 ```
 
-> <a name="add_commands_receive_cb">Listen to the commands received from the drone (example of the battery level received)</a>
+> <a name="add_commands_receive_cb">Listen to the commands received from the drone</a> (example of the battery level received)
 
 ```c
 error = ARCONTROLLER_Device_AddCommandReceivedCallback(deviceController, onCommandReceived, NULL);
@@ -614,7 +616,7 @@ public void onCommandReceived(ARDeviceController deviceController, ARCONTROLLER_
 }
 ```
 
-> <a name="bebop_add_video_receive_cb">Listen to the video stream received from the drone
+> <a name="bebop_add_video_receive_cb">Listen to the video stream received from the drone</a>
 
 ```c
 error = ARCONTROLLER_Device_SetVideoReceiveCallback (deviceController, didReceiveFrameCallback, NULL, NULL);
