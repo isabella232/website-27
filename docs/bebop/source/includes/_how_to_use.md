@@ -92,8 +92,19 @@ static
        System.loadLibrary("arnetwork_android");
        System.loadLibrary("arcommands");
        System.loadLibrary("arcommands_android");
+       System.loadLibrary("arstream");
+       System.loadLibrary("arstream_android");
+       System.loadLibrary("json");
        System.loadLibrary("ardiscovery");
        System.loadLibrary("ardiscovery_android");
+       System.loadLibrary("arutils");
+       System.loadLibrary("arutils_android");
+       System.loadLibrary("ardatatransfer");
+       System.loadLibrary("ardatatransfer_android");
+       System.loadLibrary("armedia");
+       System.loadLibrary("armedia_android");
+       System.loadLibrary("arcontroller");
+       System.loadLibrary("arcontroller_android");
    }
    catch (Exception e)
    {
