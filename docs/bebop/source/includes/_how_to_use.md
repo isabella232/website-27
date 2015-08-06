@@ -1092,7 +1092,7 @@ deviceController.getFeatureARDrone3().sendMediaStreamingVideoEnable((byte)0);
 
 ### Taking a picture
 
-The drone lets you take pictures. 
+The drone lets you take pictures.
 
 > Take a picture
 
@@ -1130,6 +1130,18 @@ First, you will need to create the data transfer manager
 
 > Declare vars
 
+```c
+#define DEVICE_PORT     21
+#define MEDIA_FOLDER    "internal_000"
+
+ARSAL_Thread_t threadRetreiveAllMedias;   // the thread that will do the media retrieving
+ARSAL_Thread_t threadGetThumbnails;       // the thread that will download the thumbnails
+ARSAL_Thread_t threadMediasDownloader;    // the thread that will download medias
+ARDATATRANSFER_Manager_t *manager;        // the data transfer manager
+ARUTILS_Manager_t *ftpListManager;        // an ftp that will do the list
+ARUTILS_Manager_t *ftpQueueManager;       // an ftp that will do the download
+```
+
 ```objective_c
 #define DEVICE_PORT     21
 #define MEDIA_FOLDER    "internal_000"
@@ -1162,14 +1174,57 @@ private ARUtilsManager ftpQueueManager;
 
 > Create the data transfer manager
 
+```c
+void createDataTransferManager()
+{
+    const char *productIP = "192.168.42.1";  // TODO: get this address from libARController
+
+    eARDATATRANSFER_ERROR result = ARDATATRANSFER_OK;
+    manager = ARDATATRANSFER_Manager_New(&result);
+
+    if (result == ARDATATRANSFER_OK)
+    {
+        eARUTILS_ERROR ftpError = ARUTILS_OK;
+        ftpListManager = ARUTILS_Manager_New(&ftpError);
+        if(ftpError == ARUTILS_OK)
+        {
+            ftpQueueManager = ARUTILS_Manager_New(&ftpError);
+        }
+
+        if(ftpError == ARUTILS_OK)
+        {
+            ftpError = ARUTILS_Manager_InitWifiFtp(ftpListManager, productIP, DEVICE_PORT, ARUTILS_FTP_ANONYMOUS, "");
+        }
+
+        if(ftpError == ARUTILS_OK)
+        {
+            ftpError = ARUTILS_Manager_InitWifiFtp(ftpQueueManager, productIP, DEVICE_PORT, ARUTILS_FTP_ANONYMOUS, "");
+        }
+
+        if(ftpError != ARUTILS_OK)
+        {
+            result = ARDATATRANSFER_ERROR_FTP;
+        }
+    }
+    // NO ELSE
+
+    if (result == ARDATATRANSFER_OK)
+    {
+        const char *path = "the/path/to/store/downloaded/data"; // Change according to your needs, or put as an argument
+
+        result = ARDATATRANSFER_MediasDownloader_New(manager, ftpListManager, ftpQueueManager, MEDIA_FOLDER, path);
+    }
+}
+```
+
 ```objective_c
 - (void)createDataTransferManager
 {
     NSString *productIP = @"192.168.42.1";  // TODO: get this address from libARController
-    
+
     eARDATATRANSFER_ERROR result = ARDATATRANSFER_OK;
     _manager = ARDATATRANSFER_Manager_New(&result);
-    
+
     if (result == ARDATATRANSFER_OK)
     {
         eARUTILS_ERROR ftpError = ARUTILS_OK;
@@ -1178,29 +1233,29 @@ private ARUtilsManager ftpQueueManager;
         {
             _ftpQueueManager = ARUTILS_Manager_New(&ftpError);
         }
-        
+
         if(ftpError == ARUTILS_OK)
         {
             ftpError = ARUTILS_Manager_InitWifiFtp(_ftpListManager, [productIP UTF8String], DEVICE_PORT, ARUTILS_FTP_ANONYMOUS, "");
         }
-        
+
         if(ftpError == ARUTILS_OK)
         {
             ftpError = ARUTILS_Manager_InitWifiFtp(_ftpQueueManager, [productIP UTF8String], DEVICE_PORT, ARUTILS_FTP_ANONYMOUS, "");
         }
-        
+
         if(ftpError != ARUTILS_OK)
         {
             result = ARDATATRANSFER_ERROR_FTP;
         }
     }
     // NO ELSE
-    
+
     if (result == ARDATATRANSFER_OK)
     {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *path = [paths lastObject];
-        
+
         result = ARDATATRANSFER_MediasDownloader_New(_manager, _ftpListManager, _ftpQueueManager, MEDIA_FOLDER, [path UTF8String]);
     }
 }
@@ -1270,7 +1325,41 @@ private void createDataTransferManager() {
 <div></div>
 Then, we can get the list of all medias on the Bebop (without their thumbnail). This operation is quite quick.
 
-> Get the list of the medias 
+> Get the list of the medias
+
+```c
+void startMediaListThread()
+{
+    // first retrieve Medias without their thumbnails
+    ARSAL_Thread_Create(&threadRetreiveAllMedias, ARMediaStorage_retreiveAllMediasAsync, NULL);
+}
+
+static void* ARMediaStorage_retreiveAllMediasAsync(void* arg)
+{
+    getAllMediaAsync();
+    return NULL;
+}
+
+void getAllMediaAsync()
+{
+    eARDATATRANSFER_ERROR result = ARDATATRANSFER_OK;
+    int mediaListCount = 0;
+
+    if (result == ARDATATRANSFER_OK)
+    {
+        mediaListCount = ARDATATRANSFER_MediasDownloader_GetAvailableMediasSync(manager,0,&result);
+        if (result == ARDATATRANSFER_OK)
+        {
+            for (int i = 0 ; i < mediaListCount && result == ARDATATRANSFER_OK; i++)
+            {
+                ARDATATRANSFER_Media_t * mediaObject = ARDATATRANSFER_MediasDownloader_GetAvailableMediaAtIndex(manager, i, &result);
+                printf("Media %i : %s", i, mediaObject->name);
+                // Do what you want with this mediaObject
+            }
+        }
+    }
+}
+```
 
 ```objective_c
 - (void)startMediaListThread
@@ -1290,7 +1379,7 @@ static void* ARMediaStorage_retreiveAllMediasAsync(void* arg)
 {
     eARDATATRANSFER_ERROR result = ARDATATRANSFER_OK;
     int mediaListCount = 0;
-    
+
     if (result == ARDATATRANSFER_OK)
     {
         mediaListCount = ARDATATRANSFER_MediasDownloader_GetAvailableMediasSync(_manager,0,&result);
@@ -1370,6 +1459,35 @@ Once the list is received, we can start downloading the thumbnail (not needed if
 
 > Download thumbnails
 
+```c
+void startMediaThumbnailDownloadThread()
+{
+    // first retrieve Medias without their thumbnails
+    ARSAL_Thread_Create(&threadGetThumbnails, ARMediaStorage_retreiveMediaThumbnailsSync, NULL);
+}
+
+static void* ARMediaStorage_retreiveMediaThumbnailsSync(void* arg)
+{
+    downloadThumbnails();
+    return NULL;
+}
+
+void downloadThumbnails()
+{
+    ARDATATRANSFER_MediasDownloader_GetAvailableMediasAsync(manager, availableMediaCallback, NULL);
+}
+
+void availableMediaCallback (void* arg, ARDATATRANSFER_Media_t *media, int index)
+{
+    if (NULL != arg)
+    {
+        // The thumbnail image data is available in the media->thumbnail pointer.
+        // The thumbnail data size is media->thumbnailSize
+        // Do what you want with the image
+    }
+}
+```
+
 ```objective_c
 - (void)startMediaThumbnailDownloadThread
 {
@@ -1393,7 +1511,7 @@ void availableMediaCallback (void* arg, ARDATATRANSFER_Media_t *media, int index
 {
     if (NULL != arg)
     {
-        PilotingViewController *self = (__bridge PilotingViewController *)(arg);  
+        PilotingViewController *self = (__bridge PilotingViewController *)(arg);
         // you can alternatively call updateThumbnailWithARDATATRANSFER_Media_t if you use the ARMediaObjectDelegate
         UIImage *newThumbnail = [UIImage imageWithData:[NSData dataWithBytes:media->thumbnail length:media->thumbnailSize]];
         // Do what you want with the image
@@ -1473,17 +1591,46 @@ Next step is to download the medias.
 
 > Download medias
 
-```objective_c
-- (void)downloadMedias
+```c
+void downloadMedias(ARDATATRANSFER_Media_t *medias, int count)
 {
     eARDATATRANSFER_ERROR result = ARDATATRANSFER_OK;
-    int mediasToDlCount = [self getMediaToDlCount];
-    for (int i = 0 ; i < mediasToDlCount && result == ARDATATRANSFER_OK; i++)
+    for (int i = 0 ; i < count && result == ARDATATRANSFER_OK; i++)
     {
-        ARDATATRANSFER_Media_t *media = [self getMediaToDownload:i];
+        ARDATATRANSFER_Media_t *media = medias[i];
+        result = ARDATATRANSFER_MediasDownloader_AddMediaToQueue(manager, media, medias_downloader_progress_callback, NULL, medias_downloader_completion_callback, NULL);
+    }
+
+    if (result == ARDATATRANSFER_OK)
+    {
+        if (threadMediasDownloader == NULL)
+        {
+            // if not already started, start download thread in background
+            ARSAL_Thread_Create(&threadMediasDownloader, ARDATATRANSFER_MediasDownloader_QueueThreadRun, manager);
+        }
+    }
+}
+void medias_downloader_progress_callback(void* arg, ARDATATRANSFER_Media_t *media, float percent)
+{
+    // the media is downloading
+}
+
+void medias_downloader_completion_callback(void* arg, ARDATATRANSFER_Media_t *media, eARDATATRANSFER_ERROR error)
+{
+    // the media is downloaded
+}
+```
+
+```objective_c
+- (void)downloadMedias:(ARDATATRANSFER_Media_t *)medias withCount:(int)count
+{
+    eARDATATRANSFER_ERROR result = ARDATATRANSFER_OK;
+    for (int i = 0 ; i < count && result == ARDATATRANSFER_OK; i++)
+    {
+        ARDATATRANSFER_Media_t *media = medias[i];
         result = ARDATATRANSFER_MediasDownloader_AddMediaToQueue(_manager, media, medias_downloader_progress_callback, (__bridge void *)(self), medias_downloader_completion_callback,(__bridge void*)self);
     }
-    
+
     if (result == ARDATATRANSFER_OK)
     {
         if (_threadMediasDownloader == NULL)
@@ -1570,12 +1717,25 @@ public void didMediaProgress(Object arg, ARDataTransferMedia media, float percen
 
 > Stop downloading medias
 
+```c
+void cancelCurrentDownload() {
+    if (threadMediasDownloader != NULL)
+    {
+        ARDATATRANSFER_MediasDownloader_CancelQueueThread(manager);
+
+        ARSAL_Thread_Join(threadMediasDownloader, NULL);
+        ARSAL_Thread_Destroy(&threadMediasDownloader);
+        threadMediasDownloader = NULL;
+    }
+}
+```
+
 ```objective_c
 - (void)cancelCurrentDownload {
     if (_threadMediasDownloader != NULL)
     {
         ARDATATRANSFER_MediasDownloader_CancelQueueThread(_manager);
-        
+
         ARSAL_Thread_Join(_threadMediasDownloader, NULL);
         ARSAL_Thread_Destroy(&_threadMediasDownloader);
         _threadMediasDownloader = NULL;
@@ -1598,41 +1758,82 @@ When you don't need the data transfer anymore, don't forget to clean everything
 
 > Clean
 
+```c
+void clean()
+{
+    if (threadRetreiveAllMedias != NULL)
+    {
+        ARDATATRANSFER_MediasDownloader_CancelGetAvailableMedias(manager);
+
+        ARSAL_Thread_Join(threadRetreiveAllMedias, NULL);
+        ARSAL_Thread_Destroy(&threadRetreiveAllMedias);
+        threadRetreiveAllMedias = NULL;
+    }
+
+    if (threadGetThumbnails != NULL)
+    {
+        ARDATATRANSFER_MediasDownloader_CancelGetAvailableMedias(manager);
+
+        ARSAL_Thread_Join(threadGetThumbnails, NULL);
+        ARSAL_Thread_Destroy(&threadGetThumbnails);
+        threadGetThumbnails = NULL;
+    }
+
+    if (threadMediasDownloader != NULL)
+    {
+        ARDATATRANSFER_MediasDownloader_CancelQueueThread(manager);
+
+        ARSAL_Thread_Join(threadMediasDownloader, NULL);
+        ARSAL_Thread_Destroy(&threadMediasDownloader);
+        threadMediasDownloader = NULL;
+    }
+
+    ARDATATRANSFER_MediasDownloader_Delete(manager);
+
+    ARUTILS_Manager_CloseWifiFtp(ftpListManager);
+    ARUTILS_Manager_CloseWifiFtp(ftpQueueManager);
+
+    ARUTILS_Manager_Delete(&ftpListManager);
+    ARUTILS_Manager_Delete(&ftpQueueManager);
+    ARDATATRANSFER_Manager_Delete(&manager);
+}
+```
+
 ```objective_c
 - (void)clean
 {
     if (_threadRetreiveAllMedias != NULL)
     {
         ARDATATRANSFER_MediasDownloader_CancelGetAvailableMedias(_manager);
-        
+
         ARSAL_Thread_Join(_threadRetreiveAllMedias, NULL);
         ARSAL_Thread_Destroy(&_threadRetreiveAllMedias);
         _threadRetreiveAllMedias = NULL;
     }
-    
+
     if (_threadGetThumbnails != NULL)
     {
         ARDATATRANSFER_MediasDownloader_CancelGetAvailableMedias(_manager);
-        
+
         ARSAL_Thread_Join(_threadGetThumbnails, NULL);
         ARSAL_Thread_Destroy(&_threadGetThumbnails);
         _threadGetThumbnails = NULL;
     }
-    
+
     if (_threadMediasDownloader != NULL)
     {
         ARDATATRANSFER_MediasDownloader_CancelQueueThread(_manager);
-        
+
         ARSAL_Thread_Join(_threadMediasDownloader, NULL);
         ARSAL_Thread_Destroy(&_threadMediasDownloader);
         _threadMediasDownloader = NULL;
     }
-    
+
     ARDATATRANSFER_MediasDownloader_Delete(_manager);
-    
+
     ARUTILS_Manager_CloseWifiFtp(_ftpListManager);
     ARUTILS_Manager_CloseWifiFtp(_ftpQueueManager);
-    
+
     ARUTILS_Manager_Delete(&_ftpListManager);
     ARUTILS_Manager_Delete(&_ftpQueueManager);
     ARDATATRANSFER_Manager_Delete(&_manager);
