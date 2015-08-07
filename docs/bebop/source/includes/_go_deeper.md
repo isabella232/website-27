@@ -49,7 +49,12 @@ This library helps you to update your drone. It provides functions to tests if t
 This library provides utilities classes.
 
 ### Samples
-You can find in this repo lots of basic examples.
+You can find in this repo lots of basic examples.<br/>
+For iOS, if you want to use the precompiled frameworks instead of building the whole SDK, you will have to to:
+
+* click on the target
+* choose Build Settings
+* edit the value of *Framework Search Paths* by deleting ```$(SRCROOT)/../../../../ARSDKBuildUtils/Targets/iOS/Install/Frameworks```
 
 ##How to build the SDK
 **The root folder where all the source code will be downloaded will be noted \<SDK\>**

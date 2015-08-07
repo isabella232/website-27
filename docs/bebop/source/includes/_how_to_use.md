@@ -6,20 +6,23 @@ To use the sdk, you will need to add the libraries to your project. To get the l
 
 ### iOS
 
-1. First, download the binaries : [SDK version 3.5 frameworks](https://github.com/Parrot-Developers/ARSDKBuildUtils/releases/download/ARSDK3_version_3_5/ARSDK3_iOS_3_5.zip)
+1. First, download the binaries : [SDK version 3.6 frameworks](https://github.com/Parrot-Developers/ARSDKBuildUtils/releases/download/ARSDK3_version_3_6/ARSDK3_iOS_3_6.zip)
 2. Unzip it and rename it (for example rename it SDK3Frameworks).
 3. Drag and drop the folder into your project
 ![alt text](../images/ios_drag_drop_frameworks.jpg "Drag and drop the framework folder")
 4. Click on finish
 ![alt text](../images/ios_choose_copy.png "Click on finish")
-5. You're all set !
-![alt text](../images/ios_all_set.png "Let start coding !")
+5. Remove uthash and mavlink frameworks from the project (not from the file system): select both frameworks and then right click -> *Delete* -> *Remove References*
+![alt text](../images/ios_remove_headers_frameworks1.png "Remove two frameworks")
+![alt text](../images/ios_remove_headers_frameworks2.png "Click on Remove References")
+6. You're all set !
+
 
 [Let's start coding](#start-coding) !
 
 ### Android
 
-1. First, download the binaries : [SDK version 3.5 jars](https://github.com/Parrot-Developers/ARSDKBuildUtils/releases/download/ARSDK3_version_3_5/ARSDK3_Android_3_5.zip)
+1. First, download the binaries : [SDK version 3.6 jars](https://github.com/Parrot-Developers/ARSDKBuildUtils/releases/download/ARSDK3_version_3_6/ARSDK3_Android_3_6.zip)
 2. Unzip it.
 3. Drag and drop the jars to your project libs folder. (Watch out, this will move the jars into your project).
    ![alt text](../images/android_drag_drop_jars.jpg "Drag and drop the jars")
