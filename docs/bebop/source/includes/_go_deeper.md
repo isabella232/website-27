@@ -79,7 +79,7 @@ These external tools are required to build the SDK :
 
 ###General Build
 
-The build is done by the ./SDKBuild.sh script. You can run `./SDKBuild.sh --help` to know more about the building options.
+The build is done by the `./SDKBuild.py` script. You can run `./SDKBuild.py --help` to know more about the building options.
 
 ###Unix Build
 **Linux** : Tested on Ubuntu 12.10, 13.04, 13.10 and 14.04<br/>
