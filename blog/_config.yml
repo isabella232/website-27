@@ -1,0 +1,42 @@
+name: Parrot Dev Blog
+description: Life of a drone developer :)
+meta_description: "Parrot Blog for Developers"
+
+aboutPage: false
+
+markdown: redcarpet
+highlighter: pygments
+
+paginate: 20
+baseurl: /blog/
+domain_name: 'http://developer.parrot.com'
+google_analytics: 'UA-XXXXXXXX-X'
+disqus: false
+disqus_shortname: 'your-disqus-shortname'
+
+# Details for the RSS feed generator
+url:            'http://developer.parrot.com'
+author:         'Parrot Developer'
+authorTwitter:  '@ParrotDeveloper'
+
+permalink:       /:year/:title/
+
+defaults:
+    -
+        scope:
+            path: "" # empty string for all files
+            type: pages
+        values:
+            layout: default
+    -
+        scope:
+            path: "" # empty string for all files
+            type: posts
+        values:
+            layout: post
+    -
+        scope:
+            path: ""
+            type: drafts
+        values:
+            layout: post
