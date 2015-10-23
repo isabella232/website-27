@@ -1,8 +1,10 @@
 ---
 layout: post
 title:  "Namespaces, AppArmor and overlayfs - Part 1 / 3"
-date:   2015-10-18 17:52:00
+date:   2015-10-23 17:52:00
 categories: namespaces apparmor overlayfs C linux
+longtitle: "In this series of three blog posts, I will present the approach I have taken in
+firmwared, to attempt to solve this problem."
 author: Nicolas Carrier
 ---
 The purpose of [firmwared], is to make a specially compiled firmware, (for a
