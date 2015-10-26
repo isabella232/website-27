@@ -4,6 +4,7 @@ title:  "Namespaces, AppArmor and overlayfs - Part 1 / 3"
 date:   2015-10-18 17:52:00
 categories: namespaces apparmor overlayfs C linux
 author: Nicolas Carrier
+description: Using linux namespaces in C
 ---
 The purpose of [firmwared], is to make a specially compiled firmware, (for a
  drone, for example) modified as little as possible, run on a desktop PC.
@@ -55,7 +56,7 @@ mount(NULL, "/", NULL, MS_REC|MS_PRIVATE, NULL);
 {% endhighlight %}
 
 The `mount namespace` is special, once put in place, the mount hierarchy will
-only be copied to the newnamespace, but will be still visible to the parent
+only be copied to the new namespace, but will be still visible to the parent
 namespace.
 We want to avoid that, because if someone holds a reference on a file, the mount
 point containing it can't be unmounted.
