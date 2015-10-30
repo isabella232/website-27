@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Namespaces, AppArmor and overlayfs - Part 2 / 3"
-date:   2015-10-18 23:21:00
+date:   2015-10-23 23:21:00
 categories: namespaces apparmor overlayfs C linux
 author: Nicolas Carrier
 description: Playing with OverlayFS
@@ -53,7 +53,7 @@ First let's create a dummy file system image:
 {% highlight bash %}
 mkdir -p union ro rw workdir
 dd if=/dev/zero of=rootfs.ext2 bs=1k count=32k
-mkfs.ext2 rootfs.ext2 
+mkfs.ext2 rootfs.ext2
 sudo mount rootfs.ext2 rw/
 sudo mkdir -p rw/foo rw/bar/baz
 sudo sh -c " cat > rw/bar/test-file <<ThisIsAHereDocumentEndMarker
@@ -110,12 +110,12 @@ tree
   │   └── lost+found [error opening dir]
   └── workdir
       └── work [error opening dir]
-cat ro/bar/test-file 
+cat ro/bar/test-file
   this a completely stupid test file
-cat rw/bar/test-file 
+cat rw/bar/test-file
   this a completely stupid test file
   Really !
-cat union/bar/test-file 
+cat union/bar/test-file
   this a completely stupid test file
   Really !
 {% endhighlight %}
@@ -163,7 +163,7 @@ But after remounting union:
 
 {% highlight bash%}
 sudo mount -oremount union/
-cat ro/greetings 
+cat ro/greetings
   moo
 {% endhighlight %}
 
@@ -214,4 +214,4 @@ The next and last post of the series will present the way one can implement it
 [aufs]: http://aufs.sourceforge.net/
 [mount_hook]: https://github.com/Parrot-Developers/firmwared/blob/1be7f6f45f987fe43dd058021d67e6c7f21a5d39/hooks/mount.hook
 [overlayfs]: https://www.kernel.org/doc/Documentation/filesystems/overlayfs.txt
-[unionfs]:http://unionfs.filesystems.org/ 
+[unionfs]:http://unionfs.filesystems.org/
