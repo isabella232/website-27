@@ -6,6 +6,7 @@ categories: namespaces apparmor overlayfs C linux
 longtitle: "In this series of three blog posts, I will present the approach I have taken in
 firmwared, to attempt to solve this problem."
 author: Nicolas Carrier
+description: Using linux namespaces in C
 ---
 The purpose of [firmwared], is to make a specially compiled firmware, (for a
  drone, for example) modified as little as possible, run on a desktop PC.
@@ -57,7 +58,7 @@ mount(NULL, "/", NULL, MS_REC|MS_PRIVATE, NULL);
 {% endhighlight %}
 
 The `mount namespace` is special, once put in place, the mount hierarchy will
-only be copied to the newnamespace, but will be still visible to the parent
+only be copied to the new namespace, but will be still visible to the parent
 namespace.
 We want to avoid that, because if someone holds a reference on a file, the mount
 point containing it can't be unmounted.
