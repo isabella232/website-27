@@ -3,8 +3,7 @@ layout: post
 title:  "Namespaces, AppArmor and overlayfs - Part 1 / 3"
 date:   2015-10-23 17:52:00
 categories: namespaces apparmor overlayfs C linux
-longtitle: "In this series of three blog posts, I will present the approach I have taken in
-firmwared, to attempt to solve this problem."
+longtitle: "Isolated firmwares with namespaces"
 author: Nicolas Carrier
 description: Using linux namespaces in C
 ---
