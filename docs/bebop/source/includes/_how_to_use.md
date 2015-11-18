@@ -6,7 +6,7 @@ To use the sdk, you will need to add the libraries to your project. To get the l
 
 ### iOS
 
-1. First, download the binaries : [SDK version 3.6 frameworks](https://github.com/Parrot-Developers/ARSDKBuildUtils/releases/download/ARSDK3_version_3_6/ARSDK3_iOS_3_6.zip)
+1. First, download the binaries : [SDK version 3.7.5 frameworks](https://github.com/Parrot-Developers/ARSDKBuildUtils/releases/download/ARSDK3_version_3_7_5/ARSDK3_iOS_3_7_5.zip)
 2. Unzip it and rename it (for example rename it SDK3Frameworks).
 3. Drag and drop the folder into your project
 ![alt text](../images/ios_drag_drop_frameworks.jpg "Drag and drop the framework folder")
@@ -22,7 +22,7 @@ To use the sdk, you will need to add the libraries to your project. To get the l
 
 ### Android
 
-1. First, download the binaries : [SDK version 3.6 jars](https://github.com/Parrot-Developers/ARSDKBuildUtils/releases/download/ARSDK3_version_3_6/ARSDK3_Android_3_6.zip)
+1. First, download the binaries : [SDK version 3.7.5 jars](https://github.com/Parrot-Developers/ARSDKBuildUtils/releases/tag/ARSDK3_version_3_7_5/ARSDK3_Android_3_7_5.zip)
 2. Unzip it.
 3. Drag and drop the jars to your project libs folder. (Watch out, this will move the jars into your project).
    ![alt text](../images/android_drag_drop_jars.jpg "Drag and drop the jars")
@@ -1063,7 +1063,8 @@ deviceController.getFeatureARDrone3().setPilotingPCMDYaw((byte) 50);
 
 ### Start video streaming
 
-To start the video stream, you will need to send a command to the Bebop. When the frame are received, the callback [you set at the initialisation of your device controller](#bebop_add_video_receive_cb) will be called.
+To start the video stream, you will need to send a command to the Bebop. When the frame are received, the callback [you set at the initialisation of your device controller](#bebop_add_video_receive_cb) will be called.<br/>
+**Please note that the SDK 3.7.5 does not support the Bebop 2 stream.**
 
 > Start video stream
 
