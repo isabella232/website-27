@@ -14,6 +14,13 @@ toc_footers:
 includes:
   - general_info
   - how_to_use
+  - commands_events_doc
+  - commands
+  - commands_common
+  - commands_ardrone3
+  - events
+  - events_common
+  - events_ardrone3
   - go_deeper
 
 search: true
