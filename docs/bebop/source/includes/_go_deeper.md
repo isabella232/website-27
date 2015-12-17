@@ -2,15 +2,36 @@
 
 If you want to build your own SDK, you can ! It is fully open sourced.
 
-SDK [sources are hosted on github](https://github.com/Parrot-Developers/). To download them, you only have to clone ARSDKBuildUtils: `git clone https://github.com/Parrot-Developers/ARSDKBuildUtils.git`. Then follow the [How to build the SDK section](#how-to-build-the-sdk).
+The version control is based on the repo tool, you can get it following [these instructions](http://source.android.com/source/downloading.html#installing-repo).<br/>
+Learn [here](https://source.android.com/source/using-repo.html) how to use repo.<br/>
+On *Mac OS* you will need execute this command to install with brew some needed tools:<br/>
+`
+brew install bash coreutils gettext pkgconfig wget
+`
+
+## Download all sources
+
+SDK [sources are hosted on github](https://github.com/Parrot-Developers/). To download them, you only have to init repo with the arsdk_manifests url:<br/>
+`repo init -u https://github.com/Parrot-Developers/arsdk_manifests.git`
+
+After that, you can download all the other repository automatically by executing the command:<br/>
+`repo sync`
+
+Then follow the [How to build the SDK section](#how-to-build-the-sdk).
 
 
 ## Organisation
 
 SDK is organized as following:
 
+### arsdk_manifests
+This git repository list all other repositories that are part of or needed by the SDK.
+
+### arsdk_products
+This git repository provides a build.sh that you can call to build the whole SDK.
+
 ### ARSDKBuildUtils
-This repo is in charge of cloning, updating and building the whole SDK. It is the one you need to download if you want to compile the SDK.
+This repo contains all the tools to create the autotools needed to build the SDK. It is called by build.sh file contained in arsdk_products.
 
 ### libARCommands
 This library contains all the sources related to the commands you can sent to and receive from the drone.
@@ -42,6 +63,9 @@ This library provides a system abstraction layer.
 ### libARStream
 This library deals with all streaming types. It packs/unpacks streams.
 
+### libARStream2
+This library deals with the new h264 stream. It packs/unpacks streams and deals with rtp streams.
+
 ### libARUpdater
 This library helps you to update your drone. It provides functions to tests if the version is the last one and functions to update the drone.
 
@@ -57,10 +81,10 @@ For iOS, if you want to use the precompiled frameworks instead of building the w
 * edit the value of *Framework Search Paths* by deleting ```$(SRCROOT)/../../../../ARSDKBuildUtils/Targets/iOS/Install/Frameworks```
 
 ##How to build the SDK
-**The root folder where all the source code will be downloaded will be noted \<SDK\>**
 
-**Important :**<br/>
-Before building the SDK, **please run \<SDK\>/ARSDKBuildUtils/CheckEnv.py** script until it says that your target can be build.
+You should have first [downloaded all the sources of the SDK](#download_all_sources).
+
+**The root folder where you have executed the *repo init* and *repo sync* command will be noted \<SDK\>**
 
 ###Required external tools
 
@@ -79,23 +103,49 @@ These external tools are required to build the SDK :
 
 ###General Build
 
-The build is done by the `./SDKBuild.py` script. You can run `./SDKBuild.py --help` to know more about the building options.
+The build is done by the `./build.sh` script. You can run `./build.sh --help` to know more about the building options.<br/>
+The general way to build is:<br/>
+`./build.sh -p PLATFORM-VARIANT -t TASK OTHER_ARGS`
+
+Platforms available are:
+
+- iOS
+- Android
+- Unix 
 
 ###Unix Build
 **Linux** : Tested on Ubuntu 12.10, 13.04, 13.10 and 14.04<br/>
-**OSX** : Tested on 10.9.2 and 10.10.3<br/>
+**OSX** : Tested on 10.10.5<br/>
 
 The command to build the SDK for Unix platform is :<br/>
-`./SDK3Build.py -t Unix`<br/>
-The output will be in \<SDK\>/ARBuildUtils/Targets/Unix/Install/<br/>
+`./build.sh -p Unix-forall -t build-sdk -j`<br/>
+The output will be in \<SDK\>/out/Unix-base/staging/usr/<br/>
+
+Variants available are:
+
+- base
+
+Tasks available are:
+
+- build-sdk
 
 ###iOS Build
 **OSX** : Tested on 10.9.2 and 10.10.3<br/>
 
 The command to build the SDK for iOS is :<br/>
-`./SDK3Build.py -t iOS`<br/>
-The output will be in \<SDK\>/ARBuildUtils/Targets/iOS/Install/<br/>
-The frameworks will be in \<SDK\>/ARBuildUtils/Targets/iOS/Install/Frameworks<br/>
+`./build.sh -p iOS-forall -t build-sdk -j`<br/>
+The output will be in \<SDK\>/out/iOS-*VARIANT*/staging/usr/<br/>
+
+Variants available are:
+
+- forall (build all variants)
+- iphoneos
+- iphonesimulator
+
+Tasks available are:
+
+- build-sdk (only build libraries)
+- build-sample (build-sdk + execute xcodebuild in all samples)
 
 ###Android Build
 **Linux** : Tested on Ubuntu 12.10, 13.04, 13.10 and 14.04<br/>
@@ -123,6 +173,23 @@ You will need this following parts :
  
 
 The command to build the SDK for Android platform is :<br/>
-`./SDK3Build.py -t Android`<br/>
-The output will be in \<SDK\>/ARBuildUtils/Targets/Android/Install/<br/>
-The jar files will be in \<SDK\>/ARSDKBuildUtils/Targets/Android/Install/jars/release
+`./build.sh -p Android-forall -t build-sdk -j`<br/>
+The output will be in \<SDK\>/out/Android-*VARIANT*/staging/usr/<br/>
+
+Variants available are:
+
+- forall (build all variants)
+- armeabi
+- armeabi_v7a
+- mips
+- x86
+
+Tasks available are:
+
+- build-sdk (only build libraries)
+- build-jni (build-sdk + execute ndk-build in all samples)
+- build-sample (build-jni + execute gradlew assembledebug in all samples)
+
+### Clean
+
+To do a clean build, simply delete the \<SDK\>/out/ folder.

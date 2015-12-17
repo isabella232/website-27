@@ -6,39 +6,37 @@ To use the sdk, you will need to add the libraries to your project. To get the l
 
 ### iOS
 
-1. First, download the binaries : [SDK version 3.7.5 frameworks](https://github.com/Parrot-Developers/ARSDKBuildUtils/releases/download/ARSDK3_version_3_7_5/ARSDK3_iOS_3_7_5.zip)
-2. Unzip it and rename it (for example rename it SDK3Frameworks).
-3. Drag and drop the folder into your project
-![alt text](../images/ios_drag_drop_frameworks.jpg "Drag and drop the framework folder")
-4. Click on finish
-![alt text](../images/ios_choose_copy.png "Click on finish")
-5. Remove uthash and mavlink frameworks from the project (not from the file system): select both frameworks and then right click -> *Delete* -> *Remove References*
-![alt text](../images/ios_remove_headers_frameworks1.png "Remove two frameworks")
-![alt text](../images/ios_remove_headers_frameworks2.png "Click on Remove References")
-6. You're all set !
+1. First, download the binaries : [SDK version 3.8 iOS libs](https://github.com/Parrot-Developers/arsdk_manifests/releases/download/ARSDK3_version_3_8/ARSDK3_iOS_3_8.zip)
+2. Unzip it.
+3. In the Project Navigator in XCode, click on your project. Then click on your Target and finally click on Build Settings.
+4. In *Header Search Paths*, add a *Any iOS Simulator SDK* and a *Any iOS SDK* architecture (both for Debug and Release). <br/>Then fill these architectures with:<br/><br/>
+    For any simulator SDK: `PATH_TO_THE_UNZIPPED_FOLDER/iOS-iphonesimulator/staging/usr/include`<br/>
+    For any iOS SDK: `PATH_TO_THE_UNZIPPED_FOLDER/iOS-iphoneos/staging/usr/include`<br/>
+    ![alt text](../images/ios_header_search_paths.png "Add the include path")
+
+5. In *Library Search Paths*, add a *Any iOS Simulator SDK* and a *Any iOS SDK* architecture (both for Debug and Release). <br/>Then fill these architectures with:<br/><br/>
+    For any simulator SDK: `PATH_TO_THE_UNZIPPED_FOLDER/iOS-iphonesimulator/staging/usr/lib`<br/>
+    For any iOS SDK: `PATH_TO_THE_UNZIPPED_FOLDER/iOS-iphoneos/staging/usr/lib`<br/>
+   ![alt text](../images/ios_library_search_paths.png "Add the lib path")
+6. In *Other Linker Flags* add <br/>
+    `-larcommands -larcontroller -lardiscovery -larnetwork -larnetworkal -larsal -larstream -larstream2 -larmavlink -ljson`<br/>
+    ![alt text](../images/ios_other_linker_flags.png "Add the libs")
+7. You're all set !
 
 
 [Let's start coding](#start-coding) !
 
 ### Android
 
-1. First, download the binaries : [SDK version 3.7.5 jars](https://github.com/Parrot-Developers/ARSDKBuildUtils/releases/tag/ARSDK3_version_3_7_5/ARSDK3_Android_3_7_5.zip)
-2. Unzip it.
-3. Drag and drop the jars to your project libs folder. (Watch out, this will move the jars into your project).
-   ![alt text](../images/android_drag_drop_jars.jpg "Drag and drop the jars")
-4. Accept to move files
-   ![alt text](../images/android_move_files.png "Click on Ok")
-5. Accept the access to non-project files
-   ![alt text](../images/android_non_project_file.png "Click on Ok")
-6. Add permissions in your manifest file
-
-7. Declare ARDiscoveryService in your manifest file
-
-8. And finally load the native libraries in your Application or in the main activity (and every other activity that can be launched by an external intent).
+1. Open your app build.gradle file
+2. Add to the dependencies the following line <br/>
+    `compile 'com.parrot:arsdk:3.8'`
+    ![alt text](../images/android_add_dependency.png "Add the dependency")
+3. Load the native libraries (see code on the right)
 
 <!-- Put code samples after the list to avoid going back to 1. -->
 
-> Add permissions in your manifest file
+> Load native libraries
 
 ```c
 // Not needed in C
@@ -49,72 +47,9 @@ To use the sdk, you will need to add the libraries to your project. To get the l
 ```
 
 ```java
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    ARSDK.loadSDKLibs();
 ```
 
-> Declare ARDiscoveryService in your manifest file
-
-```c
-// Not needed in C
-```
-
-```objective_c
-// Not needed in Objective C
-```
-
-```java
-    <service android:name="com.parrot.arsdk.ardiscovery.ARDiscoveryService" />
-```
-
-> load the native libraries
-
-```c
-// Not needed in C
-```
-
-```objective_c
-// Not needed in Objective C
-```
-
-```java
-static
-{
-   try
-   {
-       System.loadLibrary("arsal");
-       System.loadLibrary("arsal_android");
-       System.loadLibrary("arnetworkal");
-       System.loadLibrary("arnetworkal_android");
-       System.loadLibrary("arnetwork");
-       System.loadLibrary("arnetwork_android");
-       System.loadLibrary("arcommands");
-       System.loadLibrary("arcommands_android");
-       System.loadLibrary("arstream");
-       System.loadLibrary("arstream_android");
-       System.loadLibrary("json");
-       System.loadLibrary("ardiscovery");
-       System.loadLibrary("ardiscovery_android");
-       System.loadLibrary("arutils");
-       System.loadLibrary("arutils_android");
-       System.loadLibrary("ardatatransfer");
-       System.loadLibrary("ardatatransfer_android");
-       System.loadLibrary("armedia");
-       System.loadLibrary("armedia_android");
-       System.loadLibrary("arcontroller");
-       System.loadLibrary("arcontroller_android");
-   }
-   catch (Exception e)
-   {
-       Log.e(TAG, "Problem occured during native library loading", e);
-   }
-}
-```
 You're all set, [let's start coding](#start-coding) !
 
 
