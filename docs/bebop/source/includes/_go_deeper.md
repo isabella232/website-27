@@ -168,17 +168,6 @@ You will need this following parts:
  against Android-19 and requires Android-14 runtime)
 - declare environment variables named `ANDROID_SDK_PATH` and
  `ANDROID_NDK_PATH`, each pointing to the root of the corresponding dev kit
-- You must have the android native toolchains for android-14 in your path.
- To generate a standalone toolchain, use the following command:
-`$ANDROID_NDK_PATH/build/tools/make-standalone-toolchain.sh --platform=android-14 --arch=<arch> --install-dir=<your/installation/dir>`.
- For the three archs `arm`, `mips` and `x86`
---> Note that you must use three different installation directories (one for
- each architecture), and you need to add each `install_dir/bin` directory to your
- path. A typical installation is to have an `~/android_toolchains/` folder, in
- which you will put the three `toolchain_<arch>` folders. This facilitates the
- updates as you can just remove the root folder and generate new toolchains when
- upgrading the android NDK.
- 
 
 The command to build the SDK for Android platform is:<br/>
 `./build.sh -p Android-forall -t build-sdk -j`<br/>
