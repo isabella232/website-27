@@ -129,6 +129,14 @@ Tasks available are:
 
 - build-sdk
 
+**Running the samples:**
+
+In order to run the samples, you must add the `<SDK>/out/Unix-base/staging/usr/lib` folder to the `LD_LIBRARY_PATH` environment variable. This can be done by using the `<SDK>/out/Unix-base/staging/native-wrapper.sh` script.
+This script can be used in the two following ways:
+
+- As a shell script to call a single sample: `<SDK>/out/Unix-base/staging/native-wrapper.sh <SDK>/out/Unix-base/staging/usr/bin/<sample> [args...]`.
+- As a sourced script to set the `PATH` and `LD_LIBRARY_PATH` environment variables: `source <SDK>/out/Unix-base/staging/native-wrapper.sh`. After sourcing this script, you can directly call samples by their name without giving a full path, as the `<SDK>/out/Unix-base/staging/usr/bin` folder will be added to your path.
+
 ###iOS Build
 **OSX**: Tested on 10.9.2 and 10.10.3<br/>
 
