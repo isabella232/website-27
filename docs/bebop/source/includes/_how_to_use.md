@@ -6,7 +6,7 @@ To use the sdk, you will need to add the libraries to your project. To get the l
 
 ### iOS
 
-1. First, download the binaries : [SDK version 3.8 iOS libs](https://github.com/Parrot-Developers/arsdk_manifests/releases/download/ARSDK3_version_3_8/ARSDK3_iOS_3_8.zip)
+1. First, download the binaries: [SDK version 3.8 iOS libs](https://github.com/Parrot-Developers/arsdk_manifests/releases/download/ARSDK3_version_3_8/ARSDK3_iOS_3_8.zip)
 2. Unzip it.
 3. In the Project Navigator in XCode, click on your project. Then click on your Target and finally click on Build Settings.
 4. In *Header Search Paths*, add a *Any iOS Simulator SDK* and a *Any iOS SDK* architecture (both for Debug and Release). <br/>Then fill these architectures with:<br/><br/>
@@ -645,7 +645,7 @@ void deleteDeviceController(ARCONTROLLER_Device_t *deviceController)
         }
         else
         {
-            fprintf(stderr, "- error :%s", ARCONTROLLER_Error_ToString(error));
+            fprintf(stderr, "- error:%s", ARCONTROLLER_Error_ToString(error));
         }
     }
 
@@ -677,7 +677,7 @@ void deleteDeviceController(ARCONTROLLER_Device_t *deviceController)
             }
             else
             {
-                NSLog(@"- error :%s", ARCONTROLLER_Error_ToString(error));
+                NSLog(@"- error:%s", ARCONTROLLER_Error_ToString(error));
             }
         }
 
@@ -699,7 +699,7 @@ ARCONTROLLER_ERROR_ENUM error = deviceController.stop();
 ### Taking off
 In order to make your drone take off you will need to ensure that its flying status is landed (even if you can send take off commands anyway, it just won't take of if it not in landed state). <br/>
 Then, you can send the take off command. <br/>
-In response, your drone will send you a state change (if it has taken off) : State *Landed* -> State *TakingOff* -> State *Hovering* (or *Flying*).
+In response, your drone will send you a state change (if it has taken off): State *Landed* -> State *TakingOff* -> State *Hovering* (or *Flying*).
 
 > Take off
 
@@ -816,7 +816,7 @@ private void takeoff()
 
         if (!error.equals(ARCONTROLLER_ERROR_ENUM.ARCONTROLLER_OK))
         {
-            ARSALPrint.e(TAG, "Error while sending take off : " + error);
+            ARSALPrint.e(TAG, "Error while sending take off: " + error);
         }
     }
 }
@@ -943,7 +943,7 @@ private void land()
 
         if (!error.equals(ARCONTROLLER_ERROR_ENUM.ARCONTROLLER_OK))
         {
-            ARSALPrint.e(TAG, "Error while sending take off : " + error);
+            ARSALPrint.e(TAG, "Error while sending take off: " + error);
         }
     }
 }
@@ -1292,7 +1292,7 @@ void getAllMediaAsync()
             for (int i = 0 ; i < mediaListCount && result == ARDATATRANSFER_OK; i++)
             {
                 ARDATATRANSFER_Media_t * mediaObject = ARDATATRANSFER_MediasDownloader_GetAvailableMediaAtIndex(manager, i, &result);
-                printf("Media %i : %s", i, mediaObject->name);
+                printf("Media %i: %s", i, mediaObject->name);
                 // Do what you want with this mediaObject
             }
         }
@@ -1327,7 +1327,7 @@ static void* ARMediaStorage_retreiveAllMediasAsync(void* arg)
             for (int i = 0 ; i < mediaListCount && result == ARDATATRANSFER_OK; i++)
             {
                 ARDATATRANSFER_Media_t * mediaObject = ARDATATRANSFER_MediasDownloader_GetAvailableMediaAtIndex(_manager, i, &result);
-                NSLog(@"Media %i : %s", i, mediaObject->name);
+                NSLog(@"Media %i: %s", i, mediaObject->name);
                 // Do what you want with this mediaObject
             }
         }

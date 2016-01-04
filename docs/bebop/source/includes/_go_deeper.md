@@ -88,7 +88,7 @@ You should have first [downloaded all the sources of the SDK](#download_all_sour
 
 ###Required external tools
 
-These external tools are required to build the SDK :
+These external tools are required to build the SDK:
 
 * **git**
 * **wget**
@@ -98,8 +98,8 @@ These external tools are required to build the SDK :
 * **yasm**
 * **nasm**
 
-**Linux** : install these tools using your favorite package manager <br/>
-**OSX** : you will need XCode to be installed. Then, you can use [brew](http://brew.sh/) to install these tools.<br/>
+**Linux**: install these tools using your favorite package manager <br/>
+**OSX**: you will need XCode to be installed. Then, you can use [brew](http://brew.sh/) to install these tools.<br/>
 
 ###General Build
 
@@ -114,10 +114,10 @@ Platforms available are:
 - Unix 
 
 ###Unix Build
-**Linux** : Tested on Ubuntu 12.10, 13.04, 13.10 and 14.04<br/>
-**OSX** : Tested on 10.10.5<br/>
+**Linux**: Tested on Ubuntu 12.10, 13.04, 13.10 and 14.04<br/>
+**OSX**: Tested on 10.10.5<br/>
 
-The command to build the SDK for Unix platform is :<br/>
+The command to build the SDK for Unix platform is:<br/>
 `./build.sh -p Unix-forall -t build-sdk -j`<br/>
 The output will be in \<SDK\>/out/Unix-base/staging/usr/<br/>
 
@@ -130,9 +130,9 @@ Tasks available are:
 - build-sdk
 
 ###iOS Build
-**OSX** : Tested on 10.9.2 and 10.10.3<br/>
+**OSX**: Tested on 10.9.2 and 10.10.3<br/>
 
-The command to build the SDK for iOS is :<br/>
+The command to build the SDK for iOS is:<br/>
 `./build.sh -p iOS-forall -t build-sdk -j`<br/>
 The output will be in \<SDK\>/out/iOS-*VARIANT*/staging/usr/<br/>
 
@@ -148,12 +148,12 @@ Tasks available are:
 - build-sample (build-sdk + execute xcodebuild in all samples)
 
 ###Android Build
-**Linux** : Tested on Ubuntu 12.10, 13.04, 13.10 and 14.04<br/>
-**OSX** : Tested on 10.9.2 and 10.10.3<br/>
+**Linux**: Tested on Ubuntu 12.10, 13.04, 13.10 and 14.04<br/>
+**OSX**: Tested on 10.9.2 and 10.10.3<br/>
 
 For **OSX**, you will need to [install rpl in version 1.5.5 from sourceforge](http://sourceforge.net/projects/rpl/files/rpl/rpl-1.5.5/), and add it to your PATH.
 
-You will need this following parts : 
+You will need this following parts: 
 
 - a working jdk with java 6 (1.6) support
 - Android SDK and NDK (The SDK is built
@@ -161,7 +161,7 @@ You will need this following parts :
 - declare environment variables named `ANDROID_SDK_PATH` and
  `ANDROID_NDK_PATH`, each pointing to the root of the corresponding dev kit
 - You must have the android native toolchains for android-14 in your path.
- To generate a standalone toolchain, use the following command :
+ To generate a standalone toolchain, use the following command:
 `$ANDROID_NDK_PATH/build/tools/make-standalone-toolchain.sh --platform=android-14 --arch=<arch> --install-dir=<your/installation/dir>`.
  For the three archs `arm`, `mips` and `x86`
 --> Note that you must use three different installation directories (one for
@@ -172,7 +172,7 @@ You will need this following parts :
  upgrading the android NDK.
  
 
-The command to build the SDK for Android platform is :<br/>
+The command to build the SDK for Android platform is:<br/>
 `./build.sh -p Android-forall -t build-sdk -j`<br/>
 The output will be in \<SDK\>/out/Android-*VARIANT*/staging/usr/<br/>
 
