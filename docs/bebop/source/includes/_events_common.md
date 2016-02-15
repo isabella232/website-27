@@ -751,7 +751,7 @@ Triggered when a new mass storage is inserted or ejected.
 
 <!-- common-CommonState-MassStorageInfoStateListChanged-->
 ### <a name="common-CommonState-MassStorageInfoStateListChanged">Mass storage info state list</a><br/>
-> Mass storage info state list:
+> Mass storage info state list (deprecated):
 
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
@@ -863,19 +863,7 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
 }
 ```
 
-Mass storage info state list<br/>
-
-* mass_storage_id (u8): Mass storage state id (unique)<br/>
-* size (u32): Mass storage size in MBytes<br/>
-* used_size (u32): Mass storage used size in MBytes<br/>
-* plugged (u8): Mass storage plugged (1 if mass storage is plugged, otherwise 0)<br/>
-* full (u8): Mass storage full information state (1 if mass storage full, 0 otherwise).<br/>
-* internal (u8): Mass storage internal type state (1 if mass storage is internal, 0 otherwise)<br/>
-
-Triggered when a mass storage info is updated (quite often).
-
-*Supported by all products<br/>*
-
+This event is deprecated.
 <br/>
 
 <!-- common-CommonState-CurrentDateChanged-->

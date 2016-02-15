@@ -191,7 +191,8 @@ Then, event[NavigateHomeStateChanged](#ARDrone3-PilotingState-NavigateHomeStateC
 
 <!-- ARDrone3-Piloting-AutoTakeOffMode-->
 ### <a name="ARDrone3-Piloting-AutoTakeOffMode">Set automatic take off mode</a><br/>
-**Draft: this command is not implemented yet by the firmware and no ETA is available, please don't use it.**
+
+This command is deprecated, please don't use it.
 <br/>
 
 <!-- ARDrone3-Piloting-moveBy-->
@@ -1228,7 +1229,7 @@ Then, event [VideoEnableChanged](#ARDrone3-MediaStreamingState-VideoEnableChange
 
 <!-- ARDrone3-GPSSettings-SetHome-->
 ### <a name="ARDrone3-GPSSettings-SetHome">Set home location</a><br/>
-> Set home location:
+> Set home location (deprecated):
 
 ```c
 deviceController->aRDrone3->sendGPSSettingsSetHome(deviceController->aRDrone3, (double)latitude, (double)longitude, (double)altitude);
@@ -1242,23 +1243,7 @@ deviceController->aRDrone3->sendGPSSettingsSetHome(deviceController->aRDrone3, (
 deviceController.getFeatureARDrone3().sendGPSSettingsSetHome((double)latitude, (double)longitude, (double)altitude);
 ```
 
-Set home location<br/>
-
-* latitude (double): Home latitude in decimal degrees<br/>
-* longitude (double): Home longitude in decimal degrees<br/>
-* altitude (double): Home altitude in meters<br/>
-
-<!--TODO check if used by firmware-->
-
-Result:<br/>
-The home location is set.<br/>
-Then, event [HomeChanged](#ARDrone3-GPSSettingsState-HomeChanged) is triggered. 
-
-*Supported by <br/>*   
-
-- *Bebop<br/>*
-- *Bebop 2<br/>*
-
+This command is deprecated, please don't use it.
 <br/>
 
 <!-- ARDrone3-GPSSettings-ResetHome-->

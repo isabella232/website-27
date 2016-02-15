@@ -1069,7 +1069,7 @@ Triggered regularly when the drone flies.
 
 <!-- ARDrone3-PilotingState-AutoTakeOffModeChanged-->
 ### <a name="ARDrone3-PilotingState-AutoTakeOffModeChanged">Status automatic take off mode</a><br/>
-> Status of the drone3 automatic take off mode:
+> Status of the drone3 automatic take off mode (deprecated):
 
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
@@ -1123,8 +1123,7 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
 }
 ```
 
-This event is not implemented and no ETA is available, please don't use it.
-
+This event is deprecated.
 <br/>
 
 <!-- ARDrone3-PilotingState-AltitudeChanged-->
@@ -3126,7 +3125,7 @@ Triggered when an error on motors happens.
 
 <!-- ARDrone3-SettingsState-MotorSoftwareVersionChanged-->
 ### <a name="ARDrone3-SettingsState-MotorSoftwareVersionChanged">Motor software version status</a><br/>
-> Motor software version status:
+> Motor software version status (deprecated):
 
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
@@ -3180,17 +3179,7 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
 }
 ```
 
-Motor software version status<br/>
-
-* version (string): name of the version : dot separated fields (major version - minor version - firmware type - nb motors handled). Firmware types : Release, Debug, Alpha, Test-bench<br/>
-
-Triggered at the connection.
-
-*Supported by <br/>*   
-
-- *Bebop<br/>*
-- *Bebop 2<br/>*
-
+This event is deprecated.
 <br/>
 
 <!-- ARDrone3-SettingsState-MotorFlightsStatusChanged-->
@@ -3362,7 +3351,7 @@ Triggered after an error occured.
 
 <!-- ARDrone3-SettingsState-P7ID-->
 ### <a name="ARDrone3-SettingsState-P7ID">Product P7ID</a><br/>
-> Product P7ID:
+> Product P7ID (deprecated):
 
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
@@ -3416,17 +3405,7 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
 }
 ```
 
-Product P7ID. This is a unique identifier for your drone.<br/>
-
-* serialID (string): Product P7ID<br/>
-
-Triggered at the connection.
-
-*Supported by <br/>*   
-
-- *Bebop<br/>*
-- *Bebop 2<br/>*
-
+This event is deprecated.
 <br/>
 
 <!-- ARDrone3-PictureSettingsState-PictureFormatChanged-->
