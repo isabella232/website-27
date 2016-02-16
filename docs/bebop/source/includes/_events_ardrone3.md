@@ -4460,7 +4460,6 @@ Triggered by [SetReturnHomeDelay](#ARDrone3-GPSSettings-ReturnHomeDelay).
 
 *Supported by <br/>*   
 
-- *Bebop<br/>*
 - *Bebop 2<br/>*
 
 <br/>

@@ -1411,10 +1411,7 @@ List of the countries known by the device<br/>
 
 Triggered at connection.
 
-*Supported by<br/>*
-
-- *Bebop since 2.0.57*
-- *Bebop 2*
+*Not supported by any product<br/>*
 
 <br/>
 

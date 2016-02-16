@@ -1375,7 +1375,6 @@ Then, event [ReturnHomeDelayChanged](#ARDrone3-GPSSettingsState-ReturnHomeDelayC
 
 *Supported by <br/>*   
 
-- *Bebop<br/>*
 - *Bebop 2<br/>*
 
 <br/>
