@@ -6,7 +6,7 @@ To use the sdk, you will need to add the libraries to your project. To get the l
 
 ### iOS
 
-1. First, download the binaries: [SDK version 3.8.1 iOS libs](https://github.com/Parrot-Developers/arsdk_manifests/releases/download/ARSDK3_version_3_8_1/ARSDK3_iOS_3_8_1.zip)
+1. First, download the binaries: [SDK version 3.8.1 iOS libs](https://github.com/Parrot-Developers/arsdk_manifests/releases/download/ARSDK3_version_3_8_1_fix/ARSDK3_iOS_3_8_1.zip)
 2. Unzip it.
 3. In the Project Navigator in XCode, click on your project. Then click on your Target and finally click on Build Settings.
 4. In *Header Search Paths*, add a *Any iOS Simulator SDK* and a *Any iOS SDK* architecture (both for Debug and Release). <br/>Then fill these architectures with:<br/><br/>
