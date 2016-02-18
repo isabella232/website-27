@@ -1512,67 +1512,6 @@ This event is deprecated.
 
 <br/>
 
-<!-- common-ControllerState-isPilotingChanged-->
-### <a name="common-ControllerState-isPilotingChanged">Tell the device when the controller application enters/leaves the piloting HUD.</a><br/>
-> Tell the device when the controller application enters/leaves the piloting HUD.:
-
-```c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_CONTROLLERSTATE_ISPILOTINGCHANGED) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_CONTROLLERSTATE_ISPILOTINGCHANGED_PILOTING, arg);
-            if (arg != NULL)
-            {
-                uint8_t piloting = arg->value.U8;
-            }
-        }
-    }
-}
-```
-
-```objective_c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_CONTROLLERSTATE_ISPILOTINGCHANGED) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_CONTROLLERSTATE_ISPILOTINGCHANGED_PILOTING, arg);
-            if (arg != NULL)
-            {
-                uint8_t piloting = arg->value.U8;
-            }
-        }
-    }
-}
-```
-
-```java
-@Override
-public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CONTROLLERSTATE_ISPILOTINGCHANGED) && (elementDictionary != null)){
-        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
-        if (args != null) {
-            byte piloting = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CONTROLLERSTATE_ISPILOTINGCHANGED_PILOTING)).intValue();
-        }
-    }
-}
-```
-
-Tell the device when the controller application enters/leaves the piloting HUD.<br/>
-
-* piloting (u8): 0 when the application is not in the piloting HUD, 1 when it enters the HUD.<br/>
-<br/>
-
 <!-- common-WifiSettingsState-outdoorSettingsChanged-->
 ### <a name="common-WifiSettingsState-outdoorSettingsChanged">Status of the wifi config</a><br/>
 > Status of the wifi config:

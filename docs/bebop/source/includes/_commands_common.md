@@ -310,6 +310,36 @@ This command is deprecated, please don't use it.<br/>
 
 <br/>
 
+<!-- common-Controller-isPiloting-->
+### <a name="common-Controller-isPiloting">Tell the drone that the controller enters/leaves the piloting HUD</a><br/>
+> Tell the drone that the controller enters/leaves the piloting HUD:
+
+```c
+deviceController->common->sendControllerIsPiloting(deviceController->common, (uint8_t)piloting);
+```
+
+```objective_c
+deviceController->common->sendControllerIsPiloting(deviceController->common, (uint8_t)piloting);
+```
+
+```java
+deviceController.getFeatureCommon().sendControllerIsPiloting((byte)piloting);
+```
+
+
+Tell the drone that the controller enters/leaves the piloting HUD<br/>
+
+* piloting (u8): 0 when the application is not in the piloting HUD, 1 when it enters the HUD.<br/>
+
+Result:<br/>
+If yes, the product will begin a new session (so it should send a new [runId](#common-RunState-RunIdChanged).<br/> 
+Also, on the JumpingSumos, if the video is in autorecord mode, it will start recording.
+
+*Supported by all products<br/>*
+
+<br/>
+
+
 <!-- common-WifiSettings-OutdoorSetting-->
 ### <a name="common-WifiSettings-OutdoorSetting">Set indoor or outdoor wifi settings</a><br/>
 > Set indoor or outdoor wifi settings:
