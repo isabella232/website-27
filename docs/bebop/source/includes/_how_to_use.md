@@ -51,4 +51,3 @@ To use the sdk, you will need to add the libraries to your project. To get the l
 ```
 
 You're all set, [let's start coding](#start-coding) !
-
