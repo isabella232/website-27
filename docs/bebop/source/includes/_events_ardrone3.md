@@ -959,7 +959,7 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
 }
 ```
 
-Drone speed changed<br/>
+Drone speed changed in the North East Down coordinates.<br/>
 
 * speedX (float): Speed on the x axis (when drone moves forward, speed is > 0) (in m/s)<br/>
 * speedY (float): Speed on the y axis (when drone moves to right, speed is > 0) (in m/s)<br/>

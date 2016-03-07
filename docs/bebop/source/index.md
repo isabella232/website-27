@@ -14,6 +14,8 @@ toc_footers:
 includes:
   - general_info
   - how_to_use
+  - use_samples
+  - start_coding
   - commands_events_doc
   - commands
   - commands_common

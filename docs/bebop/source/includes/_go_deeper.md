@@ -73,12 +73,7 @@ This library helps you to update your drone. It provides functions to tests if t
 This library provides utilities classes.
 
 ### Samples
-You can find in this repo lots of basic examples.<br/>
-For iOS, if you want to use the precompiled frameworks instead of building the whole SDK, you will have to to:
-
-* click on the target
-* choose Build Settings
-* edit the value of *Framework Search Paths* by deleting ```$(SRCROOT)/../../../../ARSDKBuildUtils/Targets/iOS/Install/Frameworks```
+You can find in this repo some examples for iOS, Android and Unix.<br/>
 
 ##How to build the SDK
 
@@ -118,7 +113,7 @@ Platforms available are:
 **OSX**: Tested on 10.10.5<br/>
 
 The command to build the SDK for Unix platform is:<br/>
-`./build.sh -p Unix-forall -t build-sdk -j`<br/>
+`./build.sh -p Unix-base -t build-sdk`<br/>
 The output will be in \<SDK\>/out/Unix-base/staging/usr/<br/>
 
 Variants available are:
@@ -141,7 +136,7 @@ This script can be used in the two following ways:
 **OSX**: Tested on 10.9.2 and 10.10.3<br/>
 
 The command to build the SDK for iOS is:<br/>
-`./build.sh -p iOS-forall -t build-sdk -j`<br/>
+`./build.sh -p iOS-forall -t build-sdk`<br/>
 The output will be in \<SDK\>/out/iOS-*VARIANT*/staging/usr/<br/>
 
 Variants available are:
@@ -170,7 +165,7 @@ You will need this following parts:
  `ANDROID_NDK_PATH`, each pointing to the root of the corresponding dev kit
 
 The command to build the SDK for Android platform is:<br/>
-`./build.sh -p Android-forall -t build-sdk -j`<br/>
+`./build.sh -p Android-forall -t build-sdk`<br/>
 The output will be in \<SDK\>/out/Android-*VARIANT*/staging/usr/<br/>
 
 Variants available are:
