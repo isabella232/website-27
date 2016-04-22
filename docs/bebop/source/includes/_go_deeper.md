@@ -86,12 +86,15 @@ You should have first [downloaded all the sources of the SDK](#download_all_sour
 These external tools are required to build the SDK:
 
 * **git**
-* **wget**
-* **automake**
+* **build-essential** (only for Linux)
 * **autoconf**
 * **libtool**
-* **yasm**
-* **nasm**
+* **libavahi-client-dev** 
+* **libavcodec-dev**
+* **libavformat-dev**
+* **libswscale-dev**
+* **libncurses5-dev**
+* **mplayer**
 
 **Linux**: install these tools using your favorite package manager <br/>
 **OSX**: you will need XCode to be installed. Then, you can use [brew](http://brew.sh/) to install these tools.<br/>
@@ -100,61 +103,64 @@ These external tools are required to build the SDK:
 
 The build is done by the `./build.sh` script. You can run `./build.sh --help` to know more about the building options.<br/>
 The general way to build is:<br/>
-`./build.sh -p PLATFORM-VARIANT -t TASK OTHER_ARGS`
+`./build.sh -p arsdk-VARIANT -t TASK OTHER_ARGS`
 
-Platforms available are:
+Variants available are:
 
-- iOS
-- Android
-- Unix 
+- ios (for iphoneos on iOS)
+- ios_sim (for iphone simulator on iOS)
+- android (for Android)
+- native (for Unix)
 
 ###Unix Build
 **Linux**: Tested on Ubuntu 12.10, 13.04, 13.10 and 14.04<br/>
 **OSX**: Tested on 10.10.5<br/>
 
 The command to build the SDK for Unix platform is:<br/>
-`./build.sh -p Unix-base -t build-sdk`<br/>
+`./build.sh -p arsdk-native -t build-sdk -j`<br/>
 The output will be in \<SDK\>/out/Unix-base/staging/usr/<br/>
-
-Variants available are:
-
-- base
 
 Tasks available are:
 
-- build-sdk
+- build-sdk (Build native sdk)
+- build-sample (Build all native samples)
+- build-sample-SAMPLE_NAME (Build unix sdk sample for SAMPLE_NAME)
 
 **Running the samples:**
 
-In order to run the samples, you must add the `<SDK>/out/Unix-base/staging/usr/lib` folder to the `LD_LIBRARY_PATH` environment variable. This can be done by using the `<SDK>/out/Unix-base/staging/native-wrapper.sh` script.
+In order to run the samples, you must add the `<SDK>/out/arsdk-native/staging/usr/lib` folder to the `LD_LIBRARY_PATH` environment variable. This can be done by using the `<SDK>/out/Unix-base/staging/native-wrapper.sh` script.
 This script can be used in the two following ways:
 
-- As a shell script to call a single sample: `<SDK>/out/Unix-base/staging/native-wrapper.sh <SDK>/out/Unix-base/staging/usr/bin/<sample> [args...]`.
-- As a sourced script to set the `PATH` and `LD_LIBRARY_PATH` environment variables: `source <SDK>/out/Unix-base/staging/native-wrapper.sh`. After sourcing this script, you can directly call samples by their name without giving a full path, as the `<SDK>/out/Unix-base/staging/usr/bin` folder will be added to your path.
+- As a shell script to call a single sample: `<SDK>/out/arsdk-native/staging/native-wrapper.sh <SDK>/out/arsdk-native/staging/usr/bin/<sample> [args...]`.
+- As a sourced script to set the `PATH` and `LD_LIBRARY_PATH` environment variables: `source <SDK>/out/arsdk-native/staging/native-wrapper.sh`. After sourcing this script, you can directly call samples by their name without giving a full path, as the `<SDK>/out/arsdk-native/staging/usr/bin` folder will be added to your path.
 
 ###iOS Build
 **OSX**: Tested on 10.9.2 and 10.10.3<br/>
 
 The command to build the SDK for iOS is:<br/>
-`./build.sh -p iOS-forall -t build-sdk`<br/>
-The output will be in \<SDK\>/out/iOS-*VARIANT*/staging/usr/<br/>
-
-Variants available are:
-
-- forall (build all variants)
-- iphoneos
-- iphonesimulator
+`./build.sh -p arsdk-ios -t build-sdk -j`<br/>
+The output will be in \<SDK\>/out/arsdk-ios/staging/usr/<br/>
 
 Tasks available are:
 
-- build-sdk (only build libraries)
-- build-sample (build-sdk + execute xcodebuild in all samples)
+- build-sdk (Build ios sdk)
+- build-sample (Build the ios samples in debug)
+
+###iPhone Simulator Build
+**OSX**: Tested on 10.9.2 and 10.10.3<br/>
+
+The command to build the SDK for iOS is:<br/>
+`./build.sh -p arsdk-ios_sim -t build-sdk -j`<br/>
+The output will be in \<SDK\>/out/arsdk-ios_sim/staging/usr/<br/>
+
+Tasks available are:
+
+- build-sdk (Build ios sdk)
+- build-sample (Build the ios samples in debug)
 
 ###Android Build
 **Linux**: Tested on Ubuntu 12.10, 13.04, 13.10 and 14.04<br/>
 **OSX**: Tested on 10.9.2 and 10.10.3<br/>
-
-For **OSX**, you will need to [install rpl in version 1.5.5 from sourceforge](http://sourceforge.net/projects/rpl/files/rpl/rpl-1.5.5/), and add it to your PATH.
 
 You will need this following parts: 
 
@@ -165,22 +171,18 @@ You will need this following parts:
  `ANDROID_NDK_PATH`, each pointing to the root of the corresponding dev kit
 
 The command to build the SDK for Android platform is:<br/>
-`./build.sh -p Android-forall -t build-sdk`<br/>
-The output will be in \<SDK\>/out/Android-*VARIANT*/staging/usr/<br/>
-
-Variants available are:
-
-- forall (build all variants)
-- armeabi
-- armeabi_v7a
-- mips
-- x86
+`./build.sh -p arsdk-android -t build-sdk -j`<br/>
+The output will be in \<SDK\>/out/arsdk-android/*ARCH*/staging/usr/<br/>
 
 Tasks available are:
 
-- build-sdk (only build libraries)
-- build-jni (build-sdk + execute ndk-build in all samples)
-- build-sample (build-jni + execute gradlew assembledebug in all samples)
+- build-sdk (Build android sdk for all architectures)
+- build-sdk-armeabi (Build android sdk for armeabi)
+- build-sdk-armeabi_v7a (Build android sdk for armeabi_v7a)
+- build-sdk-mips (Build android sdk for mips)
+- build-sdk-x86 (Build android sdk for x86)
+- build-jni (Build android sdk & jni)
+- build-sample (Build the android sample in debug)
 
 ### Clean
 

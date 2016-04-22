@@ -513,21 +513,47 @@ public void onCommandReceived(ARDeviceController deviceController, ARCONTROLLER_
 > <a name="bebop_add_video_receive_cb">Listen to the video stream received from the drone</a>
 
 ```c
-error = ARCONTROLLER_Device_SetVideoReceiveCallback (deviceController, didReceiveFrameCallback, NULL, NULL);
+error = ARCONTROLLER_Device_SetVideoStreamCallbacks(_deviceController, configDecoderCallback, didReceiveFrameCallback, NULL , NULL);
 
-void didReceiveFrameCallback (ARCONTROLLER_Frame_t *frame, void *customData)
+static eARCONTROLLER_ERROR configDecoderCallback (ARCONTROLLER_Stream_Codec_t codec, void *customData)
+{
+    // configure your decoder
+    // return ARCONTROLLER_OK if configuration went well
+    // otherwise, return ARCONTROLLER_ERROR. In that case,
+    // configDecoderCallback will be called again
+}
+
+static eARCONTROLLER_ERROR didReceiveFrameCallback (ARCONTROLLER_Frame_t *frame, void *customData)
 {
     // display the frame
+    // return ARCONTROLLER_OK if display went well
+    // otherwise, return ARCONTROLLER_ERROR. In that case,
+    // configDecoderCallback will be called again
 }
 ```
 
 ```objective_c
-error = ARCONTROLLER_Device_SetVideoReceiveCallback (deviceController, didReceiveFrameCallback, NULL, (__bridge void *)(self));
+// if you want the stream to be MP4 compilant (needed if you decode with iOS hardware decoder)
+error = ARCONTROLLER_Device_SetVideoStreamMP4Compliant(_deviceController, 1);
 
-void didReceiveFrameCallback (ARCONTROLLER_Frame_t *frame, void *customData)
+error = ARCONTROLLER_Device_SetVideoStreamCallbacks(_deviceController, configDecoderCallback, didReceiveFrameCallback, NULL , (__bridge void *)(self));
+
+static eARCONTROLLER_ERROR configDecoderCallback (ARCONTROLLER_Stream_Codec_t codec, void *customData)
+{
+    SELF_TYPE *selfCpy = (__bridge SELF_TYPE *)customData;
+    // configure your decoder
+    // return ARCONTROLLER_OK if configuration went well
+    // otherwise, return ARCONTROLLER_ERROR. In that case,
+    // configDecoderCallback will be called again
+}
+
+static eARCONTROLLER_ERROR didReceiveFrameCallback (ARCONTROLLER_Frame_t *frame, void *customData)
 {
     SELF_TYPE *selfCpy = (__bridge SELF_TYPE *)customData;
     // display the frame
+    // return ARCONTROLLER_OK if display went well
+    // otherwise, return ARCONTROLLER_ERROR. In that case,
+    // configDecoderCallback will be called again
 }
 ```
 
@@ -536,15 +562,23 @@ void didReceiveFrameCallback (ARCONTROLLER_Frame_t *frame, void *customData)
 deviceController.addStreamListener(this);
 
 @Override
-public void onFrameReceived(ARDeviceController deviceController, ARFrame frame)
-{
-    // display the frame
+public ARCONTROLLER_ERROR_ENUM configureDecoder(ARDeviceController deviceController, final ARControllerCodec codec) {
+    // configure your decoder
+    // return ARCONTROLLER_ERROR_ENUM.ARCONTROLLER_OK if display went well
+    // otherwise, return ARCONTROLLER_ERROR_ENUM.ARCONTROLLER_ERROR. In that case,
+    // configDecoderCallback will be called again
 }
 
 @Override
-public void onFrameTimeout(ARDeviceController deviceController)
-{
+public ARCONTROLLER_ERROR_ENUM onFrameReceived(ARDeviceController deviceController, final ARFrame frame) {
+    // display the frame
+    // return ARCONTROLLER_ERROR_ENUM.ARCONTROLLER_OK if display went well
+    // otherwise, return ARCONTROLLER_ERROR_ENUM.ARCONTROLLER_ERROR. In that case,
+    // configDecoderCallback will be called again
 }
+
+@Override
+public void onFrameTimeout(ARDeviceController deviceController) {}
 ```
 
 > <a name="start_device_controller">Finally, starts the device controller (after that call, the callback you set in ARCONTROLLER_Device_AddStateChangedCallback should be called)</a>.

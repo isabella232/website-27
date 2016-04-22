@@ -45,9 +45,10 @@ Please note that the first time you'll build with the precompiled SDK, it will d
 **Use your own compiled SDK**:<br/>
 You can build this sample with Alchemy. In your `<SDK>` execute this command:
 
-`./build.sh -p iOS-forall -t build-sample`
+`./build.sh -p arsdk-ios -t build-sample -j` for iOS
+`./build.sh -p arsdk-ios_sim -t build-sample -j` for iOS simulator
 
-If you prefer to build directly from XCode, use the buildWithLocalSDK configuration to use your localy compiled libraries (see [go deeper](#go-deeper) to compile your own SDK). 
+If you prefer to build directly from XCode, use the buildWithLocalSDK configuration to use your localy compiled libraries (see [go deeper](#go-deeper) to first compile your own SDK). 
 
 
 ### Android
@@ -57,9 +58,9 @@ With Android Studio, open the settings.gradle located in `SDKSample/buildWithPre
 **Use your own compiled SDK**:<br/>
 You can build this sample with Alchemy. In your `<SDK>` execute this command:
 
-`./build.sh -p Android-forall -t build-sample`
+`./build.sh -p arsdk-android -t build-sample`
 
 Otherwise, if you want to use Android Studio build, first execute this command in `<SDK>`:
-`./build.sh -p Android-forall -t build-sample-jni`
+`./build.sh -p arsdk-android -t build-jni`
 
 Then, in Android Studio, open the settings.gradle located in `SDKSample/buildWithLocalSDK`.
