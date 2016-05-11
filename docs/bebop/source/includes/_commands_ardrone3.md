@@ -794,6 +794,38 @@ Then, event [AutonomousFlightMaxRotationSpeedChanged](#ARDrone3-PilotingSettings
 
 <br/>
 
+<!-- ARDrone3-PilotingSettings-BankedTurn-->
+### <a name="ARDrone3-PilotingSettings-BankedTurn">Set banked turn mode</a><br/>
+> Set banked turn mode:
+
+```c
+deviceController->aRDrone3->sendPilotingSettingsBankedTurn(deviceController->aRDrone3, (uint8_t)value);
+```
+
+```objective_c
+deviceController->aRDrone3->sendPilotingSettingsBankedTurn(deviceController->aRDrone3, (uint8_t)value);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendPilotingSettingsBankedTurn((byte)value);
+```
+
+Enable / Disable Banked Turn mode.<br/>
+When banked turn mode is enabled, the drone will use yaw values from the piloting command to infer with roll and pitch on the drone when its horizontal speed is not null.
+
+* value (u8): 1 to enable, 0 to disable<br/>
+
+Result:<br/>
+The banked turn mode is enabled or disabled.<br/>
+Then, event [BankedTurnModeChanged](#ARDrone3-PilotingSettingsState-BankedTurnChanged) is triggered. 
+
+*Supported by <br/>*   
+
+- *Bebop since 3.2.0<br/>*
+- *Bebop 2 since 3.2.0<br/>*
+
+<br/>
+
 <!-- ARDrone3-SpeedSettings-MaxVerticalSpeed-->
 ### <a name="ARDrone3-SpeedSettings-MaxVerticalSpeed">Set Max Vertical speed</a><br/>
 > Set Max Vertical speed:
@@ -912,6 +944,36 @@ deviceController.getFeatureARDrone3().sendSpeedSettingsOutdoor((byte)outdoor);
 
 This command is deprecated, please don't use it.
 
+<!-- ARDrone3-SpeedSettings-MaxPitchRollRotationSpeed-->
+### <a name="ARDrone3-SpeedSettings-MaxPitchRollRotationSpeed">Set Max Pitch/Roll Rotation speed</a><br/>
+> Set Max Pitch/Roll Rotation speed:
+
+```c
+deviceController->aRDrone3->sendSpeedSettingsMaxPitchRollRotationSpeed(deviceController->aRDrone3, (float)current);
+```
+
+```objective_c
+deviceController->aRDrone3->sendSpeedSettingsMaxPitchRollRotationSpeed(deviceController->aRDrone3, (float)current);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendSpeedSettingsMaxPitchRollRotationSpeed((float)current);
+```
+
+Set Max Pitch/Roll Rotation speed.<br/>
+
+* current (float): Current max pitch/roll rotation speed in degree/s<br/>
+<br/>
+
+Result:<br/>
+The max pitch/roll rotation speed is set.<br/>
+Then, event [MaxPitchRollRotationSpeedChanged](#ARDrone3-SpeedSettingsState-MaxPitchRollRotationSpeedChanged) is triggered. 
+
+*Supported by no products<br/>* 
+
+<br/>
+
+
 <!-- ARDrone3-NetworkSettings-WifiSelection-->
 ### <a name="ARDrone3-NetworkSettings-WifiSelection">Wifi selection</a><br/>
 > Wifi selection:
@@ -979,9 +1041,12 @@ The security is changed on the next boot.
 
 Result:<br/>
 The wifi security is set.<br/>
-Then, event [WifiSecurityChanged](#ARDrone3-NetworkSettingsState-wifiSecurityChanged) is triggered. 
+Then, event [WifiSecurityChanged](#ARDrone3-NetworkSettingsState-WifiSecurity) is triggered. 
 
-*Not supported by any product for the moment.*
+*Supported by <br/>*   
+
+- *Bebop since 3.2.0<br/>*
+- *Bebop 2 since 3.2.0<br/>*
 
 <br/>
 
@@ -1191,6 +1256,39 @@ Then, event [VideoAutorecordChanged](#ARDrone3-PictureSettingsState-VideoAutorec
 
 - *Bebop<br/>*
 - *Bebop 2<br/>*
+
+<br/>
+
+<!-- ARDrone3-PictureSettings-VideoStabilizationMode-->
+### <a name="ARDrone3-PictureSettings-VideoStabilizationMode">Set Video stabilization mode</a><br/>
+> Set Video stabilization mode:
+
+```c
+deviceController->aRDrone3->sendPictureSettingsVideoStabilizationMode(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_PICTURESETTINGS_VIDEOSTABILIZATIONMODE_MODE)mode);
+```
+
+```objective_c
+deviceController->aRDrone3->sendPictureSettingsVideoStabilizationMode(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_PICTURESETTINGS_VIDEOSTABILIZATIONMODE_MODE)mode);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendPictureSettingsVideoStabilizationMode((ARCOMMANDS_ARDRONE3_PICTURESETTINGS_VIDEOSTABILIZATIONMODE_MODE_ENUM)mode);
+```
+
+Set Video stabilization mode<br/>
+
+* mode (enum): Video stabilization mode<br/>
+   * roll_pitch: Video flat on roll and pitch<br/>
+   * pitch: Video flat on pitch only<br/>
+   * roll: Video flat on roll only<br/>
+   * none: Video follows drone angles<br/>
+<br/>
+
+Result:<br/>
+The video stabilization mode is configured.<br/>
+Then, event [VideoStabilizationModeChanged](#ARDrone3-PictureSettingsState-VideoStabilizationModeChanged) is triggered. 
+
+*Supported by no products.<br/>*
 
 <br/>
 

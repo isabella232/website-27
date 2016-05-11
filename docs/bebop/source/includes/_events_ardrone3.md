@@ -2368,6 +2368,76 @@ Triggered by [SetAutonomousFlightMaxRotationSpeed](#ARDrone3-PilotingSettings-se
 
 <br/>
 
+<!-- ARDrone3-PilotingSettingsState-BankedTurnChanged-->
+### <a name="ARDrone3-PilotingSettingsState-BankedTurnChanged">Banked Turn state.</a><br/>
+> Banked Turn state.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_BANKEDTURNCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_BANKEDTURNCHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                uint8_t state = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_BANKEDTURNCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_BANKEDTURNCHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                uint8_t state = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATEBANKEDTURNCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            byte state = (byte)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATEBANKEDTURNCHANGED_STATE)).intValue();
+        }
+    }
+}
+```
+
+Banked Turn state.<br/>
+
+* state (u8): 1 if enabled, 0 if disabled<br/>
+<br/>
+
+Triggered by [SetBankedTurnMode](#ARDrone3-PilotingSettings-BankedTurn).
+
+*Supported by <br/>*
+
+- *Bebop since 3.2.0<br/>*
+- *Bebop 2 since 3.2.0<br/>*
+
+<br/>
+
 <!-- ARDrone3-SpeedSettingsState-MaxVerticalSpeedChanged-->
 ### <a name="ARDrone3-SpeedSettingsState-MaxVerticalSpeedChanged">Max vertical speed changed</a><br/>
 > Max vertical speed changed:
@@ -2683,6 +2753,98 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
 This event is deprecated.
 <br/>
 
+<!-- ARDrone3-SpeedSettingsState-MaxPitchRollRotationSpeedChanged-->
+### <a name="ARDrone3-SpeedSettingsState-MaxPitchRollRotationSpeedChanged">Max pitch/roll rotation speed sent by product</a><br/>
+> Max pitch/roll rotation speed sent by product:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED_CURRENT, arg);
+            if (arg != NULL)
+            {
+                float current = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED_MIN, arg);
+            if (arg != NULL)
+            {
+                float min = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED_MAX, arg);
+            if (arg != NULL)
+            {
+                float max = arg->value.Float;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED_CURRENT, arg);
+            if (arg != NULL)
+            {
+                float current = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED_MIN, arg);
+            if (arg != NULL)
+            {
+                float min = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATE_MAXPITCHROLLROTATIONSPEEDCHANGED_MAX, arg);
+            if (arg != NULL)
+            {
+                float max = arg->value.Float;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATEMAXPITCHROLLROTATIONSPEEDCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            float current = (float)((Double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATEMAXPITCHROLLROTATIONSPEEDCHANGED_CURRENT)).doubleValue();
+            float min = (float)((Double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATEMAXPITCHROLLROTATIONSPEEDCHANGED_MIN)).doubleValue();
+            float max = (float)((Double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_SPEEDSETTINGSSTATEMAXPITCHROLLROTATIONSPEEDCHANGED_MAX)).doubleValue();
+        }
+    }
+}
+```
+
+Max pitch/roll rotation speed sent by product<br/>
+
+* current (float): Current max pitch/roll rotation speed in degree/s<br/>
+* min (float): Range min of pitch/roll rotation speed<br/>
+* max (float): Range max of pitch/roll rotation speed<br/>
+<br/>
+
+Triggered by [SetMaxPitchRollRotationSpeed](#ARDrone3-SpeedSettings-MaxPitchRollRotationSpeed).
+
+*Supported by no products<br/>*
+
+<br/>
+
+
 <!-- ARDrone3-NetworkSettingsState-WifiSelectionChanged-->
 ### <a name="ARDrone3-NetworkSettingsState-WifiSelectionChanged">Wifi selection changed</a><br/>
 > Wifi selection changed:
@@ -2784,8 +2946,8 @@ Triggered by [WifiSelection](#ARDrone3-NetworkSettings-WifiSelection).
 <br/>
 
 <!-- ARDrone3-NetworkSettingsState-wifiSecurityChanged-->
-### <a name="ARDrone3-NetworkSettingsState-wifiSecurityChanged">Wifi security changes</a><br/>
-> Wifi security changes:
+### <a name="ARDrone3-NetworkSettingsState-wifiSecurityChanged">Wifi security changed (deprecated)</a><br/>
+> Wifi security changed (deprecated):
 
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
@@ -2839,17 +3001,105 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
 }
 ```
 
-Wifi security changes<br/>
+*This event is deprecated.<br/>*
+
+<br/>
+
+<!-- ARDrone3-NetworkSettingsState-WifiSecurity-->
+### <a name="ARDrone3-NetworkSettingsState-WifiSecurity">Wifi security changed</a><br/>
+> Wifi security changed:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_TYPE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_TYPE type = arg->value.I32;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_KEY, arg);
+            if (arg != NULL)
+            {
+                char * key = arg->value.String;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_KEYTYPE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_KEYTYPE keyType = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_TYPE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_TYPE type = arg->value.I32;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_KEY, arg);
+            if (arg != NULL)
+            {
+                char * key = arg->value.String;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_KEYTYPE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_KEYTYPE keyType = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATEWIFISECURITY) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_TYPE_ENUM type = ARCOMMANDS_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_TYPE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATEWIFISECURITY_TYPE));
+            String key = (String)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATEWIFISECURITY_KEY);
+            ARCOMMANDS_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_KEYTYPE_ENUM keyType = ARCOMMANDS_ARDRONE3_NETWORKSETTINGSSTATE_WIFISECURITY_KEYTYPE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_NETWORKSETTINGSSTATEWIFISECURITY_KEYTYPE));
+        }
+    }
+}
+```
+
+Sent by the drone when its wifi security changes.<br/>
 
 * type (enum): The type of wifi security (open, wpa2)<br/>
    * open: Wifi is not protected by any security (default)<br/>
    * wpa2: Wifi is protected by wpa2<br/>
+* key (string): The key used to secure the network (empty if type is open)<br/>
+* keyType (enum): Type of the key<br/>
+   * plain: Key is plain text, not encrypted<br/>
+<br/>
 
 Triggered by [WifiSecurity](#ARDrone3-NetworkSettings-wifiSecurity).
 
-*Not supported by any product for the moment.<br/>*
+*Supported by <br/>*   
 
-<br/>
+- *Bebop since 3.2.0<br/>*
+- *Bebop 2 since 3.2.0<br/>*
+
 
 <!-- ARDrone3-SettingsState-ProductMotorVersionListChanged-->
 ### <a name="ARDrone3-SettingsState-ProductMotorVersionListChanged">Product Motor version</a><br/>
@@ -3925,6 +4175,76 @@ Triggered by [SetVideoAutorecord](#ARDrone3-PictureSettings-VideoAutorecordSelec
 - *Bebop 2<br/>*
 
 <br/>
+
+<!-- ARDrone3-PictureSettingsState-VideoStabilizationModeChanged-->
+### <a name="ARDrone3-PictureSettingsState-VideoStabilizationModeChanged">Video stabilization mode</a><br/>
+> Video stabilization mode:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED_MODE mode = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED_MODE mode = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATEVIDEOSTABILIZATIONMODECHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED_MODE_ENUM mode = ARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEOSTABILIZATIONMODECHANGED_MODE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATEVIDEOSTABILIZATIONMODECHANGED_MODE));
+        }
+    }
+}
+```
+
+Video stabilization mode.<br/>
+
+* mode (enum): Video stabilization mode<br/>
+   * roll_pitch: Video flat on roll and pitch<br/>
+   * pitch: Video flat on pitch only<br/>
+   * roll: Video flat on roll only<br/>
+   * none: Video follows drone angles<br/>
+<br/>
+
+Triggered by [SetVideoStabilizationMode](#ARDrone3-PictureSettings-VideoStabilizationMode).
+
+*Supported by no products.<br/>*
+
 
 <!-- ARDrone3-MediaStreamingState-VideoEnableChanged-->
 ### <a name="ARDrone3-MediaStreamingState-VideoEnableChanged">Video streaming status changed</a><br/>
