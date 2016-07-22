@@ -1292,6 +1292,71 @@ Then, event [VideoStabilizationModeChanged](#ARDrone3-PictureSettingsState-Video
 
 <br/>
 
+<!-- ARDrone3-PictureSettings-VideoRecordingMode-->
+### <a name="ARDrone3-PictureSettings-VideoRecordingMode">Set Video recording mode</a><br/>
+> Set Video recording mode:
+
+```c
+deviceController->aRDrone3->sendPictureSettingsVideoRecordingMode(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_PICTURESETTINGS_VIDEORECORDINGMODE_MODE)mode);
+```
+
+```objective_c
+deviceController->aRDrone3->sendPictureSettingsVideoRecordingMode(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_PICTURESETTINGS_VIDEORECORDINGMODE_MODE)mode);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendPictureSettingsVideoRecordingMode((ARCOMMANDS_ARDRONE3_PICTURESETTINGS_VIDEORECORDINGMODE_MODE_ENUM)mode);
+```
+
+Set Video recording mode<br/>
+
+* mode (enum): Video recording mode<br/>
+   * quality: Maximize recording quality.<br/>
+   * time: Maximize recording time.<br/>
+
+Result:<br/>
+The video recording mode is modified.<br/>
+Then, event [VideoRecordingModeChanged](#ARDrone3-PictureSettingsState-VideoRecordingModeChanged) is triggered.
+
+*Supported by <br/>*
+
+- *Bebop since 3.3.0<br/>*
+- *Bebop 2 since 3.3.0<br/>*
+<br/>
+
+<!-- ARDrone3-PictureSettings-VideoFramerate-->
+### <a name="ARDrone3-PictureSettings-VideoFramerate">Set Video framerate</a><br/>
+> Set Video framerate:
+
+```c
+deviceController->aRDrone3->sendPictureSettingsVideoFramerate(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_PICTURESETTINGS_VIDEOFRAMERATE_FRAMERATE)framerate);
+```
+
+```objective_c
+deviceController->aRDrone3->sendPictureSettingsVideoFramerate(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_PICTURESETTINGS_VIDEOFRAMERATE_FRAMERATE)framerate);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendPictureSettingsVideoFramerate((ARCOMMANDS_ARDRONE3_PICTURESETTINGS_VIDEOFRAMERATE_FRAMERATE_ENUM)framerate);
+```
+
+Set Video framerate<br/>
+
+* framerate (enum): Video framerate<br/>
+   * 24_FPS: 23.976 frames per second.<br/>
+   * 25_FPS: 25 frames per second.<br/>
+   * 30_FPS: 29.97 frames per second.<br/>
+
+Result:<br/>
+The video framerate is modified.<br/>
+Then, event [VideoFramerateChanged](#ARDrone3-PictureSettingsState-VideoFramerateChanged) is triggered.
+
+*Supported by <br/>*
+
+- *Bebop since 3.3.0<br/>*
+- *Bebop 2 since 3.3.0<br/>*
+<br/>
+
 <!-- ARDrone3-MediaStreaming-VideoEnable-->
 ### <a name="ARDrone3-MediaStreaming-VideoEnable">Enable/disable video streaming.</a><br/>
 > Enable/disable video streaming.:

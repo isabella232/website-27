@@ -4245,6 +4245,146 @@ Triggered by [SetVideoStabilizationMode](#ARDrone3-PictureSettings-VideoStabiliz
 
 *Supported by no products.<br/>*
 
+<!-- ARDrone3-PictureSettingsState-VideoRecordingModeChanged-->
+### <a name="ARDrone3-PictureSettingsState-VideoRecordingModeChanged">Video recording mode</a><br/>
+> Video recording mode:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEORECORDINGMODECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEORECORDINGMODECHANGED_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEORECORDINGMODECHANGED_MODE mode = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEORECORDINGMODECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEORECORDINGMODECHANGED_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEORECORDINGMODECHANGED_MODE mode = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATEVIDEORECORDINGMODECHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEORECORDINGMODECHANGED_MODE_ENUM mode = ARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEORECORDINGMODECHANGED_MODE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATEVIDEORECORDINGMODECHANGED_MODE));
+        }
+    }
+}
+```
+
+Video recording mode<br/>
+
+* mode (enum): <br/>
+   * quality: Maximize recording quality.<br/>
+   * time: Maximize recording time.<br/>
+
+Triggered by [SetVideoRecordMode](#ARDrone3-PictureSettings-VideoRecordingMode).
+
+*Supported by <br/>*   
+
+- *Bebop since 3.3.0<br/>*
+- *Bebop 2 since 3.3.0<br/>*
+<br/>
+
+<!-- ARDrone3-PictureSettingsState-VideoFramerateChanged-->
+### <a name="ARDrone3-PictureSettingsState-VideoFramerateChanged">Video framerate</a><br/>
+> Video framerate:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOFRAMERATECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOFRAMERATECHANGED_FRAMERATE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEOFRAMERATECHANGED_FRAMERATE framerate = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOFRAMERATECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATE_VIDEOFRAMERATECHANGED_FRAMERATE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEOFRAMERATECHANGED_FRAMERATE framerate = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATEVIDEOFRAMERATECHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEOFRAMERATECHANGED_FRAMERATE_ENUM framerate = ARCOMMANDS_ARDRONE3_PICTURESETTINGSSTATE_VIDEOFRAMERATECHANGED_FRAMERATE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PICTURESETTINGSSTATEVIDEOFRAMERATECHANGED_FRAMERATE));
+        }
+    }
+}
+```
+
+Video framerate<br/>
+
+* framerate (enum): <br/>
+   * 24_FPS: 23.976 frames per second.<br/>
+   * 25_FPS: 25 frames per second.<br/>
+   * 30_FPS: 29.97 frames per second.<br/>
+
+Triggered by [SetVideoFramerate](#ARDrone3-PictureSettings-VideoFramerate).
+
+*Supported by <br/>*   
+
+- *Bebop since 3.3.0<br/>*
+- *Bebop 2 since 3.3.0<br/>*
+<br/>
 
 <!-- ARDrone3-MediaStreamingState-VideoEnableChanged-->
 ### <a name="ARDrone3-MediaStreamingState-VideoEnableChanged">Video streaming status changed</a><br/>
