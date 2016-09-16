@@ -6,7 +6,7 @@ language_tabs:
   - shell: nodeJS
 
 toc_footers:
-  - <a href='https://apiflowerpower.parrot.com/api_access/signup'>Sign Up for a Developer Key</a>
+  - <a href='https://api-flower-power-pot.parrot.com/api_access/signup'>Sign Up for a Developer Key</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -54,11 +54,11 @@ from pprint import pformat  # here only for aesthetic
 username = 'YOUR_USERNAME'
 password = 'YOUR_PASSWORD'
 
-#from the developer portal
-client_id = 'YOUR_CLIENT_ID'
-client_secret = 'YOUR_SECRET'
+# From the developer portal
+client_id = 'CLIENT_ID'
+client_secret = 'CLIENT_SECRET'
 
-req = requests.get('https://apiflowerpower.parrot.com/user/v1/authenticate',
+req = requests.get('https://api-flower-power-pot.parrot.com/user/v1/authenticate',
                    data={'grant_type': 'password',
                          'username': username,
                          'password': password,
@@ -81,20 +81,21 @@ auth_header = {'Authorization': 'Bearer {token}'.format(token=access_token)}
 ```json
 {
     "access_token": "YOUR_ACCESS_TOKEN_",
-    "expires_in": 2592000,
+    "expires_in": 172800,
+    "import_status": "unavailable",
     "refresh_token": "YOUR_REFRESH_TOKEN"
 }
 ```
 
 
-Flower Power Cloud  uses API keys to allow access to the API. You can register a new API key at our [developer portal](https://apiflowerpower.parrot.com/api_access/signup).
+Flower Power Cloud  uses API keys to allow access to the API. You can register a new API key at our [developer portal](https://api-flower-power-pot.parrot.com/api_access/signup)
 
 
 Flower Power Cloud API expects for the 'access_token' and 'auth_header' to be included in all API requests to the server.
 
 ### HTTP Request
 
-`GET https://apiflowerpower.parrot.com/user/v1/authenticate`
+`GET https://api-flower-power-pot.parrot.com/user/v1/authenticate`
 
 ### Query Parameters
 
@@ -122,9 +123,8 @@ import requests
 from pprint import pformat  # here only for aesthetic
 
 # Set your own authentication token
-req = requests.get('https://apiflowerpower.parrot.com/user/v4/profile',
-                   headers={'Authorization': 'Bearer YOUR_ACCESS_TOKEN_'})
-
+req = requests.get('https://api-flower-power-pot.parrot.com/user/v4/profile',
+                    headers={'Authorization': 'Bearer YOUR_ACCESS_TOKEN_'})
 
 response = req.json()
 print('Server response: \n {0}'.format(pformat(response)))
@@ -136,27 +136,28 @@ print('Server response: \n {0}'.format(pformat(response)))
 ```json
 {
  "errors": [],
+ "garden_status_version": "YOURS",
  "server_identifier": "YOURS",
  "user_config_version": "YOURS",
- "user_profile": { "dob": "",
-                   "email": "YOURS",
-                   "ip_address_on_create": "YOURS",
-                   "language_iso639": "YOURS",
-                   "notification_curfew_end": "YOURS",
-                   "notification_curfew_start": "YOURS",
-                   "pictures_public": "YOURS",
-                   "tmz_offset": "YOURS",
-                   "use_fahrenheit": "YOURS",
-                   "use_feet_inches": "YOURS",
-                   "username": "YOURS"
-                  }
+ "user_profile": {"email": "YOURS",
+                  "language_iso639": "YOURS",
+                  "notification_curfew_end": "YOURS",
+                  "notification_curfew_start": "YOURS",
+                  "pictures_public": "YOURS",
+                  "use_fahrenheit": "YOURS",
+                  "use_feet_inches": "YOURS",
+                  "use_ftc": "YOURS",
+                  "use_liter": "YOURS",
+                  "use_lux": "YOURS",
+                  "use_mol": "YOURS",
+                  "utc_timezone": "YOURS"}
 }
 
 ```
 
 ### HTTP Request
 
-`GET https://apiflowerpower.parrot.com/user/v4/profile`
+`GET https://api-flower-power-pot.parrot.com/user/v4/profile`
 
 ### Query Parameters
 
@@ -170,7 +171,7 @@ import requests
 from pprint import pformat  # here only for aesthetic
 
 # Set your own authentication token
-req = requests.get('https://apiflowerpower.parrot.com/user/v1/versions',
+req = requests.get('https://api-flower-power-pot.parrot.com/user/v1/versions',
                    headers={'Authorization': 'Bearer YOUR_ACCESS_TOKEN_'})
 
 
@@ -191,7 +192,7 @@ print('Server response: \n {0}'.format(pformat(response)))
 
 ### HTTP Request
 
-`GET https://apiflowerpower.parrot.com/user/v1/versions`
+`GET https://api-flower-power-pot.parrot.com/user/v1/versions`
 
 ### Query Parameters
 
@@ -210,7 +211,7 @@ from pprint import pformat  # here only for aesthetic
 location_identifier = 'eg9dnEtyHy589153XXX'
 
 # Set your own authentication token
-req = requests.get('https://apiflowerpower.parrot.com/sensor_data/v2/sample/location/' + location_identifier, 
+req = requests.get('https://api-flower-power-pot.parrot.com/sensor_data/v6/sample/location/' + location_identifier, 
     headers={'Authorization': 'Bearer YOUR_ACCESS_TOKEN_'},
     params={'from_datetime_utc': '2014-03-01T14:42:42Z',
             'to_datetime_utc': '2014-04-13T06:30:00Z'})
@@ -222,24 +223,26 @@ print('Server response: \n {0}'.format(pformat(response)))
 > This should returns JSON structure:
 
 ```json
- {"errors": [],
-  "events": [],
-  "fertilizer": [{"fertilizer_level": "YOURS",
-                  "id": "YOURS",
-                  "watering_cycle_end_date_time_utc": "YOURS",
-                  "watering_cycle_start_date_time_utc": "YOURS"}],
- "samples": [{"air_temperature_celsius": "YOURS",
-               "capture_ts": "YOURS",
-               "par_umole_m2s": "YOURS",
-               "vwc_percent": "YOURS"}],
- "server_identifier": "YOURS",
- "user_data_version": "YOURS"
+ {"samples":[{ "capture_datetime_utc": "YOURS",
+               "light": "YOURS",
+               "fertilizer_level": "YOURS",
+               "air_temperature_celsius": "YOURS",
+               "soil_moisture_percent": "YOURS",
+               "battery_percent": "YOURS",
+               "water_tank_level_percent": "YOURS"
+             }],
+ "watering_events": "YOURS",
+ "first_not_definitive_value_datetime_utc": "YOURS",
+ "user_config_version": "YOURS",
+ "garden_status_version": "YOURS",
+ "errors": "YOURS",
+ "server_identifier": "YOURS"
  }
  ```
 
 ### HTTP Request
 
-`GET https://apiflowerpower.parrot.com/sensor_data/v4/sample/location/:location_identifier`
+`GET https://api-flower-power-pot.parrot.com/sensor_data/v6/sample/location/:location_identifier`
 
 ### Query Parameters
 
@@ -247,8 +250,6 @@ Parameter | Description
 --------- | ----------
 from_datetime_utc  | UTC datetime start, optional
 to_datetime_utc | UTC datetime end, optional
-include_acknowledged | returns all open and closed events, optional
-resolution | DAILY. from/to mandatory when resolution present. Time components of from/to ignored when resolution present
 
 
 <aside class="success">
@@ -263,7 +264,7 @@ import requests
 from pprint import pformat  # here only for aesthetic
 
 # Set your own authentication token
-req = requests.get('https://apiflowerpower.parrot.com/sensor_data/v3/sync'
+req = requests.get('https://api-flower-power-pot.parrot.com/garden/v2/configuration',
                    headers={'Authorization': 'Bearer YOUR_ACCESS_TOKEN_'})
 
 response = req.json()
@@ -274,34 +275,60 @@ print('Server response: \n {0}'.format(pformat(response)))
 
 ```json
 {
- "errors": [],
- "locations": [{ "avatar_url": "YOURS",
-                 "display_order": "YOURS",
-                 "ignore_fertilizer_alert": "YOURS",
-                 "ignore_light_alert": "YOURS",
-                 "ignore_moisture_alert": "YOURS",
-                 "ignore_temperature_alert": "YOURS",
-                 "images": "YOURS",
-                 "in_pot": "YOURS",
-                 "is_indoor": "YOURS",
-                 "latitude": "YOURS",
-                 "location_identifier": "YOURS",
-                 "longitude": "YOURS",
-                 "plant_assigned_date": "YOURS",
-                 "plant_nickname": "YOURS",
-                 "sensor_serial": "YOURS"}],
- "sensors": [{ "color": "YOURS",
-               "firmware_version": "YOURS",
-               "nickname": "YOURS",
-               "sensor_serial": "YOURS"}],
- "server_identifier": "YOURS",
- "user_config_version": "YOURS"
- }
+  "locations": [
+    {
+      "sensor": {
+        "firmware_version": "YOURS",
+        "system_id": "YOURS",
+        "sensor_identifier": "YOURS",
+        "color": "YOURS",
+        "hardware_revision": "YOURS",
+        "calibration_data": "YOURS",
+        "sensor_type": "YOURS",
+        "nickname": "YOURS",
+        "assignment_datetime_utc": "YOURS",
+        "autowatering_cfg": {
+          "mode": "YOURS"
+        }
+      },
+      "plant_nickname": "YOURS",
+      "plant_ids": [
+       "YOURS"
+      ],
+      "plant_assigned_datetime_utc": "YOURS",
+      "ignored_alerts": { "watering": "YOURS" },
+      "in_pot": "YOURS",
+      "is_indoor": "YOURS",
+      "location_identifier": "YOURS",
+      "longitude": "YOURS",
+      "latitude": "YOURS",
+      "avatar_url": "YOURS",
+      "pictures": [
+        {
+          "url": "YOURS",
+          "location_identifier": "YOURS",
+          "image_identifier": "YOURS",
+          "expires": "YOURS"
+        },
+        {
+          "url": "YOURS",
+          "location_identifier": "YOURS",
+          "image_identifier": "YOURS",
+          "expires": "YOURS"
+        }
+      ]
+    }
+  ],
+  "user_config_version": "YOURS",
+  "garden_status_version": "YOURS",
+  "errors": [],
+  "server_identifier": "YOURS"
+}
  ```
 
 ### HTTP Request
 
-`GET https://apiflowerpower.parrot.com/sensor_data/v3/sync`
+`GET https://api-flower-power-pot.parrot.com/garden/v2/configuration`
 
 ### Query Parameters
 
@@ -316,7 +343,7 @@ import requests
 from pprint import pformat  # here only for aesthetic
 
 # Set your own authentication token
-req = requests.get('https://apiflowerpower.parrot.com/sensor_data/v4/garden_locations_status',
+req = requests.get('https://api-flower-power-pot.parrot.com/garden/v1/status',
                    headers={'Authorization': 'Bearer YOUR_ACCESS_TOKEN_'})
 
 response = req.json()
@@ -327,64 +354,114 @@ print('Server response: \n {0}'.format(pformat(response)))
 
 ```json
 {
- "errors": [],
- "garden_status_version": "YOURS",
- "locations": [{"air_temperature": {"done_action_timedate_utc": "YOURS",
-                                      "gauge_values": { "current_value": "YOURS",
-                                                        "max_threshold": "YOURS",
-                                                        "min_threshold": "YOURS"},
-                                      "instruction_key": "YOURS",
-                                      "next_analysis_timedate_utc": "YOURS",
-                                      "predicted_action_timedate_utc": "YOURS",
-                                      "status_key": "YOURS"},
-                 "fertilizer": { "done_action_timedate_utc": "YOURS",
-                                 "gauge_values": { "current_value": "YOURS",
-                                                   "max_threshold": "YOURS",
-                                                   "min_threshold": "YOURS"},
-                                 "instruction_key": "YOURS",
-                                 "next_analysis_timedate_utc": "YOURS",
-                                 "predicted_action_timedate_utc": "YOURS",
-                                 "status_key": "YOURS"},
-                 "first_sample_utc": "YOURS",
-                 "global_validity_timedate_utc": "YOURS",
-                 "last_processed_upload_timedate_utc": "YOURS",
-                 "last_sample_upload": "YOURS",
-                 "last_sample_utc": "YOURS",
-                 "light": { "done_action_timedate_utc": "YOURS",
-                            "gauge_values": { "current_value": "YOURS",
-                                              "max_threshold": "YOURS",
-                                              "min_threshold": "YOURS"},
-                            "instruction_key": "YOURS",
-                            "next_analysis_timedate_utc": "YOURS",
-                            "predicted_action_timedate_utc": "YOURS",
-                            "status_key": "YOURS"},
-                 "location_identifier": "YOURS",
-                 "processing_uploads": "YOURS",
-                 "soil_moisture": { "done_action_timedate_utc": "YOURS",
-                                    "gauge_values": { "current_value": "YOURS",
-                                                      "max_threshold": "YOURS",
-                                                      "min_threshold": "YOURS"},
-                                    "instruction_key": "YOURS",
-                                    "next_analysis_timedate_utc": "YOURS",
-                                    "predicted_action_timedate_utc": "YOURS",
-                                    "status_key": "YOURS"},
-                 "total_sample_count": "YOURS",
-                 "user_sharing": {"first_all_green": {"sharing_status": "YOURS"}}}],
- "sensors": [{"battery_level": {"battery_end_of_life_date_utc": "YOURS",
-                                  "level_percent": "YOURS"},
-               "current_history_index": "YOURS",
-               "last_upload_datetime_utc": "YOURS",
-               "processing_uploads": "YOURS",
-               "sensor_serial": "YOURS",
-               "total_uploaded_samples": "YOURS"}],
- "server_identifier": "YOURS",
- "user_config_version": "YOURS"
- }
+    "locations": [
+      {
+        "location_identifier": "YOURS",
+        "last_processed_upload_datetime_utc": "YOURS",
+        "total_sample_count": "YOURS",
+        "last_sample_upload": "YOURS",
+        "first_sample_utc": "YOURS",
+        "last_sample_utc": "YOURS",
+        "growth_day": "YOURS",
+        "global_validity_datetime_utc": "YOURS",
+        "air_temperature": {
+          "status_key": "YOURS",
+          "instruction_key": "YOURS",
+          "next_analysis_datetime_utc": "YOURS",
+          "predicted_action_datetime_utc": "YOURS",
+          "done_action_datetime_utc": "YOURS",
+          "gauge_values": {
+            "min_threshold": "YOURS",
+            "max_threshold": "YOURS",
+            "current_value": "YOURS"
+          }
+        },
+        "light": {
+          "status_key": "YOURS",
+          "instruction_key": "YOURS",
+          "next_analysis_datetime_utc": "YOURS",
+          "predicted_action_datetime_utc": "YOURS",
+          "done_action_datetime_utc": "YOURS",
+          "gauge_values": {
+            "min_threshold": "YOURS",
+            "max_threshold": "YOURS",
+            "current_value": "YOURS"
+          }
+        },
+        "fertilizer": {
+          "status_key": "YOURS",
+          "instruction_key": "YOURS",
+          "next_analysis_datetime_utc": "YOURS",
+          "predicted_action_datetime_utc": "YOURS",
+          "done_action_datetime_utc": "YOURS",
+          "gauge_values": {
+            "min_threshold": "YOURS",
+            "max_threshold": "YOURS",
+            "current_value": "YOURS"
+          }
+        },
+        "watering": {
+          "status_key": "YOURS",
+          "instruction_key": "YOURS",
+          "automatic_watering": {
+            "status_key": "YOURS",
+            "instruction_key": "YOURS",
+            "predicted_action_datetime_utc": "YOURS",
+            "next_watering_datetime_utc": "YOURS",
+            "full_autonomy_days": "YOURS",
+            "gauge_values": {
+              "min_threshold": "YOURS",
+              "max_threshold": "YOURS",
+              "current_value": "YOURS"
+            }
+          },
+          "soil_moisture": {
+            "status_key": "YOURS",
+            "instruction_key": "YOURS",
+            "predicted_action_datetime_utc": "YOURS",
+            "predicted_action_vwc_value": "YOURS",
+            "gauge_values": {
+              "min_threshold": "YOURS",
+              "max_threshold": "YOURS",
+              "current_value": "YOURS"
+            }
+          }
+        },
+        "user_sharing": {
+          "first_all_green": {
+            "sharing_status": "YOURS"
+          }
+        },
+        "sensor": {
+          "sensor_type": "YOURS",
+          "sensor_identifier": "YOURS",
+          "current_history_index": "YOURS",
+          "firmware_update": {
+            "firmware_upgrade_available": "YOURS",
+            "firmware_version": "YOURS",
+            "firmware_update_url": "YOURS"
+          }
+        },
+        "battery": {
+          "gauge_values": {
+            "min_threshold": "YOURS",
+            "max_threshold": "YOURS",
+            "current_value": "YOURS"
+          }
+        },
+        "processing_uploads": "YOURS"
+      }
+    ],
+    "user_config_version": "YOURS",
+    "garden_status_version": "YOURS",
+    "errors": [],
+    "server_identifier": "YOURS"
+  }
  ```
 
 ### HTTP Request
 
-`GET https://apiflowerpower.parrot.com/v4/gardenlocation_status`
+`GET https://api-flower-power-pot.parrot.com/garden/v1/status`
 
 ### Query Parameters
 
