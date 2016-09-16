@@ -7,6 +7,19 @@
     <atom:link href="http://developer.parrot.com/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>ARSDK 3.10.0 release</title>
+        
+        
+          <description>&lt;p&gt;With all the &lt;a href=&quot;https://www.parrot.com/&quot;&gt;new products&lt;/a&gt; we have released recently, a new version of the SDK necessarily comes. 
+This release brings support to: &lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 15 Sep 2016 12:00:00 +0200</pubDate>
+        <link>http://developer.parrot.com/2016/ARSDK-4-0-release/</link>
+        <guid isPermaLink="true">http://developer.parrot.com/2016/ARSDK-4-0-release/</guid>
+      </item>
+    
+      <item>
         <title>Play Bebop video stream on VLC</title>
         
         
@@ -19,7 +32,7 @@
       </item>
     
       <item>
-        <title>ARSDK, what&#39;s new in the 3.8 release ?</title>
+        <title>ARSDK, what's new in the 3.8 release ?</title>
         
         
           <description>&lt;p&gt;A new version of the Parrot drone SDK has recently been released. This SDK lets you control all Parrot&amp;#39;s new drones (Bebop 2, Bebop, JumpingSumo and evos, Rolling Spider, Airbornes) from a remote station (could be an Android or iOS phone or even a Linux based controller).&lt;br/&gt;
