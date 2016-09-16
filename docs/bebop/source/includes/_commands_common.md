@@ -1,6 +1,6 @@
 <!-- common-Network-Disconnect-->
-### <a name="common-Network-Disconnect">Signal the remote that the controller will disconnect</a><br/>
-> Signal the remote that the controller will disconnect (deprecated):
+### <a name="common-Network-Disconnect">Signals the remote that the host will disconnect (deprecated)</a><br/>
+> Signals the remote that the host will disconnect (deprecated):
 
 ```c
 deviceController->common->sendNetworkDisconnect(deviceController->common);
@@ -14,13 +14,28 @@ deviceController->common->sendNetworkDisconnect(deviceController->common);
 deviceController.getFeatureCommon().sendNetworkDisconnect();
 ```
 
-This command is deprecated, please don't use it.
+*This message is deprecated.*<br/>
+
+Signals the remote that the host will disconnect.<br/>
+<br/>
+
+
+
+
+Result:<br/>
+None<br/>
+
+
+*Supported by <br/>*
+
+- *no product*<br/>
+
 
 <br/>
 
 <!-- common-Settings-AllSettings-->
-### <a name="common-Settings-AllSettings">Get all product settings</a><br/>
-> Get all product settings:
+### <a name="common-Settings-AllSettings">Ask for all settings</a><br/>
+> Ask for all settings:
 
 ```c
 deviceController->common->sendSettingsAllSettings(deviceController->common);
@@ -34,15 +49,23 @@ deviceController->common->sendSettingsAllSettings(deviceController->common);
 deviceController.getFeatureCommon().sendSettingsAllSettings();
 ```
 
-Get all product settings<br/>
+Ask for all settings.<br/>
+<br/>
+**Please note that you should not send this command if you are using the<br/>
+libARController API as this library is handling the connection process for you.**<br/>
+
+
+
 
 Result:<br/>
-The product will trigger all settings events. Such as [CameraSettings](#common-CameraSettingsState-CameraSettingsChanged), or product specific settings (such as the MaxAltitude for the Bebop.<br/>
-Then, it will trigger [AllSettingsChangedEnd](#common-SettingsState-AllSettingsChanged).
+The product will trigger all settings events (such as [CameraSettings](#common-CameraSettingsState-CameraSettingsChanged), or product specific settings as the [MaxAltitude](#ARDrone3-PilotingSettingsState-MaxAltitudeChanged) for the Bebop).<br/>
+Then, it will trigger [AllSettingsEnd](#common-SettingsState-AllSettingsChanged).<br/>
 
-*Supported by all products<br/>*
 
-**Please note that you should not send this command if you are using the libARController API as this library is handling the connection process for you.**
+*Supported by <br/>*
+
+- *all products*<br/>
+
 
 <br/>
 
@@ -62,19 +85,26 @@ deviceController->common->sendSettingsReset(deviceController->common);
 deviceController.getFeatureCommon().sendSettingsReset();
 ```
 
-Reset all settings<br/>
+Reset all settings.<br/>
+
+
+
 
 Result:<br/>
-All the new settings will be triggered. Such as [CameraSettings](#common-CameraSettingsState-CameraSettingsChanged), or product specific settings (such as the MaxAltitude for the Bebop.<br/>
-Then, it will trigger [ResetChanged](#common-SettingsState-ResetChanged).
+It will trigger [ResetChanged](#common-SettingsState-ResetChanged).<br/>
+Then, the product will trigger all settings events (such as [CameraSettings](#common-CameraSettingsState-CameraSettingsChanged), or product specific settings as the [MaxAltitude](#ARDrone3-PilotingSettingsState-MaxAltitudeChanged) for the Bebop) with factory values.<br/>
 
-*Supported by all products<br/>*
+
+*Supported by <br/>*
+
+- *all products*<br/>
+
 
 <br/>
 
 <!-- common-Settings-ProductName-->
-### <a name="common-Settings-ProductName">Set Product name</a><br/>
-> Set Product name:
+### <a name="common-Settings-ProductName">Set product name</a><br/>
+> Set product name:
 
 ```c
 deviceController->common->sendSettingsProductName(deviceController->common, (char *)name);
@@ -88,21 +118,28 @@ deviceController->common->sendSettingsProductName(deviceController->common, (cha
 deviceController.getFeatureCommon().sendSettingsProductName((String)name);
 ```
 
-Set Product name.<br/>
-Please note that the product name is also the SSID for the Wifi products. This SSID will only be changed after a reboot of the product.
+Set the product name.<br/>
+It also sets the name of the SSID for Wifi products and advertisement name for BLE products (changed after a reboot of the product).<br/>
+
 
 * name (string): Product name<br/>
-<br/>
+
 
 Result:<br/>
-The name of the product is changed.<br/>
-Then, it will trigger [ProductNameChanged](#common-SettingsState-ProductNameChanged).
+Name is changed.<br/>
+Then, it will trigger [NameChanged](#common-SettingsState-ProductNameChanged).<br/>
 
-*Supported by all products<br/>*
+
+*Supported by <br/>*
+
+- *all products*<br/>
+
+
+<br/>
 
 <!-- common-Settings-Country-->
-### <a name="common-Settings-Country">Set country of controller</a><br/>
-> Set country of controller:
+### <a name="common-Settings-Country">Set the country</a><br/>
+> Set the country:
 
 ```c
 deviceController->common->sendSettingsCountry(deviceController->common, (char *)code);
@@ -116,21 +153,34 @@ deviceController->common->sendSettingsCountry(deviceController->common, (char *)
 deviceController.getFeatureCommon().sendSettingsCountry((String)code);
 ```
 
-Set country of controller<br/>
+Set the country for Wifi products.<br/>
+This can modify Wifi band and/or channel.<br/>
+**Please note that you might be disconnected from the product after changing the country as it changes Wifi parameters.**<br/>
+
 
 * code (string): Country code with ISO 3166 format<br/>
 
-Result:<br/>
-The country of the product is changed.<br/>
-Then, it will trigger [CountryChanged](#common-SettingsState-CountryChanged).
 
-*Supported by all products<br/>*
+Result:<br/>
+The country is set.<br/>
+Then, it will trigger [CountryChanged](#common-SettingsState-CountryChanged).<br/>
+
+
+*Supported by <br/>*
+
+- *Bebop*<br/>
+- *Jumping Sumo*<br/>
+- *Jumping Night*<br/>
+- *Jumping Race*<br/>
+- *Bebop 2*<br/>
+- *Disco*<br/>
+
 
 <br/>
 
 <!-- common-Settings-AutoCountry-->
-### <a name="common-Settings-AutoCountry">Set Auto Country Settings</a><br/>
-> Set Auto Country Settings:
+### <a name="common-Settings-AutoCountry">Enable auto-country</a><br/>
+> Enable auto-country:
 
 ```c
 deviceController->common->sendSettingsAutoCountry(deviceController->common, (uint8_t)automatic);
@@ -144,22 +194,34 @@ deviceController->common->sendSettingsAutoCountry(deviceController->common, (uin
 deviceController.getFeatureCommon().sendSettingsAutoCountry((byte)automatic);
 ```
 
-Set Auto Country Setting.<br/>
-If auto-country is set, the drone will guess its Wifi country by itself by checking other Wifi country around it.
+Enable auto-country.<br/>
+If auto-country is set, the drone will guess its Wifi country by itself by checking other Wifi country around it.<br/>
+**Please note that you might be disconnected from the product after changing the country as it changes Wifi parameters.**<br/>
+
 
 * automatic (u8): Boolean : 0 : Manual / 1 : Auto<br/>
 
+
 Result:<br/>
 The auto-country of the product is changed.<br/>
-Then, it will trigger [AutoCountryChanged](#common-SettingsState-AutoCountryChanged).
+Then, it will trigger [AutoCountryChanged](#common-SettingsState-AutoCountryChanged) and [CountryChanged](#common-SettingsState-CountryChanged).<br/>
 
-*Supported by all products<br/>*
+
+*Supported by <br/>*
+
+- *Bebop*<br/>
+- *Jumping Sumo*<br/>
+- *Jumping Night*<br/>
+- *Jumping Race*<br/>
+- *Bebop 2*<br/>
+- *Disco*<br/>
+
 
 <br/>
 
 <!-- common-Common-AllStates-->
-### <a name="common-Common-AllStates">Get all product states</a><br/>
-> Get all product states:
+### <a name="common-Common-AllStates">Ask for all states</a><br/>
+> Ask for all states:
 
 ```c
 deviceController->common->sendCommonAllStates(deviceController->common);
@@ -173,21 +235,29 @@ deviceController->common->sendCommonAllStates(deviceController->common);
 deviceController.getFeatureCommon().sendCommonAllStates();
 ```
 
-Get all product states.<br/>
+Ask for all states.<br/>
+<br/>
+**Please note that you should not send this command if you are using the<br/>
+libARController API as this library is handling the connection process for you.**<br/>
+
+
+
 
 Result:<br/>
-The product will trigger all its current states. Such as [BatteryState](#common-CommonState-BatteryStateChanged), or product specific states (such as the flying state for the Bebop.<br/>
-Then, it will trigger [AllStatesChangedEnd](#common-CommonState-AllStatesChanged).
+The product will trigger all states events (such as [FlyingState](#ARDrone3-PilotingState-FlyingStateChanged) for the Bebop).<br/>
+Then, it will trigger [AllStatesEnd](#common-CommonState-AllStatesChanged).<br/>
 
-*Supported by all products<br/>*
 
-**Please note that you should not send this command if you are using the libARController API as this library is handling the connection process for you.**
+*Supported by <br/>*
+
+- *all products*<br/>
+
 
 <br/>
 
 <!-- common-Common-CurrentDate-->
-### <a name="common-Common-CurrentDate">Set current date of controller</a><br/>
-> Set current date of controller:
+### <a name="common-Common-CurrentDate">Set the date</a><br/>
+> Set the date:
 
 ```c
 deviceController->common->sendCommonCurrentDate(deviceController->common, (char *)date);
@@ -201,23 +271,32 @@ deviceController->common->sendCommonCurrentDate(deviceController->common, (char 
 deviceController.getFeatureCommon().sendCommonCurrentDate((String)date);
 ```
 
-Set current date of controller.<br/>
-This date is taken by the drone as its own date. So medias and other files will be dated from this date.
+Set the date.<br/>
+This date is taken by the drone as its own date.<br/>
+So medias and other files will be dated from this date<br/>
+<br/>
+**Please note that you should not send this command if you are using the<br/>
+libARController API as this library is handling the connection process for you.**<br/>
+
 
 * date (string): Date with ISO-8601 format<br/>
 
+
 Result:<br/>
 The date of the product is set.<br/>
-Then, it will trigger [CurrentDateChanged](#common-CommonState-CurrentDateChanged).
+Then, it will trigger [DateChanged](#common-CommonState-CurrentDateChanged).<br/>
 
-*Supported by all products<br/>*
 
-**Please note that you should not send this command if you are using the libARController API as this library is handling the connection process for you.**
+*Supported by <br/>*
+
+- *all products*<br/>
+
+
 <br/>
 
 <!-- common-Common-CurrentTime-->
-### <a name="common-Common-CurrentTime">Set current time of controller</a><br/>
-> Set current time of controller:
+### <a name="common-Common-CurrentTime">Set the time</a><br/>
+> Set the time:
 
 ```c
 deviceController->common->sendCommonCurrentTime(deviceController->common, (char *)time);
@@ -231,23 +310,32 @@ deviceController->common->sendCommonCurrentTime(deviceController->common, (char 
 deviceController.getFeatureCommon().sendCommonCurrentTime((String)time);
 ```
 
-Set current time of controller.<br/>
-This time is taken by the drone as its own time. So medias and other files will be dated from this time.
+Set the time.<br/>
+This time is taken by the drone as its own time.<br/>
+So medias and other files will be dated from this time<br/>
+<br/>
+**Please note that you should not send this command if you are using the<br/>
+libARController API as this library is handling the connection process for you.**<br/>
+
 
 * time (string): Time with ISO-8601 format<br/>
 
+
 Result:<br/>
 The time of the product is set.<br/>
-Then, it will trigger [CurrentTimeChanged](#common-CommonState-CurrentTimeChanged).
+Then, it will trigger [TimeChanged](#common-CommonState-CurrentTimeChanged).<br/>
 
-*Supported by all products<br/>*
 
-**Please note that you should not send this command if you are using the libARController API as this library is handling the connection process for you.**
+*Supported by <br/>*
+
+- *all products*<br/>
+
+
 <br/>
 
 <!-- common-Common-Reboot-->
-### <a name="common-Common-Reboot">Reboot the drone</a><br/>
-> Reboot the drone:
+### <a name="common-Common-Reboot">Reboot</a><br/>
+> Reboot:
 
 ```c
 deviceController->common->sendCommonReboot(deviceController->common);
@@ -261,18 +349,26 @@ deviceController->common->sendCommonReboot(deviceController->common);
 deviceController.getFeatureCommon().sendCommonReboot();
 ```
 
-Reboot the drone.<br/>
+Reboot the product.<br/>
+The product will accept this command only if is not flying.<br/>
+
+
+
 
 Result:<br/>
-The drone will reboot.
+The product will reboot if it can.<br/>
 
-*Supported by all products<br/>*
+
+*Supported by <br/>*
+
+- *all products*<br/>
+
 
 <br/>
 
 <!-- common-OverHeat-SwitchOff-->
-### <a name="common-OverHeat-SwitchOff">Switch off the drone when a overheat appeared</a><br/>
-> Switch off the drone when a overheat appeared (deprecated):
+### <a name="common-OverHeat-SwitchOff">Switch off after an overheat (deprecated)</a><br/>
+> Switch off after an overheat (deprecated):
 
 ```c
 deviceController->common->sendOverHeatSwitchOff(deviceController->common);
@@ -286,13 +382,27 @@ deviceController->common->sendOverHeatSwitchOff(deviceController->common);
 deviceController.getFeatureCommon().sendOverHeatSwitchOff();
 ```
 
-This command is deprecated, please don't use it.
+*This message is deprecated.*<br/>
+
+Switch off after an overheat.<br/>
+
+
+
+
+Result:<br/>
+None<br/>
+
+
+*Supported by <br/>*
+
+- *no product*<br/>
+
 
 <br/>
 
 <!-- common-OverHeat-Ventilate-->
-### <a name="common-OverHeat-Ventilate">Ventilate the drone when a overheat appeared</a><br/>
-> Ventilate the drone when a overheat appeared (deprecated):
+### <a name="common-OverHeat-Ventilate">Ventilate after an overheat (deprecated)</a><br/>
+> Ventilate after an overheat (deprecated):
 
 ```c
 deviceController->common->sendOverHeatVentilate(deviceController->common);
@@ -306,13 +416,27 @@ deviceController->common->sendOverHeatVentilate(deviceController->common);
 deviceController.getFeatureCommon().sendOverHeatVentilate();
 ```
 
-This command is deprecated, please don't use it.<br/>
+*This message is deprecated.*<br/>
+
+Ventilate after an overheat.<br/>
+
+
+
+
+Result:<br/>
+None<br/>
+
+
+*Supported by <br/>*
+
+- *no product*<br/>
+
 
 <br/>
 
 <!-- common-Controller-isPiloting-->
-### <a name="common-Controller-isPiloting">Tell the drone that the controller enters/leaves the piloting HUD</a><br/>
-> Tell the drone that the controller enters/leaves the piloting HUD:
+### <a name="common-Controller-isPiloting">Inform about hud entering</a><br/>
+> Inform about hud entering:
 
 ```c
 deviceController->common->sendControllerIsPiloting(deviceController->common, (uint8_t)piloting);
@@ -326,23 +450,29 @@ deviceController->common->sendControllerIsPiloting(deviceController->common, (ui
 deviceController.getFeatureCommon().sendControllerIsPiloting((byte)piloting);
 ```
 
+Inform about hud entering.<br/>
+Tell the drone that the controller enters/leaves the piloting hud.<br/>
+On a non-flying products it is used to know when a run begins.<br/>
 
-Tell the drone that the controller enters/leaves the piloting HUD<br/>
 
 * piloting (u8): 0 when the application is not in the piloting HUD, 1 when it enters the HUD.<br/>
 
-Result:<br/>
-If yes, the product will begin a new session (so it should send a new [runId](#common-RunState-RunIdChanged).<br/> 
-Also, on the JumpingSumos, if the video is in autorecord mode, it will start recording.
 
-*Supported by all products<br/>*
+Result:<br/>
+If yes, the product will begin a new session (so it should send a new [runId](#common-RunState-RunIdChanged)).<br/>
+Also, on the JumpingSumos, if the video is in autorecord mode, it will start recording.<br/>
+
+
+*Supported by <br/>*
+
+- *all products*<br/>
+
 
 <br/>
 
-
 <!-- common-WifiSettings-OutdoorSetting-->
-### <a name="common-WifiSettings-OutdoorSetting">Set indoor or outdoor wifi settings</a><br/>
-> Set indoor or outdoor wifi settings:
+### <a name="common-WifiSettings-OutdoorSetting">Set wifi outdoor mode</a><br/>
+> Set wifi outdoor mode:
 
 ```c
 deviceController->common->sendWifiSettingsOutdoorSetting(deviceController->common, (uint8_t)outdoor);
@@ -356,22 +486,33 @@ deviceController->common->sendWifiSettingsOutdoorSetting(deviceController->commo
 deviceController.getFeatureCommon().sendWifiSettingsOutdoorSetting((byte)outdoor);
 ```
 
-Set indoor or outdoor wifi settings.<br/>
+Set wifi indoor/outdoor mode.<br/>
+**Please note that you might be disconnected from the product after changing the indoor/outdoor setting as it changes Wifi parameters.**<br/>
+
 
 * outdoor (u8): 1 if it should use outdoor wifi settings, 0 otherwise<br/>
 
-Result:<br/>
-The product change its indoor/outdoor wifi settings.<br/> 
-Then, it will trigger [OutdoorChanged](#common-WifiSettingsState-OutdoorChanged).<br/>
-According to the country (defined by [SetAutoCountry](#common-Settings-AutoCountry) or [SetCountry](#common-Settings-Country)) laws the drone might change its wifi band and channel. So a disconnection might appear.
 
-*Supported by all wifi products<br/>*
+Result:<br/>
+The product change its indoor/outdoor wifi settings.<br/>
+Then, it will trigger [WifiOutdoorMode](#common-WifiSettingsState-outdoorSettingsChanged).<br/>
+
+
+*Supported by <br/>*
+
+- *Bebop*<br/>
+- *Jumping Sumo*<br/>
+- *Jumping Night*<br/>
+- *Jumping Race*<br/>
+- *Bebop 2*<br/>
+- *Disco*<br/>
+
 
 <br/>
 
 <!-- common-Mavlink-Start-->
-### <a name="common-Mavlink-Start">Start an autonomous flight</a><br/>
-> Start an autonomous flight:
+### <a name="common-Mavlink-Start">Start a FlightPlan</a><br/>
+> Start a FlightPlan:
 
 ```c
 deviceController->common->sendMavlinkStart(deviceController->common, (char *)filepath, (eARCOMMANDS_COMMON_MAVLINK_START_TYPE)type);
@@ -385,33 +526,38 @@ deviceController->common->sendMavlinkStart(deviceController->common, (char *)fil
 deviceController.getFeatureCommon().sendMavlinkStart((String)filepath, (ARCOMMANDS_COMMON_MAVLINK_START_TYPE_ENUM)type);
 ```
 
-Start an autonomous flight<br/>
+Start a FlightPlan based on a mavlink file existing on the drone.<br/>
+<br/>
+Requirements are:<br/>
+* Product is calibrated<br/>
+* Product should be in outdoor mode<br/>
+* Product has fixed its GPS<br/>
+<br/>
 
-* filepath (string): autonomous flight file path from the mavlink ftp root<br/>
+
+* filepath (string): flight plan file path from the mavlink ftp root<br/>
 * type (enum): type of the played mavlink file<br/>
    * flightPlan: Mavlink file for FlightPlan<br/>
-   * mapMyHouse: Mavlink file for MapMyHouse (not used)<br/>
+   * mapMyHouse: Mavlink file for MapMyHouse<br/>
+
 
 Result:<br/>
-The autonomous flight will be started if all requirements are met. Requirements are :
+If the FlightPlan has been started, event [FlightPlanPlayingStateChanged](#common-MavlinkState-MavlinkFilePlayingStateChanged) is triggered with param state set to *playing*.<br/>
+Otherwise, event [FlightPlanPlayingStateChanged](#common-MavlinkState-MavlinkFilePlayingStateChanged) is triggered with param state set to stopped and event [MavlinkPlayErrorStateChanged](#common-MavlinkState-MavlinkPlayErrorStateChanged) is triggered with an explanation of the error.<br/>
 
-* Product is calibrated
-* Product should be in outdoor mode
-* Product has fixed its GPS
 
-If autonomous flight has been started, event [MavlinkFilePlayingStateChanged](#common-MavlinkState-MavlinkFilePlayingStateChanged) is triggered with param state set to playing.<br/>
-Otherwise, event [MavlinkFilePlayingStateChanged](#common-MavlinkState-MavlinkFilePlayingStateChanged) is triggered with param state set to stopped and event [MavlinkPlayErrorStateChanged](#common-MavlinkState-MavlinkPlayErrorStateChanged) is triggered with an explanation of the error.
+*Supported by <br/>*
 
-*Supported by <br/>*   
+- *Bebop since 2.0.29*<br/>
+- *Bebop 2*<br/>
+- *Disco*<br/>
 
-- *Bebop since 2.0.29<br/>*
-- *Bebop 2<br/>*
 
 <br/>
 
 <!-- common-Mavlink-Pause-->
-### <a name="common-Mavlink-Pause">Pause an autonomous flight</a><br/>
-> Pause an autonomous flight:
+### <a name="common-Mavlink-Pause">Pause a FlightPlan</a><br/>
+> Pause a FlightPlan:
 
 ```c
 deviceController->common->sendMavlinkPause(deviceController->common);
@@ -425,22 +571,29 @@ deviceController->common->sendMavlinkPause(deviceController->common);
 deviceController.getFeatureCommon().sendMavlinkPause();
 ```
 
-Pause an autonomous flight (can be restarted with a start).<br/>
+Pause a FlightPlan that was playing.<br/>
+To unpause a FlightPlan, see [StartFlightPlan](#common-Mavlink-Start)<br/>
+<br/>
+
+
+
 
 Result:<br/>
-The currently playing autonomous flight will be paused.
-Then, event [MavlinkFilePlayingStateChanged](#common-MavlinkState-MavlinkFilePlayingStateChanged) is triggered with param state set to the current state of the autonomous flight (should be *paused* if everything went well).<br/>
+The currently playing FlightPlan will be paused. Then, event [FlightPlanPlayingStateChanged](#common-MavlinkState-MavlinkFilePlayingStateChanged) is triggered with param state set to the current state of the FlightPlan (should be *paused* if everything went well).<br/>
 
-*Supported by <br/>*   
 
-- *Bebop since 2.0.29<br/>*
-- *Bebop 2<br/>*
+*Supported by <br/>*
+
+- *Bebop since 2.0.29*<br/>
+- *Bebop 2*<br/>
+- *Disco*<br/>
+
 
 <br/>
 
 <!-- common-Mavlink-Stop-->
-### <a name="common-Mavlink-Stop">Stop an autonomous flight</a><br/>
-> Stop an autonomous flight:
+### <a name="common-Mavlink-Stop">Stop a FlightPlan</a><br/>
+> Stop a FlightPlan:
 
 ```c
 deviceController->common->sendMavlinkStop(deviceController->common);
@@ -454,22 +607,28 @@ deviceController->common->sendMavlinkStop(deviceController->common);
 deviceController.getFeatureCommon().sendMavlinkStop();
 ```
 
-Stop an autonomous flight<br/>
+Stop a FlightPlan that was playing.<br/>
+<br/>
+
+
+
 
 Result:<br/>
-The currently playing autonomous flight will be stopped.
-Then, event [MavlinkFilePlayingStateChanged](#common-MavlinkState-MavlinkFilePlayingStateChanged) is triggered with param state set to the current state of the autonomous flight (should be *stopped* if everything went well).<br/>
+The currently playing FlightPlan will be stopped. Then, event [FlightPlanPlayingStateChanged](#common-MavlinkState-MavlinkFilePlayingStateChanged) is triggered with param state set to the current state of the FlightPlan (should be *stopped* if everything went well).<br/>
 
-*Supported by <br/>*   
 
-- *Bebop since 2.0.29<br/>*
-- *Bebop 2<br/>*
+*Supported by <br/>*
+
+- *Bebop since 2.0.29*<br/>
+- *Bebop 2*<br/>
+- *Disco*<br/>
+
 
 <br/>
 
 <!-- common-Calibration-MagnetoCalibration-->
-### <a name="common-Calibration-MagnetoCalibration">Start or abort magnetometer calibration</a><br/>
-> Start or abort magnetometer calibration:
+### <a name="common-Calibration-MagnetoCalibration">Start/Abort magnetometer calibration</a><br/>
+> Start/Abort magnetometer calibration:
 
 ```c
 deviceController->common->sendCalibrationMagnetoCalibration(deviceController->common, (uint8_t)calibrate);
@@ -483,25 +642,53 @@ deviceController->common->sendCalibrationMagnetoCalibration(deviceController->co
 deviceController.getFeatureCommon().sendCalibrationMagnetoCalibration((byte)calibrate);
 ```
 
-Start or abort magnetometer calibration.<br/>
+Start or abort magnetometer calibration process.<br/>
+<br/>
+
 
 * calibrate (u8): 1 if the calibration should be started, 0 if it should be aborted<br/>
 
+
 Result:<br/>
-The magnetometer calibration process is started or aborted.
-Then, event [MagnetoCalibrationStartedChanged](#common-CalibrationState-MagnetoCalibrationStartedChanged) is triggered.<br/>
-If started, event [MagnetoCalibrationStateChanged](#common-CalibrationState-MagnetoCalibrationStateChanged) is triggered with the current calibration state: a list of all axis and their calibration states. It will also trigger [MagnetoCalibrationAxisToCalibrateChanged](#common-CalibrationState-MagnetoCalibrationAxisToCalibrateChanged), that will inform the controller about the current axis to calibrate.
+The magnetometer calibration process is started or aborted. Then, event [MagnetoCalibrationStartedChanged](#common-CalibrationState-MagnetoCalibrationStartedChanged) is triggered.<br/>
+If started, event [MagnetoCalibrationStateChanged](#common-CalibrationState-MagnetoCalibrationStartedChanged) is triggered with the current calibration state: a list of all axis and their calibration states.<br/>
+It will also trigger [MagnetoCalibrationAxisToCalibrateChanged](#common-CalibrationState-MagnetoCalibrationAxisToCalibrateChanged), that will inform the controller about the current axis to calibrate.<br/>
 
-*Supported by <br/>*   
 
-- *Bebop<br/>*
-- *Bebop 2<br/>*
+*Supported by <br/>*
+
+- *Bebop*<br/>
+- *Bebop 2*<br/>
+- *Disco*<br/>
+
 
 <br/>
 
+<!-- common-Calibration-PitotCalibration-->
+### <a name="common-Calibration-PitotCalibration">Sent when a calibration of the pitot is asked or is aborted</a><br/>
+> Sent when a calibration of the pitot is asked or is aborted:
+
+```c
+deviceController->common->sendCalibrationPitotCalibration(deviceController->common, (uint8_t)calibrate);
+```
+
+```objective_c
+deviceController->common->sendCalibrationPitotCalibration(deviceController->common, (uint8_t)calibrate);
+```
+
+```java
+deviceController.getFeatureCommon().sendCalibrationPitotCalibration((byte)calibrate);
+```
+
+Sent when a calibration of the pitot is asked or is aborted<br/>
+
+
+* calibrate (u8): 1 if the calibration should be started, 0 if it should be aborted<br/>
+<br/>
+
 <!-- common-GPS-ControllerPositionForRun-->
-### <a name="common-GPS-ControllerPositionForRun">Set the controller position for a run</a><br/>
-> Set the controller position for a run:
+### <a name="common-GPS-ControllerPositionForRun">Set the position of a run</a><br/>
+> Set the position of a run:
 
 ```c
 deviceController->common->sendGPSControllerPositionForRun(deviceController->common, (double)latitude, (double)longitude);
@@ -515,21 +702,32 @@ deviceController->common->sendGPSControllerPositionForRun(deviceController->comm
 deviceController.getFeatureCommon().sendGPSControllerPositionForRun((double)latitude, (double)longitude);
 ```
 
-Set the controller position for a run. This command is used by all non gps products. Watch out, this command cannot be used with BLE products<br/>
-This will let the product know the controller location for the flight/run. The location is typically used to geotag medias.
+Set the position of a run.<br/>
+This will let the product know the controller location for the flight/run. The location is typically used to geotag medias.<br/>
+Only used on products that have no gps.<br/>
+Watch out, this command is not used by BLE products.<br/>
+
 
 * latitude (double): Controller latitude in decimal degrees<br/>
 * longitude (double): Controller longitude in decimal degrees<br/>
 
 
-*Supported by all Wifi products without GPS (such as the JumpingSumo)<br/>*
+Result:<br/>
+The position is set.<br/>
+
+
+*Supported by <br/>*
+
+- *Jumping Sumo*<br/>
+- *Jumping Night*<br/>
+- *Jumping Race*<br/>
 
 
 <br/>
 
 <!-- common-Audio-ControllerReadyForStreaming-->
-### <a name="common-Audio-ControllerReadyForStreaming">Tell the product whether the controller is ready to start audio streaming.</a><br/>
-> Tell the product whether the controller is ready to start audio streaming.:
+### <a name="common-Audio-ControllerReadyForStreaming">Set audio stream direction</a><br/>
+> Set audio stream direction:
 
 ```c
 deviceController->common->sendAudioControllerReadyForStreaming(deviceController->common, (uint8_t)ready);
@@ -543,22 +741,30 @@ deviceController->common->sendAudioControllerReadyForStreaming(deviceController-
 deviceController.getFeatureCommon().sendAudioControllerReadyForStreaming((byte)ready);
 ```
 
-Tell the product whether the controller is ready to start audio streaming.<br/>
+Set audio stream direction.<br/>
+
 
 * ready (u8): Bit field for TX and RX ready.<br/>
 bit 0 is 1 if controller is ready and wants to receive sound (Drone TX)<br/>
 bit 1 is 1 if controller is ready and wants to send sound (Drone RX)<br/>
 
-*Supported by <br/>*   
 
-- *Jumping Sumo Evo Race<br/>*
-- *Jumping Sumo Evo Brick<br/>*
+Result:<br/>
+The audio stream direction is set.<br/>
+Then, event [AudioStreamDirection](#common-AudioState-AudioStreamingRunning) is triggered.<br/>
+
+
+*Supported by <br/>*
+
+- *Jumping Night*<br/>
+- *Jumping Race*<br/>
+
 
 <br/>
 
 <!-- common-Headlights-intensity-->
-### <a name="common-Headlights-intensity">Set instensity of lighting LEDs.</a><br/>
-> Set instensity of lighting LEDs.:
+### <a name="common-Headlights-intensity">Set LEDs intensity</a><br/>
+> Set LEDs intensity:
 
 ```c
 deviceController->common->sendHeadlightsIntensity(deviceController->common, (uint8_t)left, (uint8_t)right);
@@ -572,26 +778,30 @@ deviceController->common->sendHeadlightsIntensity(deviceController->common, (uin
 deviceController.getFeatureCommon().sendHeadlightsIntensity((byte)left, (byte)right);
 ```
 
-Set instensity of lighting LEDs.<br/>
+Set lighting LEDs intensity.<br/>
+
 
 * left (u8): Set the left LED intensity value (0 through 255).<br/>
 * right (u8): Set the right LED intensity value (0 through 255).<br/>
 
+
 Result:<br/>
-Intensity of the LEDs is changed.
-Then, event [HeadlightsStateIntensityChanged](#common-HeadlightsState-intensityChanged) is triggered.<br/>
+The intensity of the LEDs is changed.<br/>
+Then, event [LedIntensity](#common-HeadlightsState-intensityChanged) is triggered.<br/>
 
-*Supported by <br/>*   
 
-- *Jumping Sumo Evo Race<br/>*
-- *Jumping Sumo Evo Brick<br/>*
-- *Airborne Night<br/>*
+*Supported by <br/>*
+
+- *Jumping Night*<br/>
+- *Jumping Race*<br/>
+- *Airborne Night*<br/>
+
 
 <br/>
 
 <!-- common-Animations-StartAnimation-->
-### <a name="common-Animations-StartAnimation">Start a paramaterless animation.</a><br/>
-> Start a paramaterless animation.:
+### <a name="common-Animations-StartAnimation">Start an animation</a><br/>
+> Start an animation:
 
 ```c
 deviceController->common->sendAnimationsStartAnimation(deviceController->common, (eARCOMMANDS_COMMON_ANIMATIONS_STARTANIMATION_ANIM)anim);
@@ -606,6 +816,8 @@ deviceController.getFeatureCommon().sendAnimationsStartAnimation((ARCOMMANDS_COM
 ```
 
 Start a paramaterless animation.<br/>
+List of available animations can be retrieved from [AnimationsStateList](#common-AnimationsState-List).<br/>
+
 
 * anim (enum): Animation to start.<br/>
    * HEADLIGHTS_FLASH: Flash headlights.<br/>
@@ -621,23 +833,30 @@ Start a paramaterless animation.<br/>
    * SPIRAL: Spiral animation.<br/>
    * SLALOM: Slalom animation.<br/>
    * BOOST: Boost animation.<br/>
+   * LOOPING: Make a looping. (Only for WingX)<br/>
+   * BARREL_ROLL_180_RIGHT: Make a barrel roll of 180 degree turning on right. (Only for WingX)<br/>
+   * BARREL_ROLL_180_LEFT: Make a barrel roll of 180 degree turning on left. (Only for WingX)<br/>
+   * BACKSWAP: Put the drone upside down. (Only for WingX)<br/>
+
 
 Result:<br/>
-If possible, the product starts the requested animation.
-Then, event [AnimationsStateList](#common-AnimationsState-List) is triggered.<br/>
+If possible, the product starts the requested animation. Then, event [AnimationsStateList](#common-AnimationsState-List) is triggered.<br/>
 
-*Supported by <br/>*   
 
-- *Jumping Sumo<br/>*
-- *Jumping Sumo Evo Race<br/>*
-- *Jumping Sumo Evo Brick<br/>*
-- *Airborne Night<br/>*
-- *Airborne Cargo<br/>*
+*Supported by <br/>*
+
+- *Jumping Sumo*<br/>
+- *Jumping Night*<br/>
+- *Jumping Race*<br/>
+- *Airborne Night*<br/>
+- *Airborne Cargo*<br/>
+
+
 <br/>
 
 <!-- common-Animations-StopAnimation-->
-### <a name="common-Animations-StopAnimation">Stop a running animation</a><br/>
-> Stop a running animation:
+### <a name="common-Animations-StopAnimation">Stop an animation</a><br/>
+> Stop an animation:
 
 ```c
 deviceController->common->sendAnimationsStopAnimation(deviceController->common, (eARCOMMANDS_COMMON_ANIMATIONS_STOPANIMATION_ANIM)anim);
@@ -651,7 +870,9 @@ deviceController->common->sendAnimationsStopAnimation(deviceController->common, 
 deviceController.getFeatureCommon().sendAnimationsStopAnimation((ARCOMMANDS_COMMON_ANIMATIONS_STOPANIMATION_ANIM_ENUM)anim);
 ```
 
-Stop a running animation.<br/>
+Stop a paramaterless animation.<br/>
+List of running animations can be retrieved from [AnimationsStateList](#common-AnimationsState-List).<br/>
+
 
 * anim (enum): Animation to stop.<br/>
    * HEADLIGHTS_FLASH: Flash headlights.<br/>
@@ -667,24 +888,31 @@ Stop a running animation.<br/>
    * SPIRAL: Spiral animation.<br/>
    * SLALOM: Slalom animation.<br/>
    * BOOST: Boost animation.<br/>
+   * LOOPING: Make a looping. (Only for WingX)<br/>
+   * BARREL_ROLL_180_RIGHT: Make a barrel roll of 180 degree turning on right. (Only for WingX)<br/>
+   * BARREL_ROLL_180_LEFT: Make a barrel roll of 180 degree turning on left. (Only for WingX)<br/>
+   * BACKSWAP: Put the drone upside down. (Only for WingX)<br/>
+
 
 Result:<br/>
-If the requested animation was running, the product stops it.
+If the requested animation was running, it will be stopped.<br/>
 Then, event [AnimationsStateList](#common-AnimationsState-List) is triggered.<br/>
 
-*Supported by <br/>*   
 
-- *Jumping Sumo<br/>*
-- *Jumping Sumo Evo Race<br/>*
-- *Jumping Sumo Evo Brick<br/>* 
-- *Airborne Night<br/>*
-- *Airborne Cargo<br/>*  
+*Supported by <br/>*
+
+- *Jumping Sumo*<br/>
+- *Jumping Night*<br/>
+- *Jumping Race*<br/>
+- *Airborne Night*<br/>
+- *Airborne Cargo*<br/>
+
 
 <br/>
 
 <!-- common-Animations-StopAllAnimations-->
-### <a name="common-Animations-StopAllAnimations">Stop all running animations</a><br/>
-> Stop all running animations:
+### <a name="common-Animations-StopAllAnimations">Stop all animations</a><br/>
+> Stop all animations:
 
 ```c
 deviceController->common->sendAnimationsStopAllAnimations(deviceController->common);
@@ -698,26 +926,31 @@ deviceController->common->sendAnimationsStopAllAnimations(deviceController->comm
 deviceController.getFeatureCommon().sendAnimationsStopAllAnimations();
 ```
 
-Stop all running animations.<br/>
-You can get the list of the animations with [AnimationsStateList](#common-AnimationsState-List).
+Stop all running paramaterless animations.<br/>
+List of running animations can be retrieved from [AnimationsStateList](#common-AnimationsState-List).<br/>
+
+
+
 
 Result:<br/>
-All running animations are stopped.
+All running animations are stopped.<br/>
 Then, event [AnimationsStateList](#common-AnimationsState-List) is triggered.<br/>
 
-*Supported by <br/>*   
 
-- *Jumping Sumo<br/>*
-- *Jumping Sumo Evo Race<br/>*
-- *Jumping Sumo Evo Brick<br/>* 
-- *Airborne Night<br/>*
-- *Airborne Cargo<br/>*
+*Supported by <br/>*
+
+- *Jumping Sumo*<br/>
+- *Jumping Night*<br/>
+- *Jumping Race*<br/>
+- *Airborne Night*<br/>
+- *Airborne Cargo*<br/>
+
 
 <br/>
 
 <!-- common-Accessory-Config-->
-### <a name="common-Accessory-Config">Set the current accessory configuration</a><br/>
-> Set the current accessory configuration:
+### <a name="common-Accessory-Config">Declare an accessory</a><br/>
+> Declare an accessory:
 
 ```c
 deviceController->common->sendAccessoryConfig(deviceController->common, (eARCOMMANDS_COMMON_ACCESSORY_CONFIG_ACCESSORY)accessory);
@@ -731,7 +964,13 @@ deviceController->common->sendAccessoryConfig(deviceController->common, (eARCOMM
 deviceController.getFeatureCommon().sendAccessoryConfig((ARCOMMANDS_COMMON_ACCESSORY_CONFIG_ACCESSORY_ENUM)accessory);
 ```
 
-Set the current accessory configuration.<br/>
+Declare an accessory.<br/>
+You can choose the accessory between all accessible for this product.<br/>
+You can get this list through event [SupportedAccessories](#common-AccessoryState-SupportedAccessoriesListChanged).<br/>
+<br/>
+You can only set the accessory when the modification is enabled.<br/>
+You can know if it possible with the event [AccessoryDeclarationAvailability](#common-AccessoryState-AccessoryConfigModificationEnabled).<br/>
+
 
 * accessory (enum): Accessory configuration to set.<br/>
    * NO_ACCESSORY: No accessory.<br/>
@@ -740,28 +979,27 @@ Set the current accessory configuration.<br/>
    * HULL: Hull<br/>
    * HYDROFOIL: Hydrofoil<br/>
 
-You can choose the accessory between all accessible for this product. You can get this list through event [SupportedAccessoriesListChanged](#common-AccessoryState-SupportedAccessoriesListChanged).<br/>
-You can only set the accessory when the modification is enabled. You can know if it possible with the event [AccessoryConfigModificationEnabled](#common-AccessoryState-AccessoryConfigModificationEnabled).
 
 Result:<br/>
-The product knows which accessory it is wearing.
+The product knows which accessory it is wearing.<br/>
 Then, event [AccessoryConfigChanged](#common-AccessoryState-AccessoryConfigChanged) is triggered.<br/>
 
-*Supported by <br/>*   
 
-- *Jumping Sumo<br/>*
-- *Jumping Sumo Evo Race<br/>*
-- *Jumping Sumo Evo Brick<br/>* 
-- *Airborne Night<br/>*
-- *Airborne Cargo<br/>*
-- *Hydrofoil<br/>*
+*Supported by <br/>*
+
+- *Jumping Sumo*<br/>
+- *Jumping Night*<br/>
+- *Jumping Race*<br/>
+- *Airborne Night*<br/>
+- *Airborne Cargo*<br/>
+- *Hydrofoil*<br/>
+
 
 <br/>
 
 <!-- common-Charger-SetMaxChargeRate-->
-### <a name="common-Charger-SetMaxChargeRate">Set the max charge rate</a><br/>
-
-> Set the max charge rate (deprecated):
+### <a name="common-Charger-SetMaxChargeRate">Set max charge rate (deprecated)</a><br/>
+> Set max charge rate (deprecated):
 
 ```c
 deviceController->common->sendChargerSetMaxChargeRate(deviceController->common, (eARCOMMANDS_COMMON_CHARGER_SETMAXCHARGERATE_RATE)rate);
@@ -775,7 +1013,25 @@ deviceController->common->sendChargerSetMaxChargeRate(deviceController->common, 
 deviceController.getFeatureCommon().sendChargerSetMaxChargeRate((ARCOMMANDS_COMMON_CHARGER_SETMAXCHARGERATE_RATE_ENUM)rate);
 ```
 
-This command is deprecated, please don't use it.<br/>
-The product will inform itself the controller about its charging type (see [ChargingInfoChanged](#common-ChargerState-ChargingInfo)).
+*This message is deprecated.*<br/>
+
+The product will inform itself the controller about its charging type (see [ChargingInfoChanged](#common-ChargerState-ChargingInfo)).<br/>
+
+
+* rate (enum): The new maximum charge rate.<br/>
+   * SLOW: Fully charge the battery at a slow rate. Typically limit max charge current to 512 mA.<br/>
+   * MODERATE: Almost fully-charge the battery at moderate rate (> 512mA) but slower than the fastest rate.<br/>
+   * FAST: Almost fully-charge the battery at the highest possible rate supported by the charger.<br/>
+
+
+Result:<br/>
+None.<br/>
+
+
+*Supported by <br/>*
+
+- *no product*<br/>
+
 
 <br/>
+

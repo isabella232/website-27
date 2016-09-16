@@ -33,8 +33,11 @@ This git repository provides a build.sh that you can call to build the whole SDK
 ### ARSDKBuildUtils
 This repo contains all the tools to create the autotools needed to build the SDK. It is called by build.sh file contained in arsdk_products.
 
+### arsdk-xml
+This repository contains all the xml files describing the messages you can send to and receive from the drone.
+
 ### libARCommands
-This library contains all the sources related to the commands you can sent to and receive from the drone.
+This library to generate the files containing the messages you can send to and receive from the drone.
 
 ### libARController
 This library provides an abstraction level to connect to the drone. With this library you can create a device controller, which ables you to pilot, take pictures, receive stream (depending on the drone), and send/receive other commands from the drone.
@@ -72,6 +75,12 @@ This library helps you to update your drone. It provides functions to tests if t
 ### libARUtils
 This library provides utilities classes.
 
+### libmux
+This library provides functions to use a mux.
+
+### libpomp
+This library is a printf oriented message protocol.
+
 ### Samples
 You can find in this repo some examples for iOS, Android and Unix.<br/>
 
@@ -89,12 +98,12 @@ These external tools are required to build the SDK:
 * **build-essential** (only for Linux)
 * **autoconf**
 * **libtool**
-* **libavahi-client-dev** 
-* **libavcodec-dev**
-* **libavformat-dev**
-* **libswscale-dev**
-* **libncurses5-dev**
-* **mplayer**
+* **libavahi-client-dev** (only for specific Samples)
+* **libavcodec-dev** (only for specific Samples)
+* **libavformat-dev** (only for specific Samples)
+* **libswscale-dev** (only for specific Samples)
+* **libncurses5-dev** (only for specific Samples)
+* **mplayer** (only for specific Samples)
 
 **Linux**: install these tools using your favorite package manager <br/>
 **OSX**: you will need XCode to be installed. Then, you can use [brew](http://brew.sh/) to install these tools.<br/>
@@ -113,8 +122,8 @@ Variants available are:
 - native (for Unix)
 
 ###Unix Build
-**Linux**: Tested on Ubuntu 12.10, 13.04, 13.10 and 14.04<br/>
-**OSX**: Tested on 10.10.5<br/>
+**Linux**: Tested on Ubuntu 14.04<br/>
+**OSX**: Tested on 10.11.6<br/>
 
 The command to build the SDK for Unix platform is:<br/>
 `./build.sh -p arsdk-native -t build-sdk -j`<br/>
@@ -135,7 +144,7 @@ This script can be used in the two following ways:
 - As a sourced script to set the `PATH` and `LD_LIBRARY_PATH` environment variables: `source <SDK>/out/arsdk-native/staging/native-wrapper.sh`. After sourcing this script, you can directly call samples by their name without giving a full path, as the `<SDK>/out/arsdk-native/staging/usr/bin` folder will be added to your path.
 
 ###iOS Build
-**OSX**: Tested on 10.9.2 and 10.10.3<br/>
+**OSX**: Tested on 10.11.6<br/>
 
 The command to build the SDK for iOS is:<br/>
 `./build.sh -p arsdk-ios -t build-sdk -j`<br/>
@@ -147,7 +156,7 @@ Tasks available are:
 - build-sample (Build the ios samples in debug)
 
 ###iPhone Simulator Build
-**OSX**: Tested on 10.9.2 and 10.10.3<br/>
+**OSX**: Tested on 10.11.6<br/>
 
 The command to build the SDK for iOS is:<br/>
 `./build.sh -p arsdk-ios_sim -t build-sdk -j`<br/>
@@ -159,14 +168,14 @@ Tasks available are:
 - build-sample (Build the ios samples in debug)
 
 ###Android Build
-**Linux**: Tested on Ubuntu 12.10, 13.04, 13.10 and 14.04<br/>
-**OSX**: Tested on 10.9.2 and 10.10.3<br/>
+**Linux**: Tested on Ubuntu 14.04<br/>
+**OSX**: Tested on 10.11.6<br/>
 
 You will need this following parts: 
 
-- a working jdk with java 6 (1.6) support
+- a working jdk with java 8 (1.8) support
 - Android SDK and NDK (The SDK is built
- against Android-19 and requires Android-14 runtime)
+ against Android-23)
 - declare environment variables named `ANDROID_SDK_PATH` and
  `ANDROID_NDK_PATH`, each pointing to the root of the corresponding dev kit
 

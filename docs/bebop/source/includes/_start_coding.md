@@ -936,11 +936,29 @@ If a disconnection appears, or if the commands are not received, the Bebop will 
 
 In the piloting command there are 6 params:
 
-* Flag: 1 if the roll and pitch values should be taken in consideration. 0 otherwise
-* Roll: roll angle percentage (from -100 to 100). Negative values go left, positive go right.
-* Pitch: pitch angle percentage (from -100 to 100). Negative values go backward, positive go forward.
-* Yaw: yaw speed percentage (calculated on the max rotation speed)(from -100 to 100). Negative values go left, positive go right.
-* Gaz: gaz speed percentage (calculated on the max vertical speed)(from -100 to 100). Negative values go down, positive go up.
+* flag (u8): Boolean flag: 1 if the roll and pitch values should be taken in consideration. 0 otherwise<br/>
+* roll (i8): Roll angle expressed as signed percentage of the [max pitch/roll setting](ARDrone3-PilotingSettingsState-MaxTiltChanged), in range [-100, 100]<br/>
+-100 corresponds to a roll angle of max pitch/roll to the left (drone will fly left)<br/>
+100 corresponds to a roll angle of max pitch/roll to the right (drone will fly right)<br/>
+This value may be clamped if necessary, in order to respect the maximum supported physical tilt of the copter.<br/>
+<br/>
+* pitch (i8): Pitch angle expressed as signed percentage of the [max pitch/roll](ARDrone3-PilotingSettingsState-MaxTiltChanged) setting, in range [-100, 100]<br/>
+-100 corresponds to a pitch angle of max pitch/roll towards sky (drone will fly backward)<br/>
+100 corresponds to a pitch angle of max pitch/roll towards ground (drone will fly forward)<br/>
+This value may be clamped if necessary, in order to respect the maximum supported physical tilt of the copter.<br/>
+<br/>
+* yaw (i8): Yaw rotation speed expressed as signed percentage of the [max yaw rotation speed](ARDrone3-SpeedSettingsState-MaxRotationSpeedChanged) setting, in range [-100, 100].<br/>
+-100 corresponds to a counter-clockwise rotation of max yaw rotation speed<br/>
+100 corresponds to a clockwise rotation of max yaw rotation speed<br/>
+This value may be clamped if necessary, in order to respect the maximum supported physical tilt of the copter.<br/>
+<br/>
+* gaz (i8): Throttle expressed as signed percentage of the [max vertical speed](ARDrone3-SpeedSettingsState-MaxVerticalSpeedChanged) setting, in range [-100, 100]<br/>
+-100 corresponds to a max vertical speed towards ground<br/>
+100 corresponds to a max vertical speed towards sky<br/>
+This value may be clamped if necessary, in order to respect the maximum supported physical tilt of the copter.<br/>
+During the landing phase, putting some positive gaz will cancel the land.<br/>
+<br/>
+* timestampAndSeqNum (u32): Command timestamp in milliseconds (low 24 bits) + command sequence number [0;255] (high 8 bits).<br/>
 
 Here is how you set the piloting angles:
 
@@ -1042,7 +1060,6 @@ Here is how to do it with libARDataTransfer.
 
 libARDataTransfer lets you get a list of all stored medias quite quickly. It also provides you a way to enrich the list of medias with their thumbnails. It also gives you the ability to download the media.
 
-<div></div>
 First, you will need to create the data transfer manager
 
 > Declare vars

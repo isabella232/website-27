@@ -1,4 +1,4 @@
-##Use samples
+## Use samples
 
 To have a good overview of what you can do with the SDK, you can start by using and browsing the code of the samples we provide. 
 
@@ -23,6 +23,10 @@ They support the following drones:
 * MiniDrone Rolling Spider
 * Airborne Cargo
 * Airborne Night
+* Swing
+* Mambo
+* SkyController
+* SkyController2
 
 
 *What if you want to only build an app for the Bebop?
@@ -38,6 +42,7 @@ Simply delete other files than:*
 As said before, each mobile sample can be used without having to build the SDK: it will use the precompiled libraries. But you can also use the sample with your own compiled SDK.
 
 ### iOS
+
 **Use the precompiled SDK (hosted on Github)**:<br/>
 Use the buildWithPrecompiledSDK configuration to use the precompiled libraries (Product->Scheme->Edit Scheme).
 Please note that the first time you'll build with the precompiled SDK, it will download the precompiled libraries from Github, this might take a while.
@@ -50,8 +55,11 @@ You can build this sample with Alchemy. In your `<SDK>` execute this command:
 
 If you prefer to build directly from XCode, use the buildWithLocalSDK configuration to use your localy compiled libraries (see [go deeper](#go-deeper) to first compile your own SDK). 
 
+**Please note that there are two targets in the iOS sample: SDKSample and SDKSampleForSkyController2. The first one is using *-lardiscoverywithouteacc* in its Other Linker Flags list and does not include the ExternalAccessory framework. However SDKSampleForSkyController2 uses *-lardiscovery* and includes ExternalAccessory framework.**
+
 
 ### Android
+
 **Use the precompiled SDK (hosted on JCenter)**:<br/>
 With Android Studio, open the settings.gradle located in `SDKSample/buildWithPrecompiledSDK`. 
 
