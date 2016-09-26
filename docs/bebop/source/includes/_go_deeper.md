@@ -86,7 +86,7 @@ You can find in this repo some examples for iOS, Android and Unix.<br/>
 
 ##How to build the SDK
 
-You should have first [downloaded all the sources of the SDK](#download_all_sources).
+You should have first [downloaded all the sources of the SDK](#download-all-sources).
 
 **The root folder where you have executed the *repo init* and *repo sync* command will be noted \<SDK\>**
 

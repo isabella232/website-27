@@ -64,7 +64,7 @@ Then, it will trigger [AllSettingsEnd](#common-SettingsState-AllSettingsChanged)
 
 *Supported by <br/>*
 
-- *all products*<br/>
+- *all drones*<br/>
 
 
 <br/>
@@ -97,7 +97,7 @@ Then, the product will trigger all settings events (such as [CameraSettings](#co
 
 *Supported by <br/>*
 
-- *all products*<br/>
+- *all drones*<br/>
 
 
 <br/>
@@ -132,7 +132,7 @@ Then, it will trigger [NameChanged](#common-SettingsState-ProductNameChanged).<b
 
 *Supported by <br/>*
 
-- *all products*<br/>
+- *all drones*<br/>
 
 
 <br/>
@@ -250,7 +250,7 @@ Then, it will trigger [AllStatesEnd](#common-CommonState-AllStatesChanged).<br/>
 
 *Supported by <br/>*
 
-- *all products*<br/>
+- *all drones*<br/>
 
 
 <br/>
@@ -289,7 +289,7 @@ Then, it will trigger [DateChanged](#common-CommonState-CurrentDateChanged).<br/
 
 *Supported by <br/>*
 
-- *all products*<br/>
+- *all drones*<br/>
 
 
 <br/>
@@ -328,7 +328,7 @@ Then, it will trigger [TimeChanged](#common-CommonState-CurrentTimeChanged).<br/
 
 *Supported by <br/>*
 
-- *all products*<br/>
+- *all drones*<br/>
 
 
 <br/>
@@ -361,7 +361,7 @@ The product will reboot if it can.<br/>
 
 *Supported by <br/>*
 
-- *all products*<br/>
+- *all drones*<br/>
 
 
 <br/>
@@ -465,7 +465,7 @@ Also, on the JumpingSumos, if the video is in autorecord mode, it will start rec
 
 *Supported by <br/>*
 
-- *all products*<br/>
+- *all drones*<br/>
 
 
 <br/>

@@ -8,7 +8,7 @@ language_tabs:
 
 toc_footers:
   - <a href='http://forum.developer.parrot.com'>Developer Forum</a>
-  - <a href='https://github.com/Parrot-Developers/ARSDKBuildUtils'>See SDK sources</a>
+  - <a href='https://github.com/Parrot-Developers/arsdk_manifests'>See sources on Github</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:

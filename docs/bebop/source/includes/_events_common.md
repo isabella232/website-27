@@ -45,10 +45,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_NETWORKEVENTDISCONNECTION) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_NETWORKEVENT_DISCONNECTION) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            ARCOMMANDS_COMMON_NETWORKEVENT_DISCONNECTION_CAUSE_ENUM cause = ARCOMMANDS_COMMON_NETWORKEVENT_DISCONNECTION_CAUSE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_NETWORKEVENTDISCONNECTION_CAUSE));
+            ARCOMMANDS_COMMON_NETWORKEVENT_DISCONNECTION_CAUSE_ENUM cause = ARCOMMANDS_COMMON_NETWORKEVENT_DISCONNECTION_CAUSE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_NETWORKEVENT_DISCONNECTION_CAUSE));
         }
     }
 }
@@ -96,7 +96,7 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATEALLSETTINGSCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_ALLSETTINGSCHANGED) && (elementDictionary != null)){
 
     }
 }
@@ -140,7 +140,7 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATERESETCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_RESETCHANGED) && (elementDictionary != null)){
 
     }
 }
@@ -202,10 +202,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATEPRODUCTNAMECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTNAMECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            String name = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATEPRODUCTNAMECHANGED_NAME);
+            String name = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTNAMECHANGED_NAME);
         }
     }
 }
@@ -278,11 +278,11 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATEPRODUCTVERSIONCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTVERSIONCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            String software = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATEPRODUCTVERSIONCHANGED_SOFTWARE);
-            String hardware = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATEPRODUCTVERSIONCHANGED_HARDWARE);
+            String software = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTVERSIONCHANGED_SOFTWARE);
+            String hardware = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTVERSIONCHANGED_HARDWARE);
         }
     }
 }
@@ -346,10 +346,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATEPRODUCTSERIALHIGHCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTSERIALHIGHCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            String high = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATEPRODUCTSERIALHIGHCHANGED_HIGH);
+            String high = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTSERIALHIGHCHANGED_HIGH);
         }
     }
 }
@@ -412,10 +412,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATEPRODUCTSERIALLOWCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTSERIALLOWCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            String low = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATEPRODUCTSERIALLOWCHANGED_LOW);
+            String low = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_PRODUCTSERIALLOWCHANGED_LOW);
         }
     }
 }
@@ -478,10 +478,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATECOUNTRYCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_COUNTRYCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            String code = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATECOUNTRYCHANGED_CODE);
+            String code = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_COUNTRYCHANGED_CODE);
         }
     }
 }
@@ -544,10 +544,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATEAUTOCOUNTRYCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_AUTOCOUNTRYCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            byte automatic = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATEAUTOCOUNTRYCHANGED_AUTOMATIC)).intValue();
+            byte automatic = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_SETTINGSSTATE_AUTOCOUNTRYCHANGED_AUTOMATIC)).intValue();
         }
     }
 }
@@ -590,7 +590,7 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEALLSTATESCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_ALLSTATESCHANGED) && (elementDictionary != null)){
 
     }
 }
@@ -654,10 +654,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEBATTERYSTATECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_BATTERYSTATECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            byte percent = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEBATTERYSTATECHANGED_PERCENT)).intValue();
+            byte percent = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_BATTERYSTATECHANGED_PERCENT)).intValue();
         }
     }
 }
@@ -680,23 +680,30 @@ Triggered when the battery level changes.<br/>
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_MASS_STORAGE_ID, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t mass_storage_id = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_MASS_STORAGE_ID, arg);
+                if (arg != NULL)
+                {
+                    uint8_t mass_storage_id = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_NAME, arg);
+                if (arg != NULL)
+                {
+                    char * name = arg->value.String;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_NAME, arg);
-            if (arg != NULL)
-            {
-                char * name = arg->value.String;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -705,23 +712,30 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_MASS_STORAGE_ID, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t mass_storage_id = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_MASS_STORAGE_ID, arg);
+                if (arg != NULL)
+                {
+                    uint8_t mass_storage_id = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_NAME, arg);
+                if (arg != NULL)
+                {
+                    char * name = arg->value.String;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_NAME, arg);
-            if (arg != NULL)
-            {
-                char * name = arg->value.String;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -730,14 +744,18 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGESTATELISTCHANGED) && (elementDictionary != null)){
-        Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
-        while (itr.hasNext()) {
-            ARControllerArgumentDictionary<Object> args = itr.next();
-            if (args != null) {
-                byte mass_storage_id = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGESTATELISTCHANGED_MASS_STORAGE_ID)).intValue();
-                String name = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGESTATELISTCHANGED_NAME);
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    byte mass_storage_id = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_MASS_STORAGE_ID)).intValue();
+                    String name = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGESTATELISTCHANGED_NAME);
+                }
             }
+        } else {
+            // list is empty
         }
     }
 }
@@ -755,49 +773,56 @@ Triggered when a mass storage is inserted or ejected.<br/>
 <br/>
 
 <!-- common-CommonState-MassStorageInfoStateListChanged-->
-### <a name="common-CommonState-MassStorageInfoStateListChanged">Mass storage info state list (deprecated)</a><br/>
-> Mass storage info state list (deprecated):
+### <a name="common-CommonState-MassStorageInfoStateListChanged">Mass storage info state list</a><br/>
+> Mass storage info state list:
 
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_MASS_STORAGE_ID, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t mass_storage_id = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_MASS_STORAGE_ID, arg);
+                if (arg != NULL)
+                {
+                    uint8_t mass_storage_id = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_SIZE, arg);
+                if (arg != NULL)
+                {
+                    uint32_t size = arg->value.U32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_USED_SIZE, arg);
+                if (arg != NULL)
+                {
+                    uint32_t used_size = arg->value.U32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_PLUGGED, arg);
+                if (arg != NULL)
+                {
+                    uint8_t plugged = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_FULL, arg);
+                if (arg != NULL)
+                {
+                    uint8_t full = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_INTERNAL, arg);
+                if (arg != NULL)
+                {
+                    uint8_t internal = arg->value.U8;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_SIZE, arg);
-            if (arg != NULL)
-            {
-                uint32_t size = arg->value.U32;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_USED_SIZE, arg);
-            if (arg != NULL)
-            {
-                uint32_t used_size = arg->value.U32;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_PLUGGED, arg);
-            if (arg != NULL)
-            {
-                uint8_t plugged = arg->value.U8;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_FULL, arg);
-            if (arg != NULL)
-            {
-                uint8_t full = arg->value.U8;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_INTERNAL, arg);
-            if (arg != NULL)
-            {
-                uint8_t internal = arg->value.U8;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -806,43 +831,50 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_MASS_STORAGE_ID, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t mass_storage_id = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_MASS_STORAGE_ID, arg);
+                if (arg != NULL)
+                {
+                    uint8_t mass_storage_id = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_SIZE, arg);
+                if (arg != NULL)
+                {
+                    uint32_t size = arg->value.U32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_USED_SIZE, arg);
+                if (arg != NULL)
+                {
+                    uint32_t used_size = arg->value.U32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_PLUGGED, arg);
+                if (arg != NULL)
+                {
+                    uint8_t plugged = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_FULL, arg);
+                if (arg != NULL)
+                {
+                    uint8_t full = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_INTERNAL, arg);
+                if (arg != NULL)
+                {
+                    uint8_t internal = arg->value.U8;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_SIZE, arg);
-            if (arg != NULL)
-            {
-                uint32_t size = arg->value.U32;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_USED_SIZE, arg);
-            if (arg != NULL)
-            {
-                uint32_t used_size = arg->value.U32;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_PLUGGED, arg);
-            if (arg != NULL)
-            {
-                uint8_t plugged = arg->value.U8;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_FULL, arg);
-            if (arg != NULL)
-            {
-                uint8_t full = arg->value.U8;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_INTERNAL, arg);
-            if (arg != NULL)
-            {
-                uint8_t internal = arg->value.U8;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -851,24 +883,26 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGEINFOSTATELISTCHANGED) && (elementDictionary != null)){
-        Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
-        while (itr.hasNext()) {
-            ARControllerArgumentDictionary<Object> args = itr.next();
-            if (args != null) {
-                byte mass_storage_id = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGEINFOSTATELISTCHANGED_MASS_STORAGE_ID)).intValue();
-                int size = (int)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGEINFOSTATELISTCHANGED_SIZE);
-                int used_size = (int)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGEINFOSTATELISTCHANGED_USED_SIZE);
-                byte plugged = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGEINFOSTATELISTCHANGED_PLUGGED)).intValue();
-                byte full = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGEINFOSTATELISTCHANGED_FULL)).intValue();
-                byte internal = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGEINFOSTATELISTCHANGED_INTERNAL)).intValue();
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    byte mass_storage_id = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_MASS_STORAGE_ID)).intValue();
+                    int size = (int)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_SIZE);
+                    int used_size = (int)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_USED_SIZE);
+                    byte plugged = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_PLUGGED)).intValue();
+                    byte full = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_FULL)).intValue();
+                    byte internal = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOSTATELISTCHANGED_INTERNAL)).intValue();
+                }
             }
+        } else {
+            // list is empty
         }
     }
 }
 ```
-
-*This message is deprecated.*<br/>
 
 Mass storage info state list.<br/>
 
@@ -879,6 +913,10 @@ Mass storage info state list.<br/>
 * plugged (u8): Mass storage plugged (1 if mass storage is plugged, otherwise 0)<br/>
 * full (u8): Mass storage full information state (1 if mass storage full, 0 otherwise).<br/>
 * internal (u8): Mass storage internal type state (1 if mass storage is internal, 0 otherwise)<br/>
+
+
+Triggered when a mass storage info changes.<br/>
+
 <br/>
 
 <!-- common-CommonState-CurrentDateChanged-->
@@ -928,10 +966,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATECURRENTDATECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_CURRENTDATECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            String date = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATECURRENTDATECHANGED_DATE);
+            String date = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_CURRENTDATECHANGED_DATE);
         }
     }
 }
@@ -996,10 +1034,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATECURRENTTIMECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_CURRENTTIMECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            String time = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATECURRENTTIMECHANGED_TIME);
+            String time = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_CURRENTTIMECHANGED_TIME);
         }
     }
 }
@@ -1024,28 +1062,35 @@ Triggered by [SetTime](#common-Common-CurrentTime).<br/>
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_FREE_SPACE, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint32_t free_space = arg->value.U32;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_FREE_SPACE, arg);
+                if (arg != NULL)
+                {
+                    uint32_t free_space = arg->value.U32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_REC_TIME, arg);
+                if (arg != NULL)
+                {
+                    uint16_t rec_time = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_PHOTO_REMAINING, arg);
+                if (arg != NULL)
+                {
+                    uint32_t photo_remaining = arg->value.U32;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_REC_TIME, arg);
-            if (arg != NULL)
-            {
-                uint16_t rec_time = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_PHOTO_REMAINING, arg);
-            if (arg != NULL)
-            {
-                uint32_t photo_remaining = arg->value.U32;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -1054,28 +1099,35 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_FREE_SPACE, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint32_t free_space = arg->value.U32;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_FREE_SPACE, arg);
+                if (arg != NULL)
+                {
+                    uint32_t free_space = arg->value.U32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_REC_TIME, arg);
+                if (arg != NULL)
+                {
+                    uint16_t rec_time = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_PHOTO_REMAINING, arg);
+                if (arg != NULL)
+                {
+                    uint32_t photo_remaining = arg->value.U32;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_REC_TIME, arg);
-            if (arg != NULL)
-            {
-                uint16_t rec_time = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_PHOTO_REMAINING, arg);
-            if (arg != NULL)
-            {
-                uint32_t photo_remaining = arg->value.U32;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -1084,15 +1136,19 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGEINFOREMAININGLISTCHANGED) && (elementDictionary != null)){
-        Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
-        while (itr.hasNext()) {
-            ARControllerArgumentDictionary<Object> args = itr.next();
-            if (args != null) {
-                int free_space = (int)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGEINFOREMAININGLISTCHANGED_FREE_SPACE);
-                short rec_time = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGEINFOREMAININGLISTCHANGED_REC_TIME)).intValue();
-                int photo_remaining = (int)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGEINFOREMAININGLISTCHANGED_PHOTO_REMAINING);
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    int free_space = (int)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_FREE_SPACE);
+                    short rec_time = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_REC_TIME)).intValue();
+                    int photo_remaining = (int)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGEINFOREMAININGLISTCHANGED_PHOTO_REMAINING);
+                }
             }
+        } else {
+            // list is empty
         }
     }
 }
@@ -1155,10 +1211,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEWIFISIGNALCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_WIFISIGNALCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            short rssi = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEWIFISIGNALCHANGED_RSSI)).intValue();
+            short rssi = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_WIFISIGNALCHANGED_RSSI)).intValue();
         }
     }
 }
@@ -1181,23 +1237,30 @@ Triggered regularly.<br/>
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                eARCOMMANDS_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME sensorName = arg->value.I32;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME sensorName = arg->value.I32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORSTATE, arg);
+                if (arg != NULL)
+                {
+                    uint8_t sensorState = arg->value.U8;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORSTATE, arg);
-            if (arg != NULL)
-            {
-                uint8_t sensorState = arg->value.U8;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -1206,23 +1269,30 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                eARCOMMANDS_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME sensorName = arg->value.I32;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME sensorName = arg->value.I32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORSTATE, arg);
+                if (arg != NULL)
+                {
+                    uint8_t sensorState = arg->value.U8;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORSTATE, arg);
-            if (arg != NULL)
-            {
-                uint8_t sensorState = arg->value.U8;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -1231,14 +1301,18 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATESENSORSSTATESLISTCHANGED) && (elementDictionary != null)){
-        Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
-        while (itr.hasNext()) {
-            ARControllerArgumentDictionary<Object> args = itr.next();
-            if (args != null) {
-                ARCOMMANDS_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME_ENUM sensorName = ARCOMMANDS_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATESENSORSSTATESLISTCHANGED_SENSORNAME));
-                byte sensorState = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATESENSORSSTATESLISTCHANGED_SENSORSTATE)).intValue();
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    ARCOMMANDS_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME_ENUM sensorName = ARCOMMANDS_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORNAME));
+                    byte sensorState = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_SENSORSSTATESLISTCHANGED_SENSORSTATE)).intValue();
+                }
             }
+        } else {
+            // list is empty
         }
     }
 }
@@ -1308,10 +1382,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEPRODUCTMODEL) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_PRODUCTMODEL) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            ARCOMMANDS_COMMON_COMMONSTATE_PRODUCTMODEL_MODEL_ENUM model = ARCOMMANDS_COMMON_COMMONSTATE_PRODUCTMODEL_MODEL_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEPRODUCTMODEL_MODEL));
+            ARCOMMANDS_COMMON_COMMONSTATE_PRODUCTMODEL_MODEL_ENUM model = ARCOMMANDS_COMMON_COMMONSTATE_PRODUCTMODEL_MODEL_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_PRODUCTMODEL_MODEL));
         }
     }
 }
@@ -1348,23 +1422,30 @@ Triggered at connection.<br/>
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_LISTFLAGS, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t listFlags = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_LISTFLAGS, arg);
+                if (arg != NULL)
+                {
+                    uint8_t listFlags = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_COUNTRYCODES, arg);
+                if (arg != NULL)
+                {
+                    char * countryCodes = arg->value.String;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_COUNTRYCODES, arg);
-            if (arg != NULL)
-            {
-                char * countryCodes = arg->value.String;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -1373,23 +1454,30 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_LISTFLAGS, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t listFlags = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_LISTFLAGS, arg);
+                if (arg != NULL)
+                {
+                    uint8_t listFlags = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_COUNTRYCODES, arg);
+                if (arg != NULL)
+                {
+                    char * countryCodes = arg->value.String;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_COUNTRYCODES, arg);
-            if (arg != NULL)
-            {
-                char * countryCodes = arg->value.String;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -1398,14 +1486,18 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATECOUNTRYLISTKNOWN) && (elementDictionary != null)){
-        Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
-        while (itr.hasNext()) {
-            ARControllerArgumentDictionary<Object> args = itr.next();
-            if (args != null) {
-                byte listFlags = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATECOUNTRYLISTKNOWN_LISTFLAGS)).intValue();
-                String countryCodes = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATECOUNTRYLISTKNOWN_COUNTRYCODES);
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    byte listFlags = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_LISTFLAGS)).intValue();
+                    String countryCodes = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_COUNTRYLISTKNOWN_COUNTRYCODES);
+                }
             }
+        } else {
+            // list is empty
         }
     }
 }
@@ -1418,7 +1510,7 @@ List of countries known by the drone.<br/>
 
 * listFlags (u8): List entry attribute Bitfield.<br/>
 0x01: First: indicate it's the first element of the list.<br/>
-0x02: Last:  indicate it's the last element of the list.<br/>
+0x02: Last: indicate it's the last element of the list.<br/>
 0x04: Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
 * countryCodes (string): Following of country code with ISO 3166 format, separated by ";". Be careful of the command size allowed by the network used. If necessary, split the list in several commands.<br/>
 <br/>
@@ -1430,38 +1522,45 @@ List of countries known by the drone.<br/>
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_MASS_STORAGE_ID, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t mass_storage_id = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_MASS_STORAGE_ID, arg);
+                if (arg != NULL)
+                {
+                    uint8_t mass_storage_id = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPHOTOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbPhotos = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBVIDEOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbVideos = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPUDS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbPuds = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBCRASHLOGS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbCrashLogs = arg->value.U16;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPHOTOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbPhotos = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBVIDEOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbVideos = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPUDS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbPuds = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBCRASHLOGS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbCrashLogs = arg->value.U16;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -1470,38 +1569,45 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_MASS_STORAGE_ID, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t mass_storage_id = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_MASS_STORAGE_ID, arg);
+                if (arg != NULL)
+                {
+                    uint8_t mass_storage_id = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPHOTOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbPhotos = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBVIDEOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbVideos = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPUDS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbPuds = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBCRASHLOGS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbCrashLogs = arg->value.U16;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPHOTOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbPhotos = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBVIDEOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbVideos = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPUDS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbPuds = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBCRASHLOGS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbCrashLogs = arg->value.U16;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -1510,17 +1616,21 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEDEPRECATEDMASSSTORAGECONTENTCHANGED) && (elementDictionary != null)){
-        Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
-        while (itr.hasNext()) {
-            ARControllerArgumentDictionary<Object> args = itr.next();
-            if (args != null) {
-                byte mass_storage_id = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEDEPRECATEDMASSSTORAGECONTENTCHANGED_MASS_STORAGE_ID)).intValue();
-                short nbPhotos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEDEPRECATEDMASSSTORAGECONTENTCHANGED_NBPHOTOS)).intValue();
-                short nbVideos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEDEPRECATEDMASSSTORAGECONTENTCHANGED_NBVIDEOS)).intValue();
-                short nbPuds = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEDEPRECATEDMASSSTORAGECONTENTCHANGED_NBPUDS)).intValue();
-                short nbCrashLogs = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEDEPRECATEDMASSSTORAGECONTENTCHANGED_NBCRASHLOGS)).intValue();
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    byte mass_storage_id = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_MASS_STORAGE_ID)).intValue();
+                    short nbPhotos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPHOTOS)).intValue();
+                    short nbVideos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBVIDEOS)).intValue();
+                    short nbPuds = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBPUDS)).intValue();
+                    short nbCrashLogs = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_DEPRECATEDMASSSTORAGECONTENTCHANGED_NBCRASHLOGS)).intValue();
+                }
             }
+        } else {
+            // list is empty
         }
     }
 }
@@ -1545,43 +1655,50 @@ Mass storage content changed.<br/>
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_MASS_STORAGE_ID, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t mass_storage_id = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_MASS_STORAGE_ID, arg);
+                if (arg != NULL)
+                {
+                    uint8_t mass_storage_id = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPHOTOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbPhotos = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBVIDEOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbVideos = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPUDS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbPuds = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBCRASHLOGS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbCrashLogs = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBRAWPHOTOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbRawPhotos = arg->value.U16;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPHOTOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbPhotos = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBVIDEOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbVideos = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPUDS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbPuds = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBCRASHLOGS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbCrashLogs = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBRAWPHOTOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbRawPhotos = arg->value.U16;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -1590,43 +1707,50 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_MASS_STORAGE_ID, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t mass_storage_id = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_MASS_STORAGE_ID, arg);
+                if (arg != NULL)
+                {
+                    uint8_t mass_storage_id = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPHOTOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbPhotos = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBVIDEOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbVideos = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPUDS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbPuds = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBCRASHLOGS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbCrashLogs = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBRAWPHOTOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbRawPhotos = arg->value.U16;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPHOTOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbPhotos = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBVIDEOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbVideos = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPUDS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbPuds = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBCRASHLOGS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbCrashLogs = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBRAWPHOTOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbRawPhotos = arg->value.U16;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -1635,18 +1759,22 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGECONTENT) && (elementDictionary != null)){
-        Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
-        while (itr.hasNext()) {
-            ARControllerArgumentDictionary<Object> args = itr.next();
-            if (args != null) {
-                byte mass_storage_id = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGECONTENT_MASS_STORAGE_ID)).intValue();
-                short nbPhotos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGECONTENT_NBPHOTOS)).intValue();
-                short nbVideos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGECONTENT_NBVIDEOS)).intValue();
-                short nbPuds = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGECONTENT_NBPUDS)).intValue();
-                short nbCrashLogs = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGECONTENT_NBCRASHLOGS)).intValue();
-                short nbRawPhotos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGECONTENT_NBRAWPHOTOS)).intValue();
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    byte mass_storage_id = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_MASS_STORAGE_ID)).intValue();
+                    short nbPhotos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPHOTOS)).intValue();
+                    short nbVideos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBVIDEOS)).intValue();
+                    short nbPuds = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBPUDS)).intValue();
+                    short nbCrashLogs = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBCRASHLOGS)).intValue();
+                    short nbRawPhotos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENT_NBRAWPHOTOS)).intValue();
+                }
             }
+        } else {
+            // list is empty
         }
     }
 }
@@ -1674,33 +1802,40 @@ Triggered when the content of the mass storage changes.<br/>
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_MASS_STORAGE_ID, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t mass_storage_id = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_MASS_STORAGE_ID, arg);
+                if (arg != NULL)
+                {
+                    uint8_t mass_storage_id = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBPHOTOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbPhotos = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBVIDEOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbVideos = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBRAWPHOTOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbRawPhotos = arg->value.U16;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBPHOTOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbPhotos = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBVIDEOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbVideos = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBRAWPHOTOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbRawPhotos = arg->value.U16;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -1709,33 +1844,40 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_MASS_STORAGE_ID, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t mass_storage_id = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_MASS_STORAGE_ID, arg);
+                if (arg != NULL)
+                {
+                    uint8_t mass_storage_id = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBPHOTOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbPhotos = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBVIDEOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbVideos = arg->value.U16;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBRAWPHOTOS, arg);
+                if (arg != NULL)
+                {
+                    uint16_t nbRawPhotos = arg->value.U16;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBPHOTOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbPhotos = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBVIDEOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbVideos = arg->value.U16;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBRAWPHOTOS, arg);
-            if (arg != NULL)
-            {
-                uint16_t nbRawPhotos = arg->value.U16;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -1744,16 +1886,20 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGECONTENTFORCURRENTRUN) && (elementDictionary != null)){
-        Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
-        while (itr.hasNext()) {
-            ARControllerArgumentDictionary<Object> args = itr.next();
-            if (args != null) {
-                byte mass_storage_id = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGECONTENTFORCURRENTRUN_MASS_STORAGE_ID)).intValue();
-                short nbPhotos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGECONTENTFORCURRENTRUN_NBPHOTOS)).intValue();
-                short nbVideos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGECONTENTFORCURRENTRUN_NBVIDEOS)).intValue();
-                short nbRawPhotos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATEMASSSTORAGECONTENTFORCURRENTRUN_NBRAWPHOTOS)).intValue();
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    byte mass_storage_id = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_MASS_STORAGE_ID)).intValue();
+                    short nbPhotos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBPHOTOS)).intValue();
+                    short nbVideos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBVIDEOS)).intValue();
+                    short nbRawPhotos = (short)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_COMMONSTATE_MASSSTORAGECONTENTFORCURRENTRUN_NBRAWPHOTOS)).intValue();
+                }
             }
+        } else {
+            // list is empty
         }
     }
 }
@@ -1800,7 +1946,7 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_OVERHEATSTATEOVERHEATCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_OVERHEATSTATE_OVERHEATCHANGED) && (elementDictionary != null)){
 
     }
 }
@@ -1860,10 +2006,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_OVERHEATSTATEOVERHEATREGULATIONCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_OVERHEATSTATE_OVERHEATREGULATIONCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            byte regulationType = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_OVERHEATSTATEOVERHEATREGULATIONCHANGED_REGULATIONTYPE)).intValue();
+            byte regulationType = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_OVERHEATSTATE_OVERHEATREGULATIONCHANGED_REGULATIONTYPE)).intValue();
         }
     }
 }
@@ -1922,10 +2068,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_WIFISETTINGSSTATEOUTDOORSETTINGSCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_WIFISETTINGSSTATE_OUTDOORSETTINGSCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            byte outdoor = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_WIFISETTINGSSTATEOUTDOORSETTINGSCHANGED_OUTDOOR)).intValue();
+            byte outdoor = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_WIFISETTINGSSTATE_OUTDOORSETTINGSCHANGED_OUTDOOR)).intValue();
         }
     }
 }
@@ -2008,12 +2154,12 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATEMAVLINKFILEPLAYINGSTATECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            ARCOMMANDS_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_STATE_ENUM state = ARCOMMANDS_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATEMAVLINKFILEPLAYINGSTATECHANGED_STATE));
-            String filepath = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATEMAVLINKFILEPLAYINGSTATECHANGED_FILEPATH);
-            ARCOMMANDS_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_TYPE_ENUM type = ARCOMMANDS_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_TYPE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATEMAVLINKFILEPLAYINGSTATECHANGED_TYPE));
+            ARCOMMANDS_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_STATE_ENUM state = ARCOMMANDS_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_STATE));
+            String filepath = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_FILEPATH);
+            ARCOMMANDS_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_TYPE_ENUM type = ARCOMMANDS_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_TYPE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKFILEPLAYINGSTATECHANGED_TYPE));
         }
     }
 }
@@ -2084,10 +2230,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATEMAVLINKPLAYERRORSTATECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKPLAYERRORSTATECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            ARCOMMANDS_COMMON_MAVLINKSTATE_MAVLINKPLAYERRORSTATECHANGED_ERROR_ENUM error = ARCOMMANDS_COMMON_MAVLINKSTATE_MAVLINKPLAYERRORSTATECHANGED_ERROR_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATEMAVLINKPLAYERRORSTATECHANGED_ERROR));
+            ARCOMMANDS_COMMON_MAVLINKSTATE_MAVLINKPLAYERRORSTATECHANGED_ERROR_ENUM error = ARCOMMANDS_COMMON_MAVLINKSTATE_MAVLINKPLAYERRORSTATECHANGED_ERROR_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MAVLINKPLAYERRORSTATECHANGED_ERROR));
         }
     }
 }
@@ -2184,13 +2330,13 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEMAGNETOCALIBRATIONSTATECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            byte xAxisCalibration = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEMAGNETOCALIBRATIONSTATECHANGED_XAXISCALIBRATION)).intValue();
-            byte yAxisCalibration = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEMAGNETOCALIBRATIONSTATECHANGED_YAXISCALIBRATION)).intValue();
-            byte zAxisCalibration = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEMAGNETOCALIBRATIONSTATECHANGED_ZAXISCALIBRATION)).intValue();
-            byte calibrationFailed = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEMAGNETOCALIBRATIONSTATECHANGED_CALIBRATIONFAILED)).intValue();
+            byte xAxisCalibration = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED_XAXISCALIBRATION)).intValue();
+            byte yAxisCalibration = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED_YAXISCALIBRATION)).intValue();
+            byte zAxisCalibration = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED_ZAXISCALIBRATION)).intValue();
+            byte calibrationFailed = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATECHANGED_CALIBRATIONFAILED)).intValue();
         }
     }
 }
@@ -2256,10 +2402,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEMAGNETOCALIBRATIONREQUIREDSTATE) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONREQUIREDSTATE) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            byte required = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEMAGNETOCALIBRATIONREQUIREDSTATE_REQUIRED)).intValue();
+            byte required = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONREQUIREDSTATE_REQUIRED)).intValue();
         }
     }
 }
@@ -2322,10 +2468,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEMAGNETOCALIBRATIONAXISTOCALIBRATECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONAXISTOCALIBRATECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            ARCOMMANDS_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONAXISTOCALIBRATECHANGED_AXIS_ENUM axis = ARCOMMANDS_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONAXISTOCALIBRATECHANGED_AXIS_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEMAGNETOCALIBRATIONAXISTOCALIBRATECHANGED_AXIS));
+            ARCOMMANDS_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONAXISTOCALIBRATECHANGED_AXIS_ENUM axis = ARCOMMANDS_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONAXISTOCALIBRATECHANGED_AXIS_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONAXISTOCALIBRATECHANGED_AXIS));
         }
     }
 }
@@ -2392,10 +2538,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEMAGNETOCALIBRATIONSTARTEDCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTARTEDCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            byte started = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEMAGNETOCALIBRATIONSTARTEDCHANGED_STARTED)).intValue();
+            byte started = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTARTEDCHANGED_STARTED)).intValue();
         }
     }
 }
@@ -2468,11 +2614,11 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEPITOTCALIBRATIONSTATECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_PITOTCALIBRATIONSTATECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            ARCOMMANDS_COMMON_CALIBRATIONSTATE_PITOTCALIBRATIONSTATECHANGED_STATE_ENUM state = ARCOMMANDS_COMMON_CALIBRATIONSTATE_PITOTCALIBRATIONSTATECHANGED_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEPITOTCALIBRATIONSTATECHANGED_STATE));
-            byte lastError = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATEPITOTCALIBRATIONSTATECHANGED_LASTERROR)).intValue();
+            ARCOMMANDS_COMMON_CALIBRATIONSTATE_PITOTCALIBRATIONSTATECHANGED_STATE_ENUM state = ARCOMMANDS_COMMON_CALIBRATIONSTATE_PITOTCALIBRATIONSTATECHANGED_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_PITOTCALIBRATIONSTATECHANGED_STATE));
+            byte lastError = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CALIBRATIONSTATE_PITOTCALIBRATIONSTATECHANGED_LASTERROR)).intValue();
         }
     }
 }
@@ -2576,14 +2722,14 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATECAMERASETTINGSCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            float fov = (float)((Double)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATECAMERASETTINGSCHANGED_FOV)).doubleValue();
-            float panMax = (float)((Double)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATECAMERASETTINGSCHANGED_PANMAX)).doubleValue();
-            float panMin = (float)((Double)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATECAMERASETTINGSCHANGED_PANMIN)).doubleValue();
-            float tiltMax = (float)((Double)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATECAMERASETTINGSCHANGED_TILTMAX)).doubleValue();
-            float tiltMin = (float)((Double)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATECAMERASETTINGSCHANGED_TILTMIN)).doubleValue();
+            float fov = (float)((Double)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_FOV)).doubleValue();
+            float panMax = (float)((Double)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_PANMAX)).doubleValue();
+            float panMin = (float)((Double)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_PANMIN)).doubleValue();
+            float tiltMax = (float)((Double)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_TILTMAX)).doubleValue();
+            float tiltMin = (float)((Double)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CAMERASETTINGSSTATE_CAMERASETTINGSCHANGED_TILTMIN)).doubleValue();
         }
     }
 }
@@ -2650,10 +2796,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATEAVAILABILITYSTATECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_AVAILABILITYSTATECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            byte AvailabilityState = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATEAVAILABILITYSTATECHANGED_AVAILABILITYSTATE)).intValue();
+            byte AvailabilityState = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_AVAILABILITYSTATECHANGED_AVAILABILITYSTATE)).intValue();
         }
     }
 }
@@ -2677,23 +2823,30 @@ Triggered on change.<br/>
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                eARCOMMANDS_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT component = arg->value.I32;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT component = arg->value.I32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_STATE, arg);
+                if (arg != NULL)
+                {
+                    uint8_t State = arg->value.U8;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_STATE, arg);
-            if (arg != NULL)
-            {
-                uint8_t State = arg->value.U8;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -2702,23 +2855,30 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                eARCOMMANDS_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT component = arg->value.I32;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT component = arg->value.I32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_STATE, arg);
+                if (arg != NULL)
+                {
+                    uint8_t State = arg->value.U8;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_STATE, arg);
-            if (arg != NULL)
-            {
-                uint8_t State = arg->value.U8;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -2727,14 +2887,18 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATECOMPONENTSTATELISTCHANGED) && (elementDictionary != null)){
-        Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
-        while (itr.hasNext()) {
-            ARControllerArgumentDictionary<Object> args = itr.next();
-            if (args != null) {
-                ARCOMMANDS_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT_ENUM component = ARCOMMANDS_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATECOMPONENTSTATELISTCHANGED_COMPONENT));
-                byte State = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATECOMPONENTSTATELISTCHANGED_STATE)).intValue();
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    ARCOMMANDS_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT_ENUM component = ARCOMMANDS_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_COMPONENT));
+                    byte State = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_COMPONENTSTATELISTCHANGED_STATE)).intValue();
+                }
             }
+        } else {
+            // list is empty
         }
     }
 }
@@ -2802,10 +2966,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATELOCKSTATECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_LOCKSTATECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            byte LockState = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATELOCKSTATECHANGED_LOCKSTATE)).intValue();
+            byte LockState = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSTATE_LOCKSTATECHANGED_LOCKSTATE)).intValue();
         }
     }
 }
@@ -2850,7 +3014,7 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANEVENTSTARTINGERROREVENT) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANEVENT_STARTINGERROREVENT) && (elementDictionary != null)){
 
     }
 }
@@ -2894,7 +3058,7 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANEVENTSPEEDBRIDLEEVENT) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANEVENT_SPEEDBRIDLEEVENT) && (elementDictionary != null)){
 
     }
 }
@@ -2959,10 +3123,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATECONTROLLERLIBARCOMMANDSVERSION) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATE_CONTROLLERLIBARCOMMANDSVERSION) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            String version = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATECONTROLLERLIBARCOMMANDSVERSION_VERSION);
+            String version = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATE_CONTROLLERLIBARCOMMANDSVERSION_VERSION);
         }
     }
 }
@@ -3021,10 +3185,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATESKYCONTROLLERLIBARCOMMANDSVERSION) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATE_SKYCONTROLLERLIBARCOMMANDSVERSION) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            String version = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATESKYCONTROLLERLIBARCOMMANDSVERSION_VERSION);
+            String version = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATE_SKYCONTROLLERLIBARCOMMANDSVERSION_VERSION);
         }
     }
 }
@@ -3083,10 +3247,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATEDEVICELIBARCOMMANDSVERSION) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATE_DEVICELIBARCOMMANDSVERSION) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            String version = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATEDEVICELIBARCOMMANDSVERSION_VERSION);
+            String version = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ARLIBSVERSIONSSTATE_DEVICELIBARCOMMANDSVERSION_VERSION);
         }
     }
 }
@@ -3145,10 +3309,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_AUDIOSTATEAUDIOSTREAMINGRUNNING) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_AUDIOSTATE_AUDIOSTREAMINGRUNNING) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            byte running = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_AUDIOSTATEAUDIOSTREAMINGRUNNING_RUNNING)).intValue();
+            byte running = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_AUDIOSTATE_AUDIOSTREAMINGRUNNING_RUNNING)).intValue();
         }
     }
 }
@@ -3223,11 +3387,11 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_HEADLIGHTSSTATEINTENSITYCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_HEADLIGHTSSTATE_INTENSITYCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            byte left = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_HEADLIGHTSSTATEINTENSITYCHANGED_LEFT)).intValue();
-            byte right = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_HEADLIGHTSSTATEINTENSITYCHANGED_RIGHT)).intValue();
+            byte left = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_HEADLIGHTSSTATE_INTENSITYCHANGED_LEFT)).intValue();
+            byte right = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_HEADLIGHTSSTATE_INTENSITYCHANGED_RIGHT)).intValue();
         }
     }
 }
@@ -3251,28 +3415,35 @@ Triggered by [SetLedsIntensity](#common-Headlights-intensity).<br/>
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ANIM, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                eARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ANIM anim = arg->value.I32;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ANIM, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ANIM anim = arg->value.I32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_STATE, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_STATE state = arg->value.I32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ERROR, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ERROR error = arg->value.I32;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_STATE, arg);
-            if (arg != NULL)
-            {
-                eARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_STATE state = arg->value.I32;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ERROR, arg);
-            if (arg != NULL)
-            {
-                eARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ERROR error = arg->value.I32;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -3281,28 +3452,35 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ANIM, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                eARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ANIM anim = arg->value.I32;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ANIM, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ANIM anim = arg->value.I32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_STATE, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_STATE state = arg->value.I32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ERROR, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ERROR error = arg->value.I32;
+                }
             }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_STATE, arg);
-            if (arg != NULL)
-            {
-                eARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_STATE state = arg->value.I32;
-            }
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ERROR, arg);
-            if (arg != NULL)
-            {
-                eARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ERROR error = arg->value.I32;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -3311,15 +3489,19 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATELIST) && (elementDictionary != null)){
-        Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
-        while (itr.hasNext()) {
-            ARControllerArgumentDictionary<Object> args = itr.next();
-            if (args != null) {
-                ARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ANIM_ENUM anim = ARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ANIM_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATELIST_ANIM));
-                ARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_STATE_ENUM state = ARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATELIST_STATE));
-                ARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ERROR_ENUM error = ARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ERROR_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATELIST_ERROR));
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    ARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ANIM_ENUM anim = ARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ANIM_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ANIM));
+                    ARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_STATE_ENUM state = ARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_STATE));
+                    ARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ERROR_ENUM error = ARCOMMANDS_COMMON_ANIMATIONSSTATE_LIST_ERROR_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ANIMATIONSSTATE_LIST_ERROR));
+                }
             }
+        } else {
+            // list is empty
         }
     }
 }
@@ -3366,18 +3548,25 @@ Triggered when the list of available animations changes and also when an animati
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                eARCOMMANDS_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY accessory = arg->value.I32;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY accessory = arg->value.I32;
+                }
             }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -3386,18 +3575,25 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
-        HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                eARCOMMANDS_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY accessory = arg->value.I32;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY accessory = arg->value.I32;
+                }
             }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -3406,13 +3602,17 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATESUPPORTEDACCESSORIESLISTCHANGED) && (elementDictionary != null)){
-        Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
-        while (itr.hasNext()) {
-            ARControllerArgumentDictionary<Object> args = itr.next();
-            if (args != null) {
-                ARCOMMANDS_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY_ENUM accessory = ARCOMMANDS_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATESUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY));
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    ARCOMMANDS_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY_ENUM accessory = ARCOMMANDS_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_SUPPORTEDACCESSORIESLISTCHANGED_ACCESSORY));
+                }
             }
+        } else {
+            // list is empty
         }
     }
 }
@@ -3490,11 +3690,11 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATEACCESSORYCONFIGCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            ARCOMMANDS_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_NEWACCESSORY_ENUM newAccessory = ARCOMMANDS_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_NEWACCESSORY_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATEACCESSORYCONFIGCHANGED_NEWACCESSORY));
-            ARCOMMANDS_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_ERROR_ENUM error = ARCOMMANDS_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_ERROR_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATEACCESSORYCONFIGCHANGED_ERROR));
+            ARCOMMANDS_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_NEWACCESSORY_ENUM newAccessory = ARCOMMANDS_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_NEWACCESSORY_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_NEWACCESSORY));
+            ARCOMMANDS_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_ERROR_ENUM error = ARCOMMANDS_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_ERROR_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGCHANGED_ERROR));
         }
     }
 }
@@ -3568,10 +3768,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATEACCESSORYCONFIGMODIFICATIONENABLED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGMODIFICATIONENABLED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            byte enabled = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATEACCESSORYCONFIGMODIFICATIONENABLED_ENABLED)).intValue();
+            byte enabled = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_ACCESSORYSTATE_ACCESSORYCONFIGMODIFICATIONENABLED_ENABLED)).intValue();
         }
     }
 }
@@ -3634,10 +3834,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATEMAXCHARGERATECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_MAXCHARGERATECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            ARCOMMANDS_COMMON_CHARGERSTATE_MAXCHARGERATECHANGED_RATE_ENUM rate = ARCOMMANDS_COMMON_CHARGERSTATE_MAXCHARGERATECHANGED_RATE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATEMAXCHARGERATECHANGED_RATE));
+            ARCOMMANDS_COMMON_CHARGERSTATE_MAXCHARGERATECHANGED_RATE_ENUM rate = ARCOMMANDS_COMMON_CHARGERSTATE_MAXCHARGERATECHANGED_RATE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_MAXCHARGERATECHANGED_RATE));
         }
     }
 }
@@ -3711,11 +3911,11 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATECURRENTCHARGESTATECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            ARCOMMANDS_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_STATUS_ENUM status = ARCOMMANDS_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_STATUS_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATECURRENTCHARGESTATECHANGED_STATUS));
-            ARCOMMANDS_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_PHASE_ENUM phase = ARCOMMANDS_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_PHASE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATECURRENTCHARGESTATECHANGED_PHASE));
+            ARCOMMANDS_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_STATUS_ENUM status = ARCOMMANDS_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_STATUS_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_STATUS));
+            ARCOMMANDS_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_PHASE_ENUM phase = ARCOMMANDS_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_PHASE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CURRENTCHARGESTATECHANGED_PHASE));
         }
     }
 }
@@ -3787,10 +3987,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATELASTCHARGERATECHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_LASTCHARGERATECHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            ARCOMMANDS_COMMON_CHARGERSTATE_LASTCHARGERATECHANGED_RATE_ENUM rate = ARCOMMANDS_COMMON_CHARGERSTATE_LASTCHARGERATECHANGED_RATE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATELASTCHARGERATECHANGED_RATE));
+            ARCOMMANDS_COMMON_CHARGERSTATE_LASTCHARGERATECHANGED_RATE_ENUM rate = ARCOMMANDS_COMMON_CHARGERSTATE_LASTCHARGERATECHANGED_RATE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_LASTCHARGERATECHANGED_RATE));
         }
     }
 }
@@ -3885,13 +4085,13 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATECHARGINGINFO) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            ARCOMMANDS_COMMON_CHARGERSTATE_CHARGINGINFO_PHASE_ENUM phase = ARCOMMANDS_COMMON_CHARGERSTATE_CHARGINGINFO_PHASE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATECHARGINGINFO_PHASE));
-            ARCOMMANDS_COMMON_CHARGERSTATE_CHARGINGINFO_RATE_ENUM rate = ARCOMMANDS_COMMON_CHARGERSTATE_CHARGINGINFO_RATE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATECHARGINGINFO_RATE));
-            byte intensity = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATECHARGINGINFO_INTENSITY)).intValue();
-            byte fullChargingTime = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATECHARGINGINFO_FULLCHARGINGTIME)).intValue();
+            ARCOMMANDS_COMMON_CHARGERSTATE_CHARGINGINFO_PHASE_ENUM phase = ARCOMMANDS_COMMON_CHARGERSTATE_CHARGINGINFO_PHASE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO_PHASE));
+            ARCOMMANDS_COMMON_CHARGERSTATE_CHARGINGINFO_RATE_ENUM rate = ARCOMMANDS_COMMON_CHARGERSTATE_CHARGINGINFO_RATE_ENUM.getFromValue((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO_RATE));
+            byte intensity = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO_INTENSITY)).intValue();
+            byte fullChargingTime = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_CHARGERSTATE_CHARGINGINFO_FULLCHARGINGTIME)).intValue();
         }
     }
 }
@@ -3967,10 +4167,10 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_RUNSTATERUNIDCHANGED) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_RUNSTATE_RUNIDCHANGED) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            String runId = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_RUNSTATERUNIDCHANGED_RUNID);
+            String runId = (String)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_RUNSTATE_RUNIDCHANGED_RUNID);
         }
     }
 }

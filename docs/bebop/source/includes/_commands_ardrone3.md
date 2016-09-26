@@ -317,7 +317,7 @@ Also note that the given rotation will not modify the move (i.e. moves are alway
 * dX (float): Wanted displacement along the front axis [m]<br/>
 * dY (float): Wanted displacement along the right axis [m]<br/>
 * dZ (float): Wanted displacement along the down axis [m]<br/>
-* dPsi (float): Wanted rotation of heading  [rad]<br/>
+* dPsi (float): Wanted rotation of heading [rad]<br/>
 
 
 Result:<br/>
