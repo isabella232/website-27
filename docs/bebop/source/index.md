@@ -8,7 +8,7 @@ language_tabs:
 
 toc_footers:
   - <a href='http://forum.developer.parrot.com'>Developer Forum</a>
-  - <a href='https://github.com/Parrot-Developers/arsdk_manifests'>See sources on Github</a>
+  - <a href='https://github.com/Parrot-Developers/arsdk_manifests'>See SDK sources</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -16,13 +16,7 @@ includes:
   - how_to_use
   - use_samples
   - start_coding
-  - commands_events_doc
-  - commands
-  - commands_common
-  - commands_ardrone3
-  - events
-  - events_common
-  - events_ardrone3
+  - messages_reference
   - go_deeper
 
 search: true

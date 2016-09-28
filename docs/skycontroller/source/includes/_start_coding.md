@@ -719,3 +719,7 @@ void deleteDeviceController(ARCONTROLLER_Device_t *deviceController)
 ARCONTROLLER_ERROR_ENUM error = deviceController.stop();
 ```
 
+# Commands reference
+
+A complete list of supported commands can be found in the [reference](../reference/index.html)
+

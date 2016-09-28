@@ -1,1 +1,0 @@
-../../../bebop/source/includes/_commands_events_doc.md
