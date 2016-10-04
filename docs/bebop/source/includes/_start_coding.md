@@ -116,10 +116,10 @@ public void onServicesDevicesListUpdated()
 ```c
 // No BLE support in C, so we use the device IP/Port
 // product should only be a wifi product (no Rolling Spider)
-ARDiscovery_Device_t* createDiscoveryDevice(eARDISCOVERY_PRODUCT product, const char *name, const char *ip, int port)
+ARDISCOVERY_Device_t* createDiscoveryDevice(eARDISCOVERY_PRODUCT product, const char *name, const char *ip, int port)
 {
     eARDISCOVERY_ERROR errorDiscovery = ARDISCOVERY_OK;
-    ARDiscovery_Device_t *device = NULL;
+    ARDISCOVERY_Device_t *device = NULL;
 
     if (ip == NULL || port == 0)
     {
@@ -513,7 +513,7 @@ public void onCommandReceived(ARDeviceController deviceController, ARCONTROLLER_
 > <a name="bebop_add_video_receive_cb">Listen to the video stream received from the drone</a>
 
 ```c
-error = ARCONTROLLER_Device_SetVideoStreamCallbacks(_deviceController, configDecoderCallback, didReceiveFrameCallback, NULL , NULL);
+error = ARCONTROLLER_Device_SetVideoStreamCallbacks(deviceController, configDecoderCallback, didReceiveFrameCallback, NULL , NULL);
 
 static eARCONTROLLER_ERROR configDecoderCallback (ARCONTROLLER_Stream_Codec_t codec, void *customData)
 {
@@ -616,7 +616,7 @@ void deleteDeviceController(ARCONTROLLER_Device_t *deviceController)
     if ((error == ARCONTROLLER_OK) && (state != ARCONTROLLER_DEVICE_STATE_STOPPED))
     {
         // after that, stateChanged should be called soon
-        error = ARCONTROLLER_Device_Stop (_deviceController);
+        error = ARCONTROLLER_Device_Stop (deviceController);
 
         if (error == ARCONTROLLER_OK)
         {
@@ -705,7 +705,7 @@ eARCOMMANDS_ARDRONE3_PILOTINGSTATE_FLYINGSTATECHANGED_STATE getFlyingState(ARCON
             }
         }
     }
-    return flyingState
+    return flyingState;
 }
 
 void takeOff(ARCONTROLLER_Device_t *deviceController)
