@@ -3,8 +3,9 @@ set :markdown_engine, :redcarpet
 set :markdown,
     fenced_code_blocks: true,
     smartypants: true,
-    disable_indented_code_blocks: true,
+    disable_indented_code_blocks: false,
     prettify: true,
+    autolink: true,
     tables: true,
     with_toc_data: true,
     no_intra_emphasis: true
