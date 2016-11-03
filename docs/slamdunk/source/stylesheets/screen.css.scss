@@ -76,7 +76,7 @@ html, body {
 
   // language selector for mobile devices
   .lang-selector {
-    display: none;
+    display: block;
     a {
       padding-top: 0.5em;
       padding-bottom: 0.5em;
@@ -264,7 +264,7 @@ html, body {
   margin-left: $nav-width;
   position: relative;
   z-index: 10;
-  background-color: $main-bg;
+  background-color: $examples-bg;
   min-height: 100%;
 
   padding-bottom: 1px; // prevent margin overflow
@@ -275,6 +275,7 @@ html, body {
   // I know, it's hackish, but it's the simplist way to make the left
   // half of the content always this background color.
   .dark-box {
+    display:none;
     width: $examples-width;
     background-color: $examples-bg;
     position: absolute;
@@ -284,6 +285,7 @@ html, body {
   }
 
   .lang-selector {
+    display:none;
     position: fixed;
     z-index: 50;
     border-bottom: 5px solid $lang-select-active-bg;
@@ -321,6 +323,10 @@ html, body {
   }
 }
 
+%right-col + %left-col {
+  margin-top: $main-padding;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // CONTENT STYLES
 ////////////////////////////////////////////////////////////////////////////////
@@ -330,6 +336,8 @@ html, body {
   // to place content above the dark box
   position: relative;
   z-index: 30;
+  max-width: $tablet-width;
+  background-color: $main-bg;
 
   &:after {
     content: '';
@@ -338,7 +346,6 @@ html, body {
   }
 
   &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
-    margin-right: $examples-width;
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
@@ -531,9 +538,9 @@ html, body {
 
     padding: 2em $main-padding;
     margin: 0;
-    width: $examples-width;
+    width: 100%;
 
-    float:right;
+    float:none;
     clear:right;
 
     box-sizing: border-box;
@@ -569,10 +576,20 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 // RESPONSIVE DESIGN
 ////////////////////////////////////////////////////////////////////////////////
-// These are the styles for phones and tablets
+// These are the styles for phones
 // There are also a couple styles disperesed
 
-@media (max-width: $tablet-width) {
+@media (max-width: $phone-width) {
+
+  %left-col {
+    margin-right: 0;
+  }
+
+  %right-col {
+    width: auto;
+    float: none;
+  }
+
   .tocify-wrapper {
     left: -$nav-width;
 
@@ -593,16 +610,6 @@ html, body {
     padding-top: 0.3em;
     padding-bottom: 0.3em;
   }
-}
-
-@media (max-width: $phone-width) {
-  .dark-box {
-    display: none;
-  }
-
-  %left-col {
-    margin-right: 0;
-  }
 
   .tocify-wrapper .lang-selector {
     display: block;
@@ -612,12 +619,4 @@ html, body {
     display: none;
   }
 
-  %right-col {
-    width: auto;
-    float: none;
-  }
-
-  %right-col + %left-col {
-    margin-top: $main-padding;
-  }
 }
