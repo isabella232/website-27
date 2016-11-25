@@ -20,6 +20,7 @@ includes:
   - network_setup
   - buttons
   - leds
+  - slamdunk_bebop_2
   - troubleshooting
 
 search: true
