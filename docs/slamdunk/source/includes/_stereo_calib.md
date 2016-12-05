@@ -1,4 +1,6 @@
-# Stereo calibration
+#Stereo
+
+## Stereo calibration
 
 `/factory/intrinsics.yml` and `/factory/extrinsics.yml` contain the camera parameters
 using a format very similar to OpenCV3's fisheye model.
@@ -36,3 +38,25 @@ In `extrinsic.yml`:
 - R1 and R2: rectification transform (rotation matrix) for the left and right cameras respectively.
 - T: translation vector between the coordinate systems of the cameras.
 - R: rotation matrix between the left and right camera coordinate systems.
+
+## Stereo settings
+
+You can tweek the stereo matching settings in the `/etc/kalamos/stereo.yml` file.
+You'll find a description of most parameters within the stereo.yml file,
+but it would be easier to understand what the 3 configurable resolutions refer to with illustrations.
+
+The image below is an rgb image from the left camera.
+The green rectangle, of size cropCols/cropRows (here 576/576), delimits the ROI for depth calculation.
+The red lines delimit the pixels that will be rectified. Please note how the red area is inscribed in the green rectangle.
+
+![rgb crop](../images/stereoCrop_im1.png "rgb crop")
+
+The image below is the left rectified image and is of size rectCols/rectRows (here 576/576).
+Please note that rectSize and cropSize do NOT have to be the same, but it usually makes sense for them to be.
+
+![rectified image](../images/stereoCrop_im2.png "rectified image")
+
+Finally, the image below is the resulting depth image and is of size depthCols/depthRows (here 288/288).
+Please note that rectSize has to be a multiple of depthSize (here, x2).
+
+![depth map](../images/stereoCrop_im3.png "depth map")
