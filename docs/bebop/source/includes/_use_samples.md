@@ -25,9 +25,11 @@ They support the following drones:
 * Airborne Night
 * Swing
 * Mambo
-* SkyController
-* SkyController2
 
+And the following remote controllers:
+
+* SkyController
+* SkyController 2
 
 *What if you want to only build an app for the Bebop?
 Simply delete other files than:*
@@ -54,6 +56,8 @@ You can build this sample with Alchemy. In your `<SDK>` execute this command:
 `./build.sh -p arsdk-ios_sim -t build-sample -j` for iOS simulator
 
 If you prefer to build directly from XCode, use the buildWithLocalSDK configuration to use your localy compiled libraries (see [go deeper](#go-deeper) to first compile your own SDK). 
+
+Then, in XCode, use the buildWithLocalSDK configuration to use your freshly compiled sdk  libraries. (Product->Scheme->Edit Scheme).
 
 **Please note that there are two targets in the iOS sample: SDKSample and SDKSampleForSkyController2. The first one is using *-lardiscoverywithouteacc* in its Other Linker Flags list and does not include the ExternalAccessory framework. However SDKSampleForSkyController2 uses *-lardiscovery* and includes ExternalAccessory framework.**
 
