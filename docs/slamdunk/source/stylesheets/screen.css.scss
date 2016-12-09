@@ -340,7 +340,7 @@ html, body {
   background-color: $main-bg;
 
   &:after {
-    content: '';
+    content: '\00a0';
     display: block;
     clear: both;
   }
