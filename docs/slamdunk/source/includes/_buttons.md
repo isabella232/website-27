@@ -56,6 +56,6 @@ Usage:
     ...
 
 <aside class="warning">
-Please not that <code class="prettyprint">button_enter</code> is specifically handled by the system,
+Please note that <code class="prettyprint">button_enter</code> is specifically handled by the system,
 when pressed for 3 seconds, the system will shut down.
 </aside>
