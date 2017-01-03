@@ -142,9 +142,17 @@ Rebuild the node:
 
     catkin_make -j2
 
+[Connect to Parrot S.L.A.M.dunk through Bebop 2 Wi-Fi](#use-bebop-2-wi-fi) and
+[launch the bebop_node.](#built-in-bebop-node)
+
 Source your environment:
 
-    source source/devel/setup.bash
+    source devel/setup.bash
+
+Export `ROS_MASTER_URI` and `ROS_HOSTNAME`:
+
+    export ROS_MASTER_URI=http://192.168.43.2:11311
+    export ROS_HOSTNAME=$(hostname).local
 
 Use `roslaunch` to start the node:
 
@@ -158,5 +166,3 @@ For the Logitech F310 gamepad here is the mapping of the buttons and sticks:
   - RB button + right stick: roll and pitch
   - RB button + left stick: altitude and yaw
 
-Don't forget to [launch the bebop_node](#built-in-bebop-node)
-on the Parrot S.L.A.M.dunk.
