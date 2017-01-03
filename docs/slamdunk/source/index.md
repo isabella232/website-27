@@ -16,6 +16,7 @@ includes:
   - desktop_mode
   - ros_integration
   - dynamic_reconfigure
+  - streaming
   - stereo_calib
   - network_setup
   - buttons

@@ -1,9 +1,11 @@
 # Dynamic reconfiguration
 
 Some of the Parrot S.L.A.M.dunk node parameters can be reconfigured dynamically.
+For example the [RTP H.264 streaming](#rtp-h-264-streaming) service can be enabled and configured with
+dynamic reconfigure.
+
 The [dynamic_reconfigure](http://wiki.ros.org/dynamic_reconfigure) ROS tools
 are used to modify these parameters.
-
 To install them, type:
 
     sudo apt-get install ros-indigo-dynamic-reconfigure ros-indigo-rqt-reconfigure
