@@ -18,14 +18,25 @@ and the S.L.A.M.dunk node environment.
     source /opt/ros-slamdunk/setup.bash
 
 With this environment,
-you can access the Parrot S.L.A.M.dunk messages,
-for example:
+you can access the Parrot S.L.A.M.dunk messages.
 
-    $ rosmsg list | grep slamdunk_msgs
-    slamdunk_msgs/BoolStamped
-    slamdunk_msgs/Quality
-    slamdunk_msgs/QualityStamped
-    ...
+Comparison of the output of a `rostopic echo` on a custom message:
+
+    $ source /opt/ros/indigo/setup.bash
+    $ rostopic echo -n 1 /quality
+    ERROR: Cannot load message class for [slamdunk_msgs/QualityStamped]. Are your messages built?
+    $ source /opt/ros-slamdunk/setup.bash
+    $ rostopic echo -n 1 /quality
+    header:
+      seq: 20062
+      stamp:
+        secs: 1483438873
+        nsecs: 751636537
+      frame_id: map
+    quality:
+      value: 0
+    ---
+    $
 
 
 ## Conventions for units and coordinate systems
