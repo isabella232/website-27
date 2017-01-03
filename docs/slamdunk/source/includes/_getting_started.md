@@ -39,7 +39,7 @@ the `ROS_MASTER_URI` environement variable can be set to:
 
     export ROS_MASTER_URI=http://192.168.45.1:11311
 
-You also need to export `ROS_MACHINE`.
+You also need to export `ROS_HOSTNAME`.
 This should be a name the Parrot S.L.A.M.dunk can contact.
 If Bonjour/Zeroconf is supported, a possible value is:
 
