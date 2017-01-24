@@ -6,7 +6,7 @@ The version control is based on the repo tool, you can get it following [these i
 Learn [here](https://source.android.com/source/using-repo.html) how to use repo.<br/>
 On *Mac OS* you will need execute this command to install with brew some needed tools:<br/>
 `
-brew install bash coreutils gettext pkgconfig wget
+brew install bash coreutils gettext pkgconfig wget python python3 autoconf libtool
 `
 
 ## Download all sources
@@ -98,6 +98,8 @@ These external tools are required to build the SDK:
 * **build-essential** (only for Linux)
 * **autoconf**
 * **libtool**
+* **python**
+* **python3**
 * **libavahi-client-dev** (only for specific Samples)
 * **libavcodec-dev** (only for specific Samples)
 * **libavformat-dev** (only for specific Samples)
