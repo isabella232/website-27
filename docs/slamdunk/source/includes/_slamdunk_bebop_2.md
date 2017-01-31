@@ -8,6 +8,8 @@ To carry and power the Parrot S.L.A.M.dunk on Bebop 2 you can refer to
 
 <aside class="notice">
 Please note that the version of your Bebop 2 must be 4.1.0 or higher.
+If your Bebop 2 is not 4.1.0 or higher you can refer to
+<a href="http://forum.developer.parrot.com/t/tuto-change-bebop-2-flight-controller-settings-to-carry-the-s-l-a-m-dunk/5123?source_topic_id=5117">this tutorial on the Parrot developer forum</a>.
 </aside>
 
 ## Use Bebop 2 Wi-Fi
@@ -17,7 +19,17 @@ Here is an example on an Ubuntu 14.04 workstation.
 
 Connect Parrot S.L.A.M.dunk to Bebop 2 with the micro USB A to micro USB B cable.
 Start both Parrot S.L.A.M.dunk and Bebop 2 regardless of the order.
+Wait for Parrot S.L.A.M.dunk boot to end (LEDs no more blinking).
 Connect to Bebop 2 Wi-Fi on your workstation.
+
+<aside class="notice">
+Please note that from version 4.0.4 or higher you don't need to add the route
+manually on your workstation.
+Simply connect to the Bebop 2 Wifi and initiate ssh connection to
+the Parrot S.L.A.M.dunk.
+If the connection is denied disconnect and reconnect to the Bebop 2 Wifi.
+You can monitor routes on your workstation with the "route" command line.
+</aside>
 
 Add a new route on your computer:
 
@@ -28,6 +40,13 @@ Connect to S.L.A.M.dunk:
     ssh slamdunk@192.168.43.2
 
 ## Bebop 2 Ethernet over USB
+
+Using the included micro USB A to micro USB B cable, you can create
+an ethernet over USB connection between the two devices.
+This connection enable the Parrot S.L.A.M.dunk to send
+[AR SDK3](http://developer.parrot.com/docs/SDK3/) commands to the Bebop 2,
+for example.
+In order to activate this feature, some actions are required on the Bebop 2.
 
 ### Non persistent way
 
