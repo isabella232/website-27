@@ -5,4 +5,6 @@ The SDK will help you connect, pilot, receive stream, save and download medias (
 
 FreeFlight3 is using this SDK.
 
-This SDK is mainly written is C, it provides libraries for Unix system, Android and iOS. 
+This SDK is mainly written is C, it provides libraries for Unix system, Android and iOS.
+
+It also comes with a drone simulator called Sphinx, which is intended to help you test your application before flying with your actual drone. All information about Sphinx (installation, user manual, application notes) are available [HERE](https://developer.parrot.com/docs/sphinx/index.html).
