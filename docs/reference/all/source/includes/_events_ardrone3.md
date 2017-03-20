@@ -1682,6 +1682,149 @@ Triggered regularly.<br/>
 
 <br/>
 
+<!-- ARDrone3-PilotingState-moveToChanged-->
+### <a name="ARDrone3-PilotingState-moveToChanged">Move to changed</a><br/>
+> Move to changed:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_LATITUDE, arg);
+            if (arg != NULL)
+            {
+                double latitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_LONGITUDE, arg);
+            if (arg != NULL)
+            {
+                double longitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ALTITUDE, arg);
+            if (arg != NULL)
+            {
+                double altitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE orientation_mode = arg->value.I32;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_HEADING, arg);
+            if (arg != NULL)
+            {
+                float heading = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS status = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_LATITUDE, arg);
+            if (arg != NULL)
+            {
+                double latitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_LONGITUDE, arg);
+            if (arg != NULL)
+            {
+                double longitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ALTITUDE, arg);
+            if (arg != NULL)
+            {
+                double altitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE orientation_mode = arg->value.I32;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_HEADING, arg);
+            if (arg != NULL)
+            {
+                float heading = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS status = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            double latitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_LATITUDE);
+            double longitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_LONGITUDE);
+            double altitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ALTITUDE);
+            ARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE_ENUM orientation_mode = ARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE));
+            float heading = (float)((Double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_HEADING)).doubleValue();
+            ARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS_ENUM status = ARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS));
+        }
+    }
+}
+```
+
+The drone moves or moved to a given location.<br/>
+
+
+* latitude (double): Latitude of the location (in degrees) to reach<br/>
+* longitude (double): Longitude of the location (in degrees) to reach<br/>
+* altitude (double): Altitude above sea level (in m) to reach<br/>
+* orientation_mode (enum): Orientation mode of the move to<br/>
+   * NONE: The drone won't change its orientation<br/>
+   * TO_TARGET: The drone will make a rotation to look in direction of the given location<br/>
+   * HEADING_START: The drone will orientate itself to the given heading before moving to the location<br/>
+   * HEADING_DURING: The drone will orientate itself to the given heading while moving to the location<br/>
+* heading (float): Heading (relative to the North in degrees).<br/>
+This value is only used if the orientation mode is HEADING_START or HEADING_DURING<br/>
+* status (enum): Status of the move to<br/>
+   * RUNNING: The drone is actually flying to the given position<br/>
+   * DONE: The drone has reached the target<br/>
+   * CANCELED: The move to has been canceled, either by a new moveTo command or<br/>
+by a CancelMoveTo command.<br/>
+   * ERROR: The move to has not been finished or started because of an error.<br/>
+
+
+Triggered by [MoveTo](#ARDrone3-Piloting-moveTo) or when the drone did reach the given position.<br/>
+
+
+
+*Supported by <br/>*
+
+- *no product*<br/>
+
+
+<br/>
+
 <!-- ARDrone3-PilotingEvent-moveByEnd-->
 ### <a name="ARDrone3-PilotingEvent-moveByEnd">Relative move ended</a><br/>
 > Relative move ended:
@@ -1798,7 +1941,7 @@ Informs about the move that the drone managed to do and why it stopped.<br/>
    * interrupted: Command moveBy interrupted<br/>
 
 
-Triggered when the landing state changes.<br/>
+Triggered when the drone reaches its target or when it is interrupted by another [moveBy command](#ARDrone3-Piloting-moveBy) or when an error occurs.<br/>
 
 
 
@@ -6415,6 +6558,84 @@ Triggered by [SetReturnHomeDelay](#ARDrone3-GPSSettings-ReturnHomeDelay).<br/>
 - *Bebop 2*<br/>
 - *Disco*<br/>
 
+
+<br/>
+
+<!-- ARDrone3-GPSSettingsState-GeofenceCenterChanged-->
+### <a name="ARDrone3-GPSSettingsState-GeofenceCenterChanged">Geofence center</a><br/>
+> Geofence center:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GEOFENCECENTERCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GEOFENCECENTERCHANGED_LATITUDE, arg);
+            if (arg != NULL)
+            {
+                double latitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GEOFENCECENTERCHANGED_LONGITUDE, arg);
+            if (arg != NULL)
+            {
+                double longitude = arg->value.Double;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GEOFENCECENTERCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GEOFENCECENTERCHANGED_LATITUDE, arg);
+            if (arg != NULL)
+            {
+                double latitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GEOFENCECENTERCHANGED_LONGITUDE, arg);
+            if (arg != NULL)
+            {
+                double longitude = arg->value.Double;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GEOFENCECENTERCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            double latitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GEOFENCECENTERCHANGED_LATITUDE);
+            double longitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_GEOFENCECENTERCHANGED_LONGITUDE);
+        }
+    }
+}
+```
+
+Geofence center location. This location represents the center of the geofence zone. This is updated at a maximum frequency of 1 Hz.<br/>
+
+
+* latitude (double): GPS latitude in decimal degrees<br/>
+* longitude (double): GPS longitude in decimal degrees<br/>
+
+
+Triggered when [HomeChanged](#ARDrone3-GPSSettingsState-HomeChanged) and when [GpsLocationChanged](#ARDrone3-PilotingState-GpsLocationChanged) before takeoff.<br/>
 
 <br/>
 

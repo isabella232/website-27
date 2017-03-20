@@ -413,6 +413,8 @@ Each action can only be mapped once per product.<br/>
    * flip_back: Flip back<br/>
    * emergency: Emergency motors shutdown<br/>
    * center_camera: Reset camera to its default position<br/>
+   * cycle_hud: Cycle between different hud configurations on HDMI<br/>
+(Skycontroller 1 only)<br/>
 * buttons (u32): Buttons combination mapped to the action (bitfield).<br/>
 * list_flags (bitfield as u8): Flags use by maps and lists<br/>
    * First: indicate it's the first element of the list.<br/>
@@ -799,6 +801,8 @@ Application specific actions are typically used for UI interaction which does no
    * flip_back: Flip back<br/>
    * emergency: Emergency motors shutdown<br/>
    * center_camera: Reset camera to its default position<br/>
+   * cycle_hud: Cycle between different hud configurations on HDMI<br/>
+(Skycontroller 1 only)<br/>
 
 
 Triggered when any button action set to application_action is triggered.<br/>
@@ -1157,7 +1161,7 @@ Triggered when the active product changes<br/>
 
 *Supported by <br/>*
 
-- *SkyController 2 since 1.0.4*<br/>
+- *SkyController 2 since 1.0.5*<br/>
 
 
 <br/>

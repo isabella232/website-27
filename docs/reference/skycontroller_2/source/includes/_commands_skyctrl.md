@@ -141,8 +141,8 @@ The SkyController will send a [MagnetoCalibrationQualityUpdatesState](#SkyContro
 <br/>
 
 <!-- SkyController-Factory-Reset-->
-### <a name="SkyController-Factory-Reset">Reset the SkyController 2 to its factory settings</a><br/>
-> Reset the SkyController 2 to its factory settings:
+### <a name="SkyController-Factory-Reset">Reset the SkyController to its factory settings</a><br/>
+> Reset the SkyController to its factory settings:
 
 ```c
 deviceController->skyController->sendFactoryReset(deviceController->skyController);
@@ -156,13 +156,15 @@ deviceController->skyController->sendFactoryReset(deviceController->skyControlle
 deviceController.getFeatureSkyController().sendFactoryReset();
 ```
 
-This command will request a factory reset from the SkyController 2. *The factory reset procedure implies an automatic reboot*, which will be done immediately after recieving this command.<br/>
+This command will request a factory reset from the SkyController. *The factory reset procedure implies an automatic reboot*, which will be done immediately after recieving this command.<br/>
 
 
 
 
 Result:<br/>
-The SkyController 2 will reboot, all settings will be reset to their default values. Products that were paired in factory will **NOT** lose this pairing.<br/>
+The SkyController will reboot, all settings will be reset to their default values.<br/>
+SkyController 2 that were paired in factory will **NOT** lose this pairing.<br/>
+SkyController 1 will lose **ALL** pairing, including factory ones.<br/>
 
 
 *Supported by <br/>*

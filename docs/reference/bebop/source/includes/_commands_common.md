@@ -523,6 +523,43 @@ The currently playing FlightPlan will be stopped. Then, event [FlightPlanPlaying
 
 <br/>
 
+<!-- common-FlightPlanSettings-ReturnHomeOnDisconnect-->
+### <a name="common-FlightPlanSettings-ReturnHomeOnDisconnect">Set ReturnHome behavior during FlightPlan</a><br/>
+> Set ReturnHome behavior during FlightPlan:
+
+```c
+deviceController->common->sendFlightPlanSettingsReturnHomeOnDisconnect(deviceController->common, (uint8_t)value);
+```
+
+```objective_c
+deviceController->common->sendFlightPlanSettingsReturnHomeOnDisconnect(deviceController->common, (uint8_t)value);
+```
+
+```java
+deviceController.getFeatureCommon().sendFlightPlanSettingsReturnHomeOnDisconnect((byte)value);
+```
+
+Set ReturnHome behavior during FlightPlan<br/>
+When set, drone will return home, after return home delay, if a disconnection occurs during execution of FlightPlan<br/>
+
+
+* value (u8): 1 to enable, 0 to disable<br/>
+
+
+Result:<br/>
+The return home mode is enabled or disabled.<br/>
+Then, event [ReturnHomeOnDisconnectionChanged](#common-FlightPlanSettingsState-ReturnHomeOnDisconnectChanged) is triggered.<br/>
+
+
+*Supported by <br/>*
+
+- *Bebop since 4.1.0*<br/>
+- *Bebop 2 since 4.1.0*<br/>
+- *Disco since 1.4.0*<br/>
+
+
+<br/>
+
 <!-- common-Calibration-MagnetoCalibration-->
 ### <a name="common-Calibration-MagnetoCalibration">Start/Abort magnetometer calibration</a><br/>
 > Start/Abort magnetometer calibration:

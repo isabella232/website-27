@@ -462,7 +462,6 @@ deviceController.getFeatureSkyController().sendAccessPointSettingsWifiSelection(
 Set the SkyController access point channel.<br/>
 The channel will be checked, and can be modified before application. Use the [WifiSelectionChanged](#SkyController-AccessPointSettingsState-WifiSelectionChanged) event to get the applied channel/band.<br/>
 The list of authorized channels for the current country can be retrived with the [WifiAuthChannel](#SkyController-Wifi-WifiAuthChannel) command.<br/>
-This command is deprecated. Use the [WifiSelection](#SkyController-AccessPointSettings-WifiSelection) command instead.<br/>
 
 
 * type (enum): The type of wifi selection (only manual at the moment)<br/>
@@ -481,6 +480,39 @@ The network channel will change (which will likely disconnect the controller), t
 
 - *SkyController*<br/>
 
+
+<br/>
+
+<!-- SkyController-AccessPointSettings-WifiSecurity-->
+### <a name="SkyController-AccessPointSettings-WifiSecurity">Set access point security</a><br/>
+> Set access point security:
+
+```c
+deviceController->skyController->sendAccessPointSettingsWifiSecurity(deviceController->skyController, (eARCOMMANDS_SKYCONTROLLER_ACCESSPOINTSETTINGS_WIFISECURITY_SECURITY_TYPE)security_type, (char *)key);
+```
+
+```objective_c
+deviceController->skyController->sendAccessPointSettingsWifiSecurity(deviceController->skyController, (eARCOMMANDS_SKYCONTROLLER_ACCESSPOINTSETTINGS_WIFISECURITY_SECURITY_TYPE)security_type, (char *)key);
+```
+
+```java
+deviceController.getFeatureSkyController().sendAccessPointSettingsWifiSecurity((ARCOMMANDS_SKYCONTROLLER_ACCESSPOINTSETTINGS_WIFISECURITY_SECURITY_TYPE_ENUM)security_type, (String)key);
+```
+
+Set the SkyController access point security. The key will be checked, and can be refused by the product. In this case, the security will not be changed. Use the [WifiSecurityChanged](#SkyController-AccessPointSettingsState-WifiSecurityChanged) event to get the applied security settings.<br/>
+
+
+* security_type (enum): The type of security for the network<br/>
+   * open: Wifi is not protected (default)<br/>
+   * wpa2: Wifi is protected by wpa2<br/>
+* key (string): The security key (ignored if security_type is open)<br/>
+
+
+Result:<br/>
+The network security will change (which will likely disconnect the controller), then a [WifiSecurityChanged](#SkyController-AccessPointSettingsState-WifiSecurityChanged) event will be sent<br/>
+
+
+*Supported by <br/>*
 
 <br/>
 
@@ -1040,8 +1072,8 @@ The SkyController will send a [MagnetoCalibrationQualityUpdatesState](#SkyContro
 <br/>
 
 <!-- SkyController-Factory-Reset-->
-### <a name="SkyController-Factory-Reset">Reset the SkyController 2 to its factory settings</a><br/>
-> Reset the SkyController 2 to its factory settings:
+### <a name="SkyController-Factory-Reset">Reset the SkyController to its factory settings</a><br/>
+> Reset the SkyController to its factory settings:
 
 ```c
 deviceController->skyController->sendFactoryReset(deviceController->skyController);
@@ -1055,13 +1087,15 @@ deviceController->skyController->sendFactoryReset(deviceController->skyControlle
 deviceController.getFeatureSkyController().sendFactoryReset();
 ```
 
-This command will request a factory reset from the SkyController 2. *The factory reset procedure implies an automatic reboot*, which will be done immediately after recieving this command.<br/>
+This command will request a factory reset from the SkyController. *The factory reset procedure implies an automatic reboot*, which will be done immediately after recieving this command.<br/>
 
 
 
 
 Result:<br/>
-The SkyController 2 will reboot, all settings will be reset to their default values. Products that were paired in factory will **NOT** lose this pairing.<br/>
+The SkyController will reboot, all settings will be reset to their default values.<br/>
+SkyController 2 that were paired in factory will **NOT** lose this pairing.<br/>
+SkyController 1 will lose **ALL** pairing, including factory ones.<br/>
 
 
 *Supported by <br/>*

@@ -1623,6 +1623,93 @@ Triggered by [StartFlightPlan](#common-Mavlink-Start) if an error occurs.<br/>
 
 <br/>
 
+<!-- common-FlightPlanSettingsState-ReturnHomeOnDisconnectChanged-->
+### <a name="common-FlightPlanSettingsState-ReturnHomeOnDisconnectChanged">ReturnHome behavior during FlightPlan</a><br/>
+> ReturnHome behavior during FlightPlan:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSETTINGSSTATE_RETURNHOMEONDISCONNECTCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSETTINGSSTATE_RETURNHOMEONDISCONNECTCHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                uint8_t state = arg->value.U8;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSETTINGSSTATE_RETURNHOMEONDISCONNECTCHANGED_ISREADONLY, arg);
+            if (arg != NULL)
+            {
+                uint8_t isReadOnly = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSETTINGSSTATE_RETURNHOMEONDISCONNECTCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSETTINGSSTATE_RETURNHOMEONDISCONNECTCHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                uint8_t state = arg->value.U8;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSETTINGSSTATE_RETURNHOMEONDISCONNECTCHANGED_ISREADONLY, arg);
+            if (arg != NULL)
+            {
+                uint8_t isReadOnly = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSETTINGSSTATE_RETURNHOMEONDISCONNECTCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            byte state = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSETTINGSSTATE_RETURNHOMEONDISCONNECTCHANGED_STATE)).intValue();
+            byte isReadOnly = (byte)((Integer)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANSETTINGSSTATE_RETURNHOMEONDISCONNECTCHANGED_ISREADONLY)).intValue();
+        }
+    }
+}
+```
+
+Define behavior of drone when disconnection occurs during a flight plan<br/>
+
+
+* state (u8): 1 if enabled, 0 if disabled<br/>
+* isReadOnly (u8): 1 if readOnly, 0 if writable<br/>
+
+
+Triggered by [setReturnHomeOnDisconnectMode](#common-FlightPlanSettings-ReturnHomeOnDisconnect).<br/>
+
+
+
+*Supported by <br/>*
+
+- *Bebop since 4.1.0*<br/>
+- *Bebop 2 since 4.1.0*<br/>
+- *Disco since 1.4.0*<br/>
+
+
+<br/>
+
 <!-- common-CalibrationState-MagnetoCalibrationStateChanged-->
 ### <a name="common-CalibrationState-MagnetoCalibrationStateChanged">Magneto calib process axis state</a><br/>
 > Magneto calib process axis state:
@@ -2254,14 +2341,30 @@ FlightPlan components state list.<br/>
 
 
 * component (enum): Drone FlightPlan component id (unique)<br/>
-   * GPS: GPS for Drone FlightPlan<br/>
-   * Calibration: Calibration for Drone FlightPlan<br/>
-   * Mavlink_File: Mavlink file for Drone FlightPlan<br/>
-   * TakeOff: Take off<br/>
+   * GPS: Drone GPS component.<br/>
+State is 0 when the drone needs a GPS fix.<br/>
+   * Calibration: Drone Calibration component.<br/>
+State is 0 when the sensors of the drone needs to be calibrated.<br/>
+   * Mavlink_File: Mavlink file component.<br/>
+State is 0 when the mavlink file is missing or contains error.<br/>
+   * TakeOff: Drone Take off component.<br/>
+State is 0 when the drone cannot take-off.<br/>
+   * WaypointsBeyondGeofence: Component for waypoints beyond the geofence.<br/>
+State is 0 when one or more waypoints are beyond the geofence.<br/>
 * State (u8): State of the FlightPlan component (1 FlightPlan component OK, otherwise 0)<br/>
 
 
 Triggered when the state of required components changes.<br/>
+
+GPS component is triggered when the availability of the GPS of the drone changes.<br/>
+
+Calibration component is triggered when the calibration state of the drone sensors changes<br/>
+
+Mavlink_File component is triggered when the command [StartFlightPlan](#common-Mavlink-Start) is received.<br/>
+
+Takeoff component is triggered when the drone needs to take-off to continue the FlightPlan.<br/>
+
+WaypointsBeyondGeofence component is triggered when the command [StartFlightPlan](#common-Mavlink-Start) is received.<br/>
 
 
 

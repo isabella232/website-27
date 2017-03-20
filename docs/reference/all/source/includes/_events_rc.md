@@ -442,68 +442,6 @@ available, becomes the main controller.<br/>
 * neutral_calibrated (u8): 1 if neutral channels are calibrated, 0 otherwise.<br/>
 <br/>
 
-<!-- rc-receiver_quality-->
-### <a name="rc-receiver_quality">RC signal quality level</a><br/>
-> RC signal quality level:
-
-```c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERQUALITY) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERQUALITY_LEVEL, arg);
-            if (arg != NULL)
-            {
-                uint8_t level = arg->value.U8;
-            }
-        }
-    }
-}
-```
-
-```objective_c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERQUALITY) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERQUALITY_LEVEL, arg);
-            if (arg != NULL)
-            {
-                uint8_t level = arg->value.U8;
-            }
-        }
-    }
-}
-```
-
-```java
-@Override
-public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERQUALITY) && (elementDictionary != null)){
-        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
-        if (args != null) {
-            byte level = (byte)((Integer)args.get(ARFeatureRc.ARCONTROLLER_DICTIONARY_KEY_RC_RECEIVERQUALITY_LEVEL)).intValue();
-        }
-    }
-}
-```
-
-RC signal quality level<br/>
-
-
-* level (u8): Current RC signal quality level between 0 to 5.<br/>
-<br/>
-
 <!-- rc-channel_action_item-->
 ### <a name="rc-channel_action_item">Channel action item</a><br/>
 > Channel action item:

@@ -326,7 +326,6 @@ deviceController.getFeatureSkyController().sendAccessPointSettingsWifiSelection(
 Set the SkyController access point channel.<br/>
 The channel will be checked, and can be modified before application. Use the [WifiSelectionChanged](#SkyController-AccessPointSettingsState-WifiSelectionChanged) event to get the applied channel/band.<br/>
 The list of authorized channels for the current country can be retrived with the [WifiAuthChannel](#SkyController-Wifi-WifiAuthChannel) command.<br/>
-This command is deprecated. Use the [WifiSelection](#SkyController-AccessPointSettings-WifiSelection) command instead.<br/>
 
 
 * type (enum): The type of wifi selection (only manual at the moment)<br/>

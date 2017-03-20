@@ -82,6 +82,8 @@ Each action can be mapped to different buttons for different products.<br/>
    * flip_back: Flip back<br/>
    * emergency: Emergency motors shutdown<br/>
    * center_camera: Reset camera to its default position<br/>
+   * cycle_hud: Cycle between different hud configurations on HDMI<br/>
+(Skycontroller 1 only)<br/>
 * buttons (u32): Buttons combination mapped to the action (bitfield).<br/>
 Set 0 (no button) to unmap an action<br/>
 

@@ -412,6 +412,86 @@ Then, event [FlyingState](#ARDrone3-PilotingState-FlyingStateChanged) is trigger
 
 <br/>
 
+<!-- ARDrone3-Piloting-moveTo-->
+### <a name="ARDrone3-Piloting-moveTo">Move to a location</a><br/>
+> Move to a location:
+
+```c
+deviceController->aRDrone3->sendPilotingMoveTo(deviceController->aRDrone3, (double)latitude, (double)longitude, (double)altitude, (eARCOMMANDS_ARDRONE3_PILOTING_MOVETO_ORIENTATION_MODE)orientation_mode, (float)heading);
+```
+
+```objective_c
+deviceController->aRDrone3->sendPilotingMoveTo(deviceController->aRDrone3, (double)latitude, (double)longitude, (double)altitude, (eARCOMMANDS_ARDRONE3_PILOTING_MOVETO_ORIENTATION_MODE)orientation_mode, (float)heading);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendPilotingMoveTo((double)latitude, (double)longitude, (double)altitude, (ARCOMMANDS_ARDRONE3_PILOTING_MOVETO_ORIENTATION_MODE_ENUM)orientation_mode, (float)heading);
+```
+
+Move the drone to a specified location.<br/>
+If a new command moveTo is sent, the drone will immediatly cancel the previous one.<br/>
+If a [CancelMoveTo](#ARDrone3-Piloting-CancelMoveTo) command is sent, the moveTo is stopped.<br/>
+During the moveTo, all pitch, roll and gaz values of the piloting command will be ignored by the drone.<br/>
+However, the yaw value can be used.<br/>
+
+
+* latitude (double): Latitude of the location (in degrees) to reach<br/>
+* longitude (double): Longitude of the location (in degrees) to reach<br/>
+* altitude (double): Altitude above sea level (in m) to reach<br/>
+* orientation_mode (enum): Orientation mode of the move to<br/>
+   * NONE: The drone won't change its orientation<br/>
+   * TO_TARGET: The drone will make a rotation to look in direction of the given location<br/>
+   * HEADING_START: The drone will orientate itself to the given heading before moving to the location<br/>
+   * HEADING_DURING: The drone will orientate itself to the given heading while moving to the location<br/>
+* heading (float): Heading (relative to the North in degrees).<br/>
+This value is only used if the orientation mode is HEADING_START or HEADING_DURING<br/>
+
+
+Result:<br/>
+Event [MovingTo](#ARDrone3-PilotingState-moveToChanged) is triggered with state running. Then, the drone will move to the given location.<br/>
+Then, event [MoveToChanged](#ARDrone3-PilotingState-moveToChanged) is triggered with state succeed.<br/>
+
+
+*Supported by <br/>*
+
+- *no product*<br/>
+
+
+<br/>
+
+<!-- ARDrone3-Piloting-CancelMoveTo-->
+### <a name="ARDrone3-Piloting-CancelMoveTo">Cancel the moveTo</a><br/>
+> Cancel the moveTo:
+
+```c
+deviceController->aRDrone3->sendPilotingCancelMoveTo(deviceController->aRDrone3);
+```
+
+```objective_c
+deviceController->aRDrone3->sendPilotingCancelMoveTo(deviceController->aRDrone3);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendPilotingCancelMoveTo();
+```
+
+Cancel the current moveTo.<br/>
+If there is no current moveTo, this command has no effect.<br/>
+
+
+
+
+Result:<br/>
+Event [MoveToChanged](#ARDrone3-PilotingState-moveToChanged) is triggered with state canceled.<br/>
+
+
+*Supported by <br/>*
+
+- *no product*<br/>
+
+
+<br/>
+
 <!-- ARDrone3-Animations-Flip-->
 ### <a name="ARDrone3-Animations-Flip">Make a flip</a><br/>
 > Make a flip:

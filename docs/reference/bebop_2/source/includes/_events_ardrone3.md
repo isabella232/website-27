@@ -1193,7 +1193,7 @@ Informs about the move that the drone managed to do and why it stopped.<br/>
    * interrupted: Command moveBy interrupted<br/>
 
 
-Triggered when the landing state changes.<br/>
+Triggered when the drone reaches its target or when it is interrupted by another [moveBy command](#ARDrone3-Piloting-moveBy) or when an error occurs.<br/>
 
 
 

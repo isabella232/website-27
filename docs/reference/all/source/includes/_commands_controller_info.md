@@ -15,8 +15,7 @@ deviceController.getFeatureControllerInfo().sendGps((double)latitude, (double)lo
 ```
 
 Controller gps info.<br/>
-This command should be sent on a non acknowledged buffer if it is sent periodically,<br/>
-and on an acknowledged buffer otherwise.<br/>
+This command is not acknowledged by the drone.<br/>
 
 
 * latitude (double): Latitude of the controller (in deg)<br/>
@@ -60,5 +59,6 @@ deviceController.getFeatureControllerInfo().sendBarometer((float)pressure, (doub
 
 Result:<br/>
 The altitude of the controller is known by the drone.<br/>
+This command is not acknowledged by the drone.<br/>
 <br/>
 
