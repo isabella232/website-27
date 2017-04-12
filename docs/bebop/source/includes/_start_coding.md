@@ -13,6 +13,8 @@ First of all, you will need to discover the drones around you. To do that, we wi
 ```
 
 ```objective_c
+#import <libARDiscovery/ARDISCOVERY_BonjourDiscovery.h>
+
 - (void)startDiscovery
 {
     [[ARDiscovery sharedInstance] start];
@@ -89,26 +91,27 @@ private void startDiscovery()
 ```
 
 ```java
-// your class should implement ARDiscoveryServicesDevicesListUpdatedReceiverDelegate
 private void registerReceivers()
 {
-    mArdiscoveryServicesDevicesListUpdatedReceiver = new ARDiscoveryServicesDevicesListUpdatedReceiver(this);
+    ARDiscoveryServicesDevicesListUpdatedReceiver receiver =
+        new ARDiscoveryServicesDevicesListUpdatedReceiver(mDiscoveryDelegate);
     LocalBroadcastManager localBroadcastMgr = LocalBroadcastManager.getInstance(getApplicationContext());
-   localBroadcastMgr.registerReceiver(mArdiscoveryServicesDevicesListUpdatedReceiver, new IntentFilter(ARDiscoveryService.kARDiscoveryServiceNotificationServicesDevicesListUpdated));
+    localBroadcastMgr.registerReceiver(receiver,
+        new IntentFilter(ARDiscoveryService.kARDiscoveryServiceNotificationServicesDevicesListUpdated));
 }
 
-@Override
-public void onServicesDevicesListUpdated()
-{
-    Log.d(TAG, "onServicesDevicesListUpdated ...");
+private final ARDiscoveryServicesDevicesListUpdatedReceiverDelegate mDiscoveryDelegate =
+    new ARDiscoveryServicesDevicesListUpdatedReceiverDelegate() {
 
-    if (mArdiscoveryService != null)
-    {
-        List<ARDiscoveryDeviceService> deviceList = mArdiscoveryService.getDeviceServicesArray();
+    @Override
+    public void onServicesDevicesListUpdated() {
+        if (mArdiscoveryService != null) {
+            List<ARDiscoveryDeviceService> deviceList = mArdiscoveryService.getDeviceServicesArray();
 
-        // Do what you want with the device list
+            // Do what you want with the device list
+        }
     }
-}
+};
 ```
 
 > Once you have the ARService you want to use, transform it into an ARDiscoveryDevice (you will need it at the [next step](#create_device_controller))
@@ -152,113 +155,29 @@ ARDiscovery_Device_t* createDiscoveryDevice(eARDISCOVERY_PRODUCT product, const 
 // this should be called in background
 - (ARDISCOVERY_Device_t *)createDiscoveryDeviceWithService:(ARService*)service
 {
-    ARDISCOVERY_Device_t *device = NULL;
-
+   ARDISCOVERY_Device_t *device = NULL;
     eARDISCOVERY_ERROR errorDiscovery = ARDISCOVERY_OK;
 
-    device = ARDISCOVERY_Device_New (&errorDiscovery);
+    device = [service createDevice:&errorDiscovery];
 
-    if (errorDiscovery == ARDISCOVERY_OK)
-    {
-        // init the discovery device
-        if (service.product == ARDISCOVERY_PRODUCT_ARDRONE)
-        {
-            // need to resolve service to get the IP
-            BOOL resolveSucceeded = [self resolveService:service];
-
-            if (resolveSucceeded)
-            {
-                NSString *ip = [[ARDiscovery sharedInstance] convertNSNetServiceToIp:service];
-                int port = (int)[(NSNetService *)service.service port];
-
-                if (ip)
-                {
-                    // create a Wifi discovery device
-                    errorDiscovery = ARDISCOVERY_Device_InitWifi (device, service.product, [service.name UTF8String], [ip UTF8String], port);
-                }
-                else
-                {
-                    NSLog(@"ip is null");
-                    errorDiscovery = ARDISCOVERY_ERROR;
-                }
-            }
-            else
-            {
-                NSLog(@"Resolve error");
-                errorDiscovery = ARDISCOVERY_ERROR;
-            }
-        }
-
-        if (errorDiscovery != ARDISCOVERY_OK)
-        {
-            ARDISCOVERY_Device_Delete(&device);
-        }
-    }
+    if (errorDiscovery != ARDISCOVERY_OK)
+        NSLog(@"Discovery error :%s", ARDISCOVERY_Error_ToString(errorDiscovery));
 
     return device;
-}
-
-#pragma mark resolveService
-- (BOOL)resolveService:(ARService*)service
-{
-    BOOL retval = NO;
-    _resolveSemaphore = dispatch_semaphore_create(0);
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(discoveryDidResolve:) name:kARDiscoveryNotificationServiceResolved object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(discoveryDidNotResolve:) name:kARDiscoveryNotificationServiceNotResolved object:nil];
-
-    [[ARDiscovery sharedInstance] resolveService:service];
-
-    // this semaphore will be signaled in discoveryDidResolve and discoveryDidNotResolve
-    dispatch_semaphore_wait(_resolveSemaphore, dispatch_time(DISPATCH_TIME_NOW, 10000000000));
-
-    NSString *ip = [[ARDiscovery sharedInstance] convertNSNetServiceToIp:service];
-    if (ip != nil)
-    {
-        retval = YES;
-    }
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kARDiscoveryNotificationServiceResolved object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kARDiscoveryNotificationServiceNotResolved object:nil];
-    _resolveSemaphore = nil;
-    return retval;
-}
-
-- (void)discoveryDidResolve:(NSNotification *)notification
-{
-    dispatch_semaphore_signal(_resolveSemaphore);
-}
-
-- (void)discoveryDidNotResolve:(NSNotification *)notification
-{
-    NSLog(@"Resolve failed");
-    dispatch_semaphore_signal(_resolveSemaphore);
 }
 ```
 
 ```java
-    private ARDiscoveryDevice createDiscoveryDevice(ARDiscoveryDeviceService service)
-    {
-        ARDiscoveryDevice device = null;
-        if ((service != null) &&
-                (ARDISCOVERY_PRODUCT_ENUM.ARDISCOVERY_PRODUCT_ARDRONE.equals(ARDiscoveryService.getProductFromProductID(service.getProductID()))))
-        {
-            try
-            {
-                device = new ARDiscoveryDevice();
-
-                ARDiscoveryDeviceNetService netDeviceService = (ARDiscoveryDeviceNetService) service.getDevice();
-
-                device.initWifi(ARDISCOVERY_PRODUCT_ENUM.ARDISCOVERY_PRODUCT_ARDRONE, netDeviceService.getName(), netDeviceService.getIp(), netDeviceService.getPort());
-            }
-            catch (ARDiscoveryException e)
-            {
-                e.printStackTrace();
-                Log.e(TAG, "Error: " + e.getError());
-            }
-        }
-
-        return device;
+private ARDiscoveryDevice createDiscoveryDevice(@NonNull ARDiscoveryDeviceService service) {
+    ARDiscoveryDevice device = null;
+    try {
+        device = new ARDiscoveryDevice(mContext, service);
+    } catch (ARDiscoveryException e) {
+        Log.e(TAG, "Exception", e);
     }
+
+    return device;
+}
 ```
 
 > Clean everything:
@@ -321,18 +240,23 @@ ARCONTROLLER_Device_t *deviceController = ARCONTROLLER_Device_New (discoveryDevi
 ```
 
 ```objective_c
+ARDISCOVERY_Device_t *discoveryDevice = [self createDiscoveryDeviceWithService:service];
 eARCONTROLLER_ERROR error = ARCONTROLLER_OK;
 ARCONTROLLER_Device_t *deviceController = ARCONTROLLER_Device_New (discoveryDevice, &error);
 ```
 
 ```java
-try
-{
-    deviceController = new ARDeviceController (device);
-}
-catch (ARControllerException e)
-{
-    e.printStackTrace();
+ARDiscoveryDevice discoveryDevice = createDiscoveryDevice(mDeviceService);
+if (discoveryDevice != null) {
+    try
+    {
+        deviceController = new ARDeviceController (device);
+        discoveryDevice.dispose();
+    }
+    catch (ARControllerException e)
+    {
+        e.printStackTrace();
+    }
 }
 ```
 
@@ -673,6 +597,9 @@ void deleteDeviceController(ARCONTROLLER_Device_t *deviceController)
 
 ```java
 ARCONTROLLER_ERROR_ENUM error = deviceController.stop();
+
+// only when the deviceController is stopped
+deviceController.dispose();
 ```
 
 ### Taking off
@@ -1054,8 +981,6 @@ To get the pictures, you can:
     * no password
 * use libARDataTransfer which provides an abstraction of the ftp
 
-**Please note that libARController is not including the data transfer for the moment, it will certainly in the future so this process will be simplified**
-
 Here is how to do it with libARDataTransfer.
 
 libARDataTransfer lets you get a list of all stored medias quite quickly. It also provides you a way to enrich the list of medias with their thumbnails. It also gives you the ability to download the media.
@@ -1077,7 +1002,6 @@ ARUTILS_Manager_t *ftpQueueManager;       // an ftp that will do the download
 ```
 
 ```objective_c
-#define DEVICE_PORT     21
 #define MEDIA_FOLDER    "internal_000"
 
 @property (nonatomic, assign) ARSAL_Thread_t threadRetreiveAllMedias;   // the thread that will do the media retrieving
@@ -1090,7 +1014,6 @@ ARUTILS_Manager_t *ftpQueueManager;       // an ftp that will do the download
 ```
 
 ```java
-private static final int DEVICE_PORT = 21;
 private static final String MEDIA_FOLDER = "internal_000";
 
 private AsyncTask<Void, Float, ArrayList<ARMediaObject>> getMediaAsyncTask;
@@ -1111,8 +1034,6 @@ private ARUtilsManager ftpQueueManager;
 ```c
 void createDataTransferManager()
 {
-    const char *productIP = "192.168.42.1";  // TODO: get this address from libARController
-
     eARDATATRANSFER_ERROR result = ARDATATRANSFER_OK;
     manager = ARDATATRANSFER_Manager_New(&result);
 
@@ -1127,12 +1048,12 @@ void createDataTransferManager()
 
         if(ftpError == ARUTILS_OK)
         {
-            ftpError = ARUTILS_Manager_InitWifiFtp(ftpListManager, productIP, DEVICE_PORT, ARUTILS_FTP_ANONYMOUS, "");
+            ftpError = ARUTILS_Manager_InitFtp(ftpListManager, discoveryDevice, ARUTILS_DESTINATION_DRONE, ARUTILS_FTP_TYPE_GENERIC);
         }
 
         if(ftpError == ARUTILS_OK)
         {
-            ftpError = ARUTILS_Manager_InitWifiFtp(ftpQueueManager, productIP, DEVICE_PORT, ARUTILS_FTP_ANONYMOUS, "");
+            ftpError = ARUTILS_Manager_InitFtp(ftpQueueManager, discoveryDevice, ARUTILS_DESTINATION_DRONE, ARUTILS_FTP_TYPE_GENERIC);
         }
 
         if(ftpError != ARUTILS_OK)
@@ -1154,8 +1075,6 @@ void createDataTransferManager()
 ```objective_c
 - (void)createDataTransferManager
 {
-    NSString *productIP = @"192.168.42.1";  // TODO: get this address from libARController
-
     eARDATATRANSFER_ERROR result = ARDATATRANSFER_OK;
     _manager = ARDATATRANSFER_Manager_New(&result);
 
@@ -1170,12 +1089,12 @@ void createDataTransferManager()
 
         if(ftpError == ARUTILS_OK)
         {
-            ftpError = ARUTILS_Manager_InitWifiFtp(_ftpListManager, [productIP UTF8String], DEVICE_PORT, ARUTILS_FTP_ANONYMOUS, "");
+            ftpError = ARUTILS_Manager_InitFtp(_ftpListManager, _discoveryDevice, ARUTILS_DESTINATION_DRONE, ARUTILS_FTP_TYPE_GENERIC);
         }
 
         if(ftpError == ARUTILS_OK)
         {
-            ftpError = ARUTILS_Manager_InitWifiFtp(_ftpQueueManager, [productIP UTF8String], DEVICE_PORT, ARUTILS_FTP_ANONYMOUS, "");
+            ftpError = ARUTILS_Manager_InitFtp(_ftpQueueManager, _discoveryDevice, ARUTILS_DESTINATION_DRONE, ARUTILS_FTP_TYPE_GENERIC);
         }
 
         if(ftpError != ARUTILS_OK)
@@ -1197,8 +1116,6 @@ void createDataTransferManager()
 
 ```java
 private void createDataTransferManager() {
-   String productIP = "192.168.42.1";  // TODO: get this address from libARController
-
    ARDATATRANSFER_ERROR_ENUM result = ARDATATRANSFER_ERROR_ENUM.ARDATATRANSFER_OK;
    try
    {
@@ -1217,8 +1134,8 @@ private void createDataTransferManager() {
            ftpListManager = new ARUtilsManager();
            ftpQueueManager = new ARUtilsManager();
 
-           ftpListManager.initWifiFtp(productIP, DEVICE_PORT, ARUtilsFtpConnection.FTP_ANONYMOUS, "");
-           ftpQueueManager.initWifiFtp(productIP, DEVICE_PORT, ARUtilsFtpConnection.FTP_ANONYMOUS, "");
+           ftpListManager.initFtp(context, deviceService, ARUTILS_DESTINATION_ENUM.ARUTILS_DESTINATION_DRONE, ARUTILS_FTP_TYPE_ENUM.ARUTILS_FTP_TYPE_GENERIC);
+           ftpQueueManager.initFtp(context, deviceService, ARUTILS_DESTINATION_ENUM.ARUTILS_DESTINATION_DRONE, ARUTILS_FTP_TYPE_ENUM.ARUTILS_FTP_TYPE_GENERIC);
        }
        catch (ARUtilsException e)
        {
@@ -1805,14 +1722,13 @@ private void clean()
 
            if (ftpListManager != null)
            {
-               ftpListManager.closeWifiFtp();
-
+               ftpListManager.closeFtp(context, deviceService);
                ftpListManager.dispose();
                ftpListManager = null;
            }
            if (ftpQueueManager != null)
            {
-               ftpQueueManager.closeWifiFtp();
+               ftpQueueManager.closeFtp(context, deviceService);
                ftpQueueManager.dispose();
                ftpQueueManager = null;
            }
