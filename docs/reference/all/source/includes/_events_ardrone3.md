@@ -7585,38 +7585,45 @@ Pro features.<br/>
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ID, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t id = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ID, arg);
+                if (arg != NULL)
+                {
+                    uint8_t id = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE accessory_type = arg->value.I32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_UID, arg);
+                if (arg != NULL)
+                {
+                    char * uid = arg->value.String;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_SWVERSION, arg);
+                if (arg != NULL)
+                {
+                    char * swVersion = arg->value.String;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_LISTFLAGS, arg);
+                if (arg != NULL)
+                {
+                    uint8_t listFlags = arg->value.U8;
+                }
             }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE, arg);
-            if (arg != NULL)
-            {
-                eARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE accessory_type = arg->value.I32;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_UID, arg);
-            if (arg != NULL)
-            {
-                char * uid = arg->value.String;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_SWVERSION, arg);
-            if (arg != NULL)
-            {
-                char * swVersion = arg->value.String;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_LISTFLAGS, arg);
-            if (arg != NULL)
-            {
-                uint8_t listFlags = arg->value.U8;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -7625,38 +7632,45 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES) && (elementDictionary != NULL))
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES)
     {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
+        if (elementDictionary != NULL)
         {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ID, arg);
-            if (arg != NULL)
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                uint8_t id = arg->value.U8;
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ID, arg);
+                if (arg != NULL)
+                {
+                    uint8_t id = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE accessory_type = arg->value.I32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_UID, arg);
+                if (arg != NULL)
+                {
+                    char * uid = arg->value.String;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_SWVERSION, arg);
+                if (arg != NULL)
+                {
+                    char * swVersion = arg->value.String;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_LISTFLAGS, arg);
+                if (arg != NULL)
+                {
+                    uint8_t listFlags = arg->value.U8;
+                }
             }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE, arg);
-            if (arg != NULL)
-            {
-                eARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE accessory_type = arg->value.I32;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_UID, arg);
-            if (arg != NULL)
-            {
-                char * uid = arg->value.String;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_SWVERSION, arg);
-            if (arg != NULL)
-            {
-                char * swVersion = arg->value.String;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_LISTFLAGS, arg);
-            if (arg != NULL)
-            {
-                uint8_t listFlags = arg->value.U8;
-            }
+        }
+        else
+        {
+            // list is empty
         }
     }
 }
@@ -7665,14 +7679,21 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES) && (elementDictionary != null)){
-        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
-        if (args != null) {
-            byte id = (byte)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ID)).intValue();
-            ARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE_ENUM accessory_type = ARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE));
-            String uid = (String)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_UID);
-            String swVersion = (String)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_SWVERSION);
-            byte listFlags = (byte)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_LISTFLAGS)).intValue();
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    byte id = (byte)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ID)).intValue();
+                    ARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE_ENUM accessory_type = ARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE));
+                    String uid = (String)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_UID);
+                    String swVersion = (String)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_SWVERSION);
+                    byte listFlags = (byte)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_LISTFLAGS)).intValue();
+                }
+            }
+        } else {
+            // list is empty
         }
     }
 }
