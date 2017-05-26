@@ -489,6 +489,272 @@ Triggered each time the wifi signal changes<br/>
 
 <br/>
 
+<!-- SkyController-WifiState-WifiAuthChannelListChangedV2-->
+### <a name="SkyController-WifiState-WifiAuthChannelListChangedV2">Authorized channel list</a><br/>
+> Authorized channel list:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2)
+    {
+        if (elementDictionary != NULL)
+        {
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+            {
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_BAND, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_BAND band = arg->value.I32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_CHANNEL, arg);
+                if (arg != NULL)
+                {
+                    uint8_t channel = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_IN_OR_OUT, arg);
+                if (arg != NULL)
+                {
+                    uint8_t in_or_out = arg->value.U8;
+                }
+            }
+        }
+        else
+        {
+            // list is empty
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2)
+    {
+        if (elementDictionary != NULL)
+        {
+            ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictElement = NULL;
+            ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
+            HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
+            {
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_BAND, arg);
+                if (arg != NULL)
+                {
+                    eARCOMMANDS_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_BAND band = arg->value.I32;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_CHANNEL, arg);
+                if (arg != NULL)
+                {
+                    uint8_t channel = arg->value.U8;
+                }
+                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_IN_OR_OUT, arg);
+                if (arg != NULL)
+                {
+                    uint8_t in_or_out = arg->value.U8;
+                }
+            }
+        }
+        else
+        {
+            // list is empty
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if (commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2){
+        if ((elementDictionary != null) && (elementDictionary.size() > 0)) {
+            Iterator<ARControllerArgumentDictionary<Object>> itr = elementDictionary.values().iterator();
+            while (itr.hasNext()) {
+                ARControllerArgumentDictionary<Object> args = itr.next();
+                if (args != null) {
+                    ARCOMMANDS_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_BAND_ENUM band = ARCOMMANDS_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_BAND_ENUM.getFromValue((Integer)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_BAND));
+                    byte channel = (byte)((Integer)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_CHANNEL)).intValue();
+                    byte in_or_out = (byte)((Integer)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIAUTHCHANNELLISTCHANGEDV2_IN_OR_OUT)).intValue();
+                }
+            }
+        } else {
+            // list is empty
+        }
+    }
+}
+```
+
+Each element represent an authorized wifi channel for the current country regulatory domain.<br/>
+Note that some channels might be only authorized for indoor or outdoor use.<br/>
+
+
+* band (enum): The band of this channel : 2.4 GHz or 5 GHz<br/>
+   * 2_4ghz: 2.4 GHz band<br/>
+   * 5ghz: 5 GHz band<br/>
+* channel (u8): The authorized channel<br/>
+* in_or_out (u8): Bit 0 is 1 if channel is authorized outside (0 otherwise)<br/>
+Bit 1 is 1 if channel is authorized inside (0 otherwise)<br/>
+* list_flags (u8): List entry attribute Bitfield.<br/>
+0x01: First: indicate it's the first element of the list.<br/>
+0x02: Last: indicate it's the last element of the list.<br/>
+0x04: Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
+0x08: Remove: This value should be removed from the existing list.<br/>
+
+
+Triggered by a change of the list, or by a [WifiAuthChannel](#SkyController-Wifi-WifiAuthChannel) command<br/>
+
+
+
+*Supported by <br/>*
+
+<br/>
+
+<!-- SkyController-WifiState-WifiCountryChanged-->
+### <a name="SkyController-WifiState-WifiCountryChanged">Wifi country changed</a><br/>
+> Wifi country changed:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFICOUNTRYCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFICOUNTRYCHANGED_CODE, arg);
+            if (arg != NULL)
+            {
+                char * code = arg->value.String;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFICOUNTRYCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFICOUNTRYCHANGED_CODE, arg);
+            if (arg != NULL)
+            {
+                char * code = arg->value.String;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFICOUNTRYCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            String code = (String)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFICOUNTRYCHANGED_CODE);
+        }
+    }
+}
+```
+
+The wifi country of the SkyController will follow the wifi country of the currently connected drone, except for country-locked SkyControllers.<br/>
+
+
+* code (string): Country code with ISO 3166 format, empty string means unknown country.<br/>
+
+
+Triggered by a country change from the drone<br/>
+
+
+
+*Supported by <br/>*
+
+<br/>
+
+<!-- SkyController-WifiState-WifiEnvironmentChanged-->
+### <a name="SkyController-WifiState-WifiEnvironmentChanged">Wifi environment changed</a><br/>
+> Wifi environment changed:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIENVIRONMENTCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIENVIRONMENTCHANGED_ENVIRONMENT, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_SKYCONTROLLER_WIFISTATE_WIFIENVIRONMENTCHANGED_ENVIRONMENT environment = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIENVIRONMENTCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIENVIRONMENTCHANGED_ENVIRONMENT, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_SKYCONTROLLER_WIFISTATE_WIFIENVIRONMENTCHANGED_ENVIRONMENT environment = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIENVIRONMENTCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_SKYCONTROLLER_WIFISTATE_WIFIENVIRONMENTCHANGED_ENVIRONMENT_ENUM environment = ARCOMMANDS_SKYCONTROLLER_WIFISTATE_WIFIENVIRONMENTCHANGED_ENVIRONMENT_ENUM.getFromValue((Integer)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_WIFISTATE_WIFIENVIRONMENTCHANGED_ENVIRONMENT));
+        }
+    }
+}
+```
+
+The wifi environment of the SkyController will follow the wifi environment of the currently connected drone<br/>
+
+
+* environment (enum): Type of environment<br/>
+   * indoor: indoor environment<br/>
+   * outdoor: outdoor environment<br/>
+
+
+Triggered by an environment change from the drone<br/>
+
+
+
+*Supported by <br/>*
+
+<br/>
+
 <!-- SkyController-DeviceState-DeviceList-->
 ### <a name="SkyController-DeviceState-DeviceList">Visible device (deprecated)</a><br/>
 > Visible device (deprecated):

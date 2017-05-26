@@ -6156,8 +6156,8 @@ Triggered when [HomeType](#ARDrone3-GPSState-HomeTypeChosenChanged) changes. Or 
 <br/>
 
 <!-- ARDrone3-GPSSettingsState-ResetHomeChanged-->
-### <a name="ARDrone3-GPSSettingsState-ResetHomeChanged">Home location has been reset</a><br/>
-> Home location has been reset:
+### <a name="ARDrone3-GPSSettingsState-ResetHomeChanged">Home location has been reset (deprecated)</a><br/>
+> Home location has been reset (deprecated):
 
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
@@ -6232,6 +6232,8 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
     }
 }
 ```
+
+*This message is deprecated.*<br/>
 
 Home location has been reset.<br/>
 
@@ -6330,8 +6332,8 @@ Triggered on change.<br/>
 <br/>
 
 <!-- ARDrone3-GPSSettingsState-GPSUpdateStateChanged-->
-### <a name="ARDrone3-GPSSettingsState-GPSUpdateStateChanged">Gps update state</a><br/>
-> Gps update state:
+### <a name="ARDrone3-GPSSettingsState-GPSUpdateStateChanged">Gps update state (deprecated)</a><br/>
+> Gps update state (deprecated):
 
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
@@ -6384,6 +6386,8 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
     }
 }
 ```
+
+*This message is deprecated.*<br/>
 
 Gps update state.<br/>
 
@@ -7572,5 +7576,133 @@ Pro features.<br/>
 
 
 * features (u64): Bitfield representing enabled features.<br/>
+<br/>
+
+<!-- ARDrone3-AccessoryState-ConnectedAccessories-->
+### <a name="ARDrone3-AccessoryState-ConnectedAccessories">List of connected accessories</a><br/>
+> List of connected accessories:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ID, arg);
+            if (arg != NULL)
+            {
+                uint8_t id = arg->value.U8;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE accessory_type = arg->value.I32;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_UID, arg);
+            if (arg != NULL)
+            {
+                char * uid = arg->value.String;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_SWVERSION, arg);
+            if (arg != NULL)
+            {
+                char * swVersion = arg->value.String;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_LISTFLAGS, arg);
+            if (arg != NULL)
+            {
+                uint8_t listFlags = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ID, arg);
+            if (arg != NULL)
+            {
+                uint8_t id = arg->value.U8;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE accessory_type = arg->value.I32;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_UID, arg);
+            if (arg != NULL)
+            {
+                char * uid = arg->value.String;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_SWVERSION, arg);
+            if (arg != NULL)
+            {
+                char * swVersion = arg->value.String;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_LISTFLAGS, arg);
+            if (arg != NULL)
+            {
+                uint8_t listFlags = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            byte id = (byte)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ID)).intValue();
+            ARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE_ENUM accessory_type = ARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE));
+            String uid = (String)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_UID);
+            String swVersion = (String)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_SWVERSION);
+            byte listFlags = (byte)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_LISTFLAGS)).intValue();
+        }
+    }
+}
+```
+
+List of all connected accessories. This event presents the list of all connected accessories. To actually use the component, use the component dedicated feature.<br/>
+
+
+* id (u8): Id of the accessory for the session.<br/>
+* accessory_type (enum): Accessory type<br/>
+   * sequoia: Parrot Sequoia (multispectral camera for agriculture)<br/>
+   * unknownaccessory_1: UNKNOWNACCESSORY_1 camera (thermal+rgb camera)<br/>
+* uid (string): Unique Id of the accessory.<br/>
+This id is unique by accessory_type.<br/>
+* swVersion (string): Software Version of the accessory.<br/>
+* listFlags (u8): List entry attribute Bitfield.<br/>
+0x01: First: indicate it's the first element of the list.<br/>
+0x02: Last: indicate it's the last element of the list.<br/>
+0x04: Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
+0x08: Remove: This value should be removed from the existing list.<br/>
+
+
+Triggered at connection or when an accessory is connected.<br/>
+
+
+
+*Supported by <br/>*
+
+- *Disco since 1.5.0*<br/>
+
+
 <br/>
 

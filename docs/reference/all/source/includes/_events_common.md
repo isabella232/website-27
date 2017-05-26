@@ -2450,8 +2450,8 @@ Triggered by [StartFlightPlan](#common-Mavlink-Start), [PauseFlightPlan](#common
 <br/>
 
 <!-- common-MavlinkState-MavlinkPlayErrorStateChanged-->
-### <a name="common-MavlinkState-MavlinkPlayErrorStateChanged">FlightPlan error</a><br/>
-> FlightPlan error:
+### <a name="common-MavlinkState-MavlinkPlayErrorStateChanged">FlightPlan error (deprecated)</a><br/>
+> FlightPlan error (deprecated):
 
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
@@ -2504,6 +2504,8 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
     }
 }
 ```
+
+*This message is deprecated.*<br/>
 
 FlightPlan error.<br/>
 
@@ -4808,7 +4810,7 @@ Triggered when the drone generates a new run id (generally right after a take of
 
 *Supported by <br/>*
 
-- *Bebop since 3*<br/>
+- *Bebop since 3.0.1*<br/>
 - *Bebop 2*<br/>
 - *Disco*<br/>
 

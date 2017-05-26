@@ -15,11 +15,11 @@ includes:
   - title
   - description
   - commands
-  - commands_wifi
   - commands_common
+  - commands_wifi
   - events
-  - events_wifi
   - events_common
+  - events_wifi
 
 search: true
 ---

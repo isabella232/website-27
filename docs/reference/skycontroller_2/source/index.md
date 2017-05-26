@@ -15,13 +15,13 @@ includes:
   - title
   - description
   - commands
+  - commands_drone_manager
   - commands_mapper
   - commands_skyctrl
-  - commands_drone_manager
   - events
+  - events_drone_manager
   - events_mapper
   - events_skyctrl
-  - events_drone_manager
 
 search: true
 ---

@@ -15,11 +15,11 @@ includes:
   - title
   - description
   - commands
-  - commands_mapper_mini
   - commands_common
+  - commands_mapper_mini
   - events
-  - events_mapper_mini
   - events_common
+  - events_mapper_mini
 
 search: true
 ---

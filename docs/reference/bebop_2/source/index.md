@@ -16,12 +16,12 @@ includes:
   - description
   - commands
   - commands_ardrone3
-  - commands_wifi
   - commands_common
+  - commands_wifi
   - events
   - events_ardrone3
-  - events_wifi
   - events_common
+  - events_wifi
 
 search: true
 ---

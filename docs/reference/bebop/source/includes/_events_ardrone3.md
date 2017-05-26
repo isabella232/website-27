@@ -4389,8 +4389,8 @@ Triggered when [HomeType](#ARDrone3-GPSState-HomeTypeChosenChanged) changes. Or 
 <br/>
 
 <!-- ARDrone3-GPSSettingsState-ResetHomeChanged-->
-### <a name="ARDrone3-GPSSettingsState-ResetHomeChanged">Home location has been reset</a><br/>
-> Home location has been reset:
+### <a name="ARDrone3-GPSSettingsState-ResetHomeChanged">Home location has been reset (deprecated)</a><br/>
+> Home location has been reset (deprecated):
 
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
@@ -4465,6 +4465,8 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
     }
 }
 ```
+
+*This message is deprecated.*<br/>
 
 Home location has been reset.<br/>
 
@@ -4563,8 +4565,8 @@ Triggered on change.<br/>
 <br/>
 
 <!-- ARDrone3-GPSSettingsState-GPSUpdateStateChanged-->
-### <a name="ARDrone3-GPSSettingsState-GPSUpdateStateChanged">Gps update state</a><br/>
-> Gps update state:
+### <a name="ARDrone3-GPSSettingsState-GPSUpdateStateChanged">Gps update state (deprecated)</a><br/>
+> Gps update state (deprecated):
 
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
@@ -4617,6 +4619,8 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
     }
 }
 ```
+
+*This message is deprecated.*<br/>
 
 Gps update state.<br/>
 

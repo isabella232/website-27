@@ -1654,8 +1654,8 @@ Then, event [VideoStreamState](#ARDrone3-MediaStreamingState-VideoEnableChanged)
 <br/>
 
 <!-- ARDrone3-GPSSettings-ResetHome-->
-### <a name="ARDrone3-GPSSettings-ResetHome">Reset home position</a><br/>
-> Reset home position:
+### <a name="ARDrone3-GPSSettings-ResetHome">Reset home position (deprecated)</a><br/>
+> Reset home position (deprecated):
 
 ```c
 deviceController->aRDrone3->sendGPSSettingsResetHome(deviceController->aRDrone3);
@@ -1668,6 +1668,8 @@ deviceController->aRDrone3->sendGPSSettingsResetHome(deviceController->aRDrone3)
 ```java
 deviceController.getFeatureARDrone3().sendGPSSettingsResetHome();
 ```
+
+*This message is deprecated.*<br/>
 
 Reset home position.<br/>
 
