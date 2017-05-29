@@ -7614,11 +7614,6 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
                 {
                     char * swVersion = arg->value.String;
                 }
-                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_LISTFLAGS, arg);
-                if (arg != NULL)
-                {
-                    uint8_t listFlags = arg->value.U8;
-                }
             }
         }
         else
@@ -7661,11 +7656,6 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
                 {
                     char * swVersion = arg->value.String;
                 }
-                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_LISTFLAGS, arg);
-                if (arg != NULL)
-                {
-                    uint8_t listFlags = arg->value.U8;
-                }
             }
         }
         else
@@ -7689,7 +7679,6 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
                     ARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE_ENUM accessory_type = ARCOMMANDS_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_ACCESSORY_TYPE));
                     String uid = (String)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_UID);
                     String swVersion = (String)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_SWVERSION);
-                    byte listFlags = (byte)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ACCESSORYSTATE_CONNECTEDACCESSORIES_LISTFLAGS)).intValue();
                 }
             }
         } else {
@@ -7709,11 +7698,6 @@ List of all connected accessories. This event presents the list of all connected
 * uid (string): Unique Id of the accessory.<br/>
 This id is unique by accessory_type.<br/>
 * swVersion (string): Software Version of the accessory.<br/>
-* listFlags (u8): List entry attribute Bitfield.<br/>
-0x01: First: indicate it's the first element of the list.<br/>
-0x02: Last: indicate it's the last element of the list.<br/>
-0x04: Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-0x08: Remove: This value should be removed from the existing list.<br/>
 
 
 Triggered at connection or when an accessory is connected.<br/>

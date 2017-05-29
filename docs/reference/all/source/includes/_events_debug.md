@@ -14,11 +14,6 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
             ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
             HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_LISTFLAGS, arg);
-                if (arg != NULL)
-                {
-                    uint8_t listFlags = arg->value.U8;
-                }
                 HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_ID, arg);
                 if (arg != NULL)
                 {
@@ -81,11 +76,6 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
             ARCONTROLLER_DICTIONARY_ELEMENT_t *dictTmp = NULL;
             HASH_ITER(hh, elementDictionary, dictElement, dictTmp)
             {
-                HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_LISTFLAGS, arg);
-                if (arg != NULL)
-                {
-                    uint8_t listFlags = arg->value.U8;
-                }
                 HASH_FIND_STR (dictElement->arguments, ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_ID, arg);
                 if (arg != NULL)
                 {
@@ -145,7 +135,6 @@ public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER
             while (itr.hasNext()) {
                 ARControllerArgumentDictionary<Object> args = itr.next();
                 if (args != null) {
-                    byte listFlags = (byte)((Integer)args.get(ARFeatureDebug.ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_LISTFLAGS)).intValue();
                     short id = (short)((Integer)args.get(ARFeatureDebug.ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_ID)).intValue();
                     String label = (String)args.get(ARFeatureDebug.ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_LABEL);
                     ARCOMMANDS_DEBUG_SETTING_TYPE_ENUM type = ARCOMMANDS_DEBUG_SETTING_TYPE_ENUM.getFromValue((Integer)args.get(ARFeatureDebug.ARCONTROLLER_DICTIONARY_KEY_DEBUG_SETTINGSINFO_TYPE));
@@ -167,10 +156,6 @@ Sent by the drone as answer to get_settings_info<br/>
 Describe a debug setting and give the current value.<br/>
 
 
-* listFlags (u8): List entry attribute Bitfield.<br/>
-0x01: First: indicate it's the first element of the list.<br/>
-0x02: Last: indicate it's the last element of the list.<br/>
-0x04: Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
 * id (u16): Setting Id.<br/>
 * label (string): Setting displayed label (single line).<br/>
 * type (enum): Setting type.<br/>

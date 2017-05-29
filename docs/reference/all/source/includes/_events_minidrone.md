@@ -1664,11 +1664,6 @@ USB Light accessory state cmd.<br/>
    * OSCILLATED: Oscillated state.<br/>
 * intensity (u8): Light intensity from 0 (OFF) to 100 (Max intensity).<br/>
 Only used in FIXED state.<br/>
-* list_flags (u8): List entry attribute Bitfield.<br/>
-0x01: First: indicate it's the first element of the list.<br/>
-0x02: Last: indicate it's the last element of the list.<br/>
-0x04: Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-0x08: Remove: This value should be removed from the existing list.<br/>
 <br/>
 
 <!-- MiniDrone-UsbAccessoryState-ClawState-->
@@ -1768,11 +1763,6 @@ USB Claw accessory state cmd.<br/>
    * OPENING: Claw open in progress.<br/>
    * CLOSED: Claw is fully closed.<br/>
    * CLOSING: Claw close in progress.<br/>
-* list_flags (u8): List entry attribute Bitfield.<br/>
-0x01: First: indicate it's the first element of the list.<br/>
-0x02: Last: indicate it's the last element of the list.<br/>
-0x04: Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-0x08: Remove: This value should be removed from the existing list.<br/>
 <br/>
 
 <!-- MiniDrone-UsbAccessoryState-GunState-->
@@ -1870,11 +1860,6 @@ USB Gun accessory state cmd.<br/>
 * state (enum): USB Claw state.<br/>
    * READY: Gun is ready to fire.<br/>
    * BUSY: Gun is busy (ie not ready to fire).<br/>
-* list_flags (u8): List entry attribute Bitfield.<br/>
-0x01: First: indicate it's the first element of the list.<br/>
-0x02: Last: indicate it's the last element of the list.<br/>
-0x04: Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-0x08: Remove: This value should be removed from the existing list.<br/>
 <br/>
 
 <!-- MiniDrone-NavigationDataState-DronePosition-->

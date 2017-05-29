@@ -271,11 +271,6 @@ for directly controlling the servomotors.<br/>
 When take control is activated the RC controller, if<br/>
 available, becomes the main controller.<br/>
 * value (i16): RC channel value.<br/>
-* list_flags (bitfield as u8): Flags use by maps and lists<br/>
-   * First: indicate it's the first element of the list.<br/>
-   * Last: indicate it's the last element of the list.<br/>
-   * Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-   * Remove: This value should be removed from the existing list.<br/>
 <br/>
 
 <!-- rc-calibration_state-->

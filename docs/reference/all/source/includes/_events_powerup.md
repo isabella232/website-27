@@ -479,11 +479,6 @@ command to compensate a dive during turn. No unit.<br/>
 * current (float): Current value of the given setting<br/>
 * min (float): Minimal value of the given setting<br/>
 * max (float): Max value of the given setting<br/>
-* list_flags (u8): List entry attribute Bitfield.<br/>
-0x01: First: indicate it's the first element of the list.<br/>
-0x02: Last: indicate it's the last element of the list.<br/>
-0x04: Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-0x08: Remove: This value should be removed from the existing list.<br/>
 <br/>
 
 <!-- powerup-MediaRecordState-PictureStateChangedV2-->

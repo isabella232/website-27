@@ -181,11 +181,6 @@ Else, order of last connection (1 = most recent)<br/>
 If security method is not 'none', and this value is 0, then the controller should prompt the user for a passphrase before sending a connect.<br/>
 * rssi (i8): The drone rssi (wifi signal strength estimation).<br/>
 The value is meaningless if the drone is not visible.<br/>
-* list_flags (bitfield as u8): Flags use by maps and lists<br/>
-   * First: indicate it's the first element of the list.<br/>
-   * Last: indicate it's the last element of the list.<br/>
-   * Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-   * Remove: This value should be removed from the existing list.<br/>
 
 
 Triggered when requested [discover_drones](#drone_manager-discover_drones).<br/>
@@ -643,11 +638,6 @@ Item describing a known drone (already connected).<br/>
    * wpa2: The drone is protected with Wpa2 (passphrase).<br/>
 * has_saved_key (u8): 1 if the drone manager has a saved security key for the drone, 0 otherwise.<br/>
 If security method is not 'none', and this value is 0, then the controller should prompt the user for a passphrase before sending a connect.<br/>
-* list_flags (bitfield as u8): Flags use by maps and lists<br/>
-   * First: indicate it's the first element of the list.<br/>
-   * Last: indicate it's the last element of the list.<br/>
-   * Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-   * Remove: This value should be removed from the existing list.<br/>
 
 
 Triggered when [AllSettings](#SkyController-Settings-AllSettings) is requested or when a drone is forgotten or connected for the first time.<br/>

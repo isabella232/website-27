@@ -416,11 +416,6 @@ Each action can only be mapped once per product.<br/>
    * cycle_hud: Cycle between different hud configurations on HDMI<br/>
 (Skycontroller 1 only)<br/>
 * buttons (u32): Buttons combination mapped to the action (bitfield).<br/>
-* list_flags (bitfield as u8): Flags use by maps and lists<br/>
-   * First: indicate it's the first element of the list.<br/>
-   * Last: indicate it's the last element of the list.<br/>
-   * Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-   * Remove: This value should be removed from the existing list.<br/>
 
 
 Triggered by a [map_button_action](#mapper-map_button_action) or a [map_axis_action](#mapper-map_axis_action) command<br/>
@@ -586,11 +581,6 @@ Each action can only be mapped once per product.<br/>
    * camera_tilt: camera tilt<br/>
 * axis (i32): The axis number on which the action is mapped.<br/>
 * buttons (u32): Buttons combination mapped to the action (bitfield).<br/>
-* list_flags (bitfield as u8): Flags use by maps and lists<br/>
-   * First: indicate it's the first element of the list.<br/>
-   * Last: indicate it's the last element of the list.<br/>
-   * Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-   * Remove: This value should be removed from the existing list.<br/>
 
 
 Triggered by a [map_button_action](#mapper-map_button_action) or a [map_axis_action](#mapper-map_axis_action) command<br/>
@@ -939,11 +929,6 @@ For some products/mappings configuration, the expo values of two axes belonging 
    * expo_1: Medium exponential curve<br/>
    * expo_2: Heavy exponential curve<br/>
    * expo_4: Maximum exponential curve<br/>
-* list_flags (bitfield as u8): Flags use by maps and lists<br/>
-   * First: indicate it's the first element of the list.<br/>
-   * Last: indicate it's the last element of the list.<br/>
-   * Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-   * Remove: This value should be removed from the existing list.<br/>
 
 
 Triggered by a [set_expo](#mapper-set_expo) command<br/>
@@ -1075,11 +1060,6 @@ Axis inversion has no effect on grabbed axes, nor on virtual buttons that might 
 * axis (i32): Axis number<br/>
 * inverted (u8): 0 : Axis not inverted.<br/>
 1 : Axis inverted<br/>
-* list_flags (bitfield as u8): Flags use by maps and lists<br/>
-   * First: indicate it's the first element of the list.<br/>
-   * Last: indicate it's the last element of the list.<br/>
-   * Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-   * Remove: This value should be removed from the existing list.<br/>
 
 
 Triggered by a [set_inverted](#mapper-set_inverted) command<br/>

@@ -143,11 +143,6 @@ A mapping can affect one or mode modes, but each action can only be mapped once 
    * light_sinus: switch sinus light (ON/OFF)<br/>
    * light_toggle: toggle between light animations (OFF-continuous-blink-sinus-OFF)<br/>
 * buttons (u32): Buttons combination mapped to the action (bitfield).<br/>
-* list_flags (bitfield as u8): Flags use by maps and lists<br/>
-   * First: indicate it's the first element of the list.<br/>
-   * Last: indicate it's the last element of the list.<br/>
-   * Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-   * Remove: This value should be removed from the existing list.<br/>
 
 
 Triggered by a [map_button_action](#mapper_mini-map_button_action) or a [map_axis_action](#mapper_mini-map_axis_action) command<br/>
@@ -298,11 +293,6 @@ A mapping can affect one or mode modes, but each action can only be mapped once 
    * gaz: gaz<br/>
 * axis (i8): The axis number on which the action is mapped.<br/>
 * buttons (u32): Buttons combination mapped to the action (bitfield).<br/>
-* list_flags (bitfield as u8): Flags use by maps and lists<br/>
-   * First: indicate it's the first element of the list.<br/>
-   * Last: indicate it's the last element of the list.<br/>
-   * Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-   * Remove: This value should be removed from the existing list.<br/>
 
 
 Triggered by a [map_button_action](#mapper_mini-map_button_action) or a [map_axis_action](#mapper_mini-map_axis_action) command<br/>

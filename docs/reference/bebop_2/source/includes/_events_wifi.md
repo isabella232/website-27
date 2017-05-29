@@ -117,11 +117,6 @@ Wifi scan results.<br/>
    * 2_4_ghz: 2.4 GHz band<br/>
    * 5_ghz: 5 GHz band<br/>
 * channel (u8): Channel of the AP<br/>
-* list_flags (bitfield as u8): Flags use by maps and lists<br/>
-   * First: indicate it's the first element of the list.<br/>
-   * Last: indicate it's the last element of the list.<br/>
-   * Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-   * Remove: This value should be removed from the existing list.<br/>
 
 
 Triggered Triggered for each wifi scanned after a [ScanWifi](#wifi-scan).<br/>
@@ -248,11 +243,6 @@ Available channel results.<br/>
 * environment (bitfield as u8): Type of environment<br/>
    * indoor: indoor environment<br/>
    * outdoor: outdoor environment<br/>
-* list_flags (bitfield as u8): Flags use by maps and lists<br/>
-   * First: indicate it's the first element of the list.<br/>
-   * Last: indicate it's the last element of the list.<br/>
-   * Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-   * Remove: This value should be removed from the existing list.<br/>
 
 
 Triggered Triggered for each channels found after a [UpdateAvailableChannels](#wifi-update_authorized_channels).<br/>

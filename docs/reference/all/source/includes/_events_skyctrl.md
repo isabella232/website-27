@@ -598,11 +598,6 @@ Note that some channels might be only authorized for indoor or outdoor use.<br/>
 * channel (u8): The authorized channel<br/>
 * in_or_out (u8): Bit 0 is 1 if channel is authorized outside (0 otherwise)<br/>
 Bit 1 is 1 if channel is authorized inside (0 otherwise)<br/>
-* list_flags (u8): List entry attribute Bitfield.<br/>
-0x01: First: indicate it's the first element of the list.<br/>
-0x02: Last: indicate it's the last element of the list.<br/>
-0x04: Empty: indicate the list is empty (implies First/Last). All other arguments should be ignored.<br/>
-0x08: Remove: This value should be removed from the existing list.<br/>
 
 
 Triggered by a change of the list, or by a [WifiAuthChannel](#SkyController-Wifi-WifiAuthChannel) command<br/>
