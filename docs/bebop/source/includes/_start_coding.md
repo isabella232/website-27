@@ -922,34 +922,34 @@ deviceController.getFeatureARDrone3().setPilotingPCMDYaw((byte) 50);
 
 ### Start video streaming
 
-To start the video stream, you will need to send a command to the Bebop. When the frame are received, the callback [you set at the initialisation of your device controller](#bebop_add_video_receive_cb) will be called.<br/>
+To start the video stream, you will need to ask it to the drone. When the frame are received, the callback [you set at the initialisation of your device controller](#bebop_add_video_receive_cb) will be called.<br/>
 
 > Start video stream
 
 ```c
-deviceController->aRDrone3->sendMediaStreamingVideoEnable(deviceController->aRDrone3, 1);
+ARCONTROLLER_Device_StartVideoStream(deviceController);
 ```
 
 ```objective_c
-_deviceController->aRDrone3->sendMediaStreamingVideoEnable(_deviceController- aRDrone3, 1);
+ARCONTROLLER_Device_StartVideoStream(_deviceController);
 ```
 
 ```java
-deviceController.getFeatureARDrone3().sendMediaStreamingVideoEnable((byte)1);
+deviceController.startVideoStream();
 ```
 
 > Stop video stream
 
 ```c
-deviceController->aRDrone3->sendMediaStreamingVideoEnable(deviceController->aRDrone3, 0);
+ARCONTROLLER_Device_StopVideoStream(deviceController);
 ```
 
 ```objective_c
-_deviceController->aRDrone3->sendMediaStreamingVideoEnable(_deviceController->aRDrone3, 0);
+ARCONTROLLER_Device_StopVideoStream(_deviceController);
 ```
 
 ```java
-deviceController.getFeatureARDrone3().sendMediaStreamingVideoEnable((byte)0);
+deviceController.stopVideoStream();
 ```
 
 ### Taking a picture
@@ -1174,7 +1174,9 @@ private void createDataTransferManager() {
 ```
 
 <div></div>
+
 Then, we can get the list of all medias on the Bebop (without their thumbnail). This operation is quite quick.
+
 
 > Get the list of the medias
 
