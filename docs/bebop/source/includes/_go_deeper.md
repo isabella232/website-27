@@ -11,8 +11,8 @@ brew install bash coreutils gettext pkgconfig wget python python3 autoconf libto
 
 ## Download all sources
 
-SDK [sources are hosted on github](https://github.com/Parrot-Developers/). To download them, you only have to init repo with the arsdk_manifests url:<br/>
-`repo init -u https://github.com/Parrot-Developers/arsdk_manifests.git`
+SDK [sources are hosted on github](https://github.com/Parrot-Developers/). To download the latest release, you only have to init repo with the arsdk_manifests url:<br/>
+`repo init -u https://github.com/Parrot-Developers/arsdk_manifests.git -m release.xml`
 
 After that, you can download all the other repository automatically by executing the command:<br/>
 `repo sync`
