@@ -27,6 +27,7 @@ The drone manager will answer with a list of [drone\_list\_item](#drone_manager-
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -63,6 +64,7 @@ The drone manager will send an update of its [connection_state](#drone_manager-c
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -96,6 +98,7 @@ If the drone was the active one, a new one will be autoselected, and [connection
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>

@@ -28,6 +28,7 @@ The mapper will send a [grab_state](#mapper-grab_state) command<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -95,6 +96,7 @@ The mapper will send [button_mapping_item](#mapper-button_mapping_item) and [axi
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -156,6 +158,7 @@ The mapper will send [button_mapping_item](#mapper-button_mapping_item) and [axi
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -190,6 +193,7 @@ The mapper will send [button_mapping_item](#mapper-button_mapping_item), [axis_m
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -232,6 +236,7 @@ The mapper will send [expo_map_item](#mapper-expo_map_item)<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -269,6 +274,7 @@ The mapper will send [inverted_map_item](#mapper-inverted_map_item)<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>

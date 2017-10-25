@@ -92,6 +92,7 @@ Triggered by a [grab](#mapper-grab) command<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -179,6 +180,7 @@ Triggered when a grabbed button is pressed/released<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -264,6 +266,7 @@ Triggered when the value of a grabbed axis changes<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -425,6 +428,7 @@ Triggered by a [map_button_action](#mapper-map_button_action) or a [map_axis_act
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -590,6 +594,7 @@ Triggered by a [map_button_action](#mapper-map_button_action) or a [map_axis_act
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -698,6 +703,7 @@ Triggered when any axis action set to application_action is triggered.<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -802,6 +808,7 @@ Triggered when any button action set to application_action is triggered.<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -938,6 +945,7 @@ Triggered by a [set_expo](#mapper-set_expo) command<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -1069,6 +1077,7 @@ Triggered by a [set_inverted](#mapper-set_inverted) command<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -1142,6 +1151,7 @@ Triggered when the active product changes<br/>
 *Supported by <br/>*
 
 - *SkyController 2 since 1.0.5*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>

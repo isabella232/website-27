@@ -2509,60 +2509,6 @@ Triggered on an error after a [StartFlightPlan](#common-Mavlink-Start).<br/>
 
 <br/>
 
-<!-- common-FlightPlanEvent-SpeedBridleEvent-->
-### <a name="common-FlightPlanEvent-SpeedBridleEvent">FlightPlan speed clamping</a><br/>
-> FlightPlan speed clamping:
-
-```c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANEVENT_SPEEDBRIDLEEVENT) && (elementDictionary != NULL))
-    {
-
-    }
-}
-```
-
-```objective_c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANEVENT_SPEEDBRIDLEEVENT) && (elementDictionary != NULL))
-    {
-
-    }
-}
-```
-
-```java
-@Override
-public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANEVENT_SPEEDBRIDLEEVENT) && (elementDictionary != null)){
-
-    }
-}
-```
-
-FlightPlan speed clamping.<br/>
-Sent when a speed specified in the FlightPlan file is considered too high by the drone.<br/>
-<br/>
-**This event is a notification, you can't retrieve it in the cache of the device controller.**<br/>
-
-
-
-
-Triggered on an speed related clamping after a [StartFlightPlan](#common-Mavlink-Start).<br/>
-
-
-
-*Supported by <br/>*
-
-- *Bebop since 2.0.29*<br/>
-- *Bebop 2*<br/>
-- *Disco*<br/>
-
-
-<br/>
-
 <!-- common-RunState-RunIdChanged-->
 ### <a name="common-RunState-RunIdChanged">Current run id</a><br/>
 > Current run id:

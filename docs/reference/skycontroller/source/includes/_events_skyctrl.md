@@ -587,6 +587,7 @@ Triggered when the connection state to a drone has changed.<br/>
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -637,6 +638,7 @@ Triggered when all settings that have been requested by [AllSettings](#SkyContro
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -711,6 +713,7 @@ Triggered during the [AllSettings](#SkyController-Settings-AllSettings) phase.<b
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -838,6 +841,7 @@ Triggered when all states that have been requested by [AllStates](#SkyController
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -913,6 +917,7 @@ Triggered when the battery level changes.<br/>
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -2536,6 +2541,7 @@ Triggered by a [setPilotingSource](#SkyController-CoPiloting-setPilotingSource) 
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>

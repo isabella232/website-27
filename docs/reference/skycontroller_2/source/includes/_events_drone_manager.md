@@ -190,6 +190,7 @@ Triggered when requested [discover_drones](#drone_manager-discover_drones).<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -308,6 +309,7 @@ Otherwise, these informations will refer to the active drone.<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -405,6 +407,7 @@ Triggered when trying to [connect](#drone_manager-connect) to a protected drone 
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -502,6 +505,7 @@ Triggered Try to [connect](#drone_manager-connect) to a drone where another peer
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -647,6 +651,7 @@ Triggered when [AllSettings](#SkyController-Settings-AllSettings) is requested o
 *Supported by <br/>*
 
 - *SkyController 2 since 1.0.3*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>

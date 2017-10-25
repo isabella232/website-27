@@ -47,6 +47,8 @@ Each action can be mapped to different buttons for different modes.<br/>
    * light_blink: switch blink light (ON/OFF)<br/>
    * light_sinus: switch sinus light (ON/OFF)<br/>
    * light_toggle: toggle between light animations (OFF-continuous-blink-sinus-OFF)<br/>
+   * piloting_mode_toggle: toggle between easy and preferred piloting mode<br/>
+   * video_record_toggle: start or stop video<br/>
 * buttons (u32): Buttons combination mapped to the action (bitfield).<br/>
 Set 0 (no button) to unmap an action<br/>
 

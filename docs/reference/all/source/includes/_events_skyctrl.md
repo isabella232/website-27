@@ -941,6 +941,7 @@ Triggered when the connection state to a drone has changed.<br/>
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -991,6 +992,7 @@ Triggered when all settings that have been requested by [AllSettings](#SkyContro
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -1116,6 +1118,7 @@ Triggered during the [AllSettings](#SkyController-Settings-AllSettings) phase.<b
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -1278,6 +1281,81 @@ Triggered during the [AllSettings](#SkyController-Settings-AllSettings) phase.<b
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
+
+
+<br/>
+
+<!-- SkyController-SettingsState-CPUID-->
+### <a name="SkyController-SettingsState-CPUID">Product main CPU id</a><br/>
+> Product main CPU id:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_CPUID) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_CPUID_ID, arg);
+            if (arg != NULL)
+            {
+                char * id = arg->value.String;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_CPUID) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_CPUID_ID, arg);
+            if (arg != NULL)
+            {
+                char * id = arg->value.String;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_CPUID) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            String id = (String)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_SETTINGSSTATE_CPUID_ID);
+        }
+    }
+}
+```
+
+The serial number (or any other UID) for the main CPU.<br/>
+
+
+* id (string): Product main cpu id<br/>
+
+
+Triggered during the [AllSettings](#SkyController-Settings-AllSettings) phase.<br/>
+
+
+
+*Supported by <br/>*
+
+- *SkyController 2 since 1.0.5*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -1328,6 +1406,7 @@ Triggered when all states that have been requested by [AllStates](#SkyController
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -1403,6 +1482,7 @@ Triggered when the battery level changes.<br/>
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -1666,6 +1746,7 @@ Triggered when the controller battery state has changed.<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -1776,6 +1857,7 @@ Triggered when the SkyController attitude changes.<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -3294,6 +3376,7 @@ Triggered by a [setPilotingSource](#SkyController-CoPiloting-setPilotingSource) 
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -3492,6 +3575,86 @@ Triggered by an [enableMagnetoCalibrationQualityUpdates](#SkyController-Calibrat
 
 <br/>
 
+<!-- SkyController-CalibrationState-MagnetoCalibrationStateV2-->
+### <a name="SkyController-CalibrationState-MagnetoCalibrationStateV2">Magneto calibration state</a><br/>
+> Magneto calibration state:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE state = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE state = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE_ENUM state = ARCOMMANDS_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE));
+        }
+    }
+}
+```
+
+The current state of magnetometer calibration.<br/>
+This event is used by products which does require a step-by-step calibration.<br/>
+When calibrating, the product will go, in order, through X, Y and Z axis calibration, then into calibrated state. If at any point it goes back to not-calibrated, it means that the calibration process failed and should be manually restarted with the [StartCalibration](#SkyController-Calibration-StartCalibration) command.<br/>
+
+
+* state (enum): The calibration state<br/>
+   * NotCalibrated: A calibration is needed<br/>
+   * CalibratingX: A calibration is in progress on the X axis<br/>
+   * CalibratingY: A calibration is in progress on the Y axis<br/>
+   * CalibratingZ: A calibration is in progress on the Z axis<br/>
+   * Calibrated: The sensor is calibrated<br/>
+
+
+Triggered when the magnetometer calibration state has changed, or by a [StartCalibration](#SkyController-Calibration-StartCalibration) or [AbortCalibration](#SkyController-Calibration-AbortCalibration) command<br/>
+
+
+
+*Supported by <br/>*
+
+- *SkyController 2P*<br/>
+
+
+<br/>
+
 <!-- SkyController-ButtonEvents-Settings-->
 ### <a name="SkyController-ButtonEvents-Settings">Settings button pressed</a><br/>
 > Settings button pressed:
@@ -3618,6 +3781,7 @@ Triggered when the SkyController shutdowns for one of the given reasons<br/>
 *Supported by <br/>*
 
 - *SkyController 2 since 1.0.5*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>

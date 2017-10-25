@@ -598,3 +598,37 @@ It will also trigger [MagnetoCalibrationAxisToCalibrateChanged](#common-Calibrat
 
 <br/>
 
+<!-- common-Calibration-PitotCalibration-->
+### <a name="common-Calibration-PitotCalibration">Start/Abort Pitot calibration</a><br/>
+> Start/Abort Pitot calibration:
+
+```c
+deviceController->common->sendCalibrationPitotCalibration(deviceController->common, (uint8_t)calibrate);
+```
+
+```objective_c
+deviceController->common->sendCalibrationPitotCalibration(deviceController->common, (uint8_t)calibrate);
+```
+
+```java
+deviceController.getFeatureCommon().sendCalibrationPitotCalibration((byte)calibrate);
+```
+
+Start or abort Pitot tube calibration process.<br/>
+<br/>
+
+
+* calibrate (u8): 1 if the calibration should be started, 0 if it should be aborted<br/>
+
+
+Result:<br/>
+The pitot calibration process is started or aborted. Then, event [PitotCalibrationStateChanged](#common-CalibrationState-PitotCalibrationStateChanged) is triggered with the current calibration state.<br/>
+
+
+*Supported by <br/>*
+
+- *Disco since 1.1.0*<br/>
+
+
+<br/>
+

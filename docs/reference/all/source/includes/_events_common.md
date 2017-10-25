@@ -2599,7 +2599,8 @@ Triggered when a mission item has been executed during a flight plan.<br/>
 
 *Supported by <br/>*
 
-- *no product*<br/>
+- *Bebop 2 since 4.2.0*<br/>
+- *Disco since 1.4.0*<br/>
 
 
 <br/>
@@ -3613,9 +3614,7 @@ Triggered on an speed related clamping after a [StartFlightPlan](#common-Mavlink
 
 *Supported by <br/>*
 
-- *Bebop since 2.0.29*<br/>
-- *Bebop 2*<br/>
-- *Disco*<br/>
+- *no product*<br/>
 
 
 <br/>

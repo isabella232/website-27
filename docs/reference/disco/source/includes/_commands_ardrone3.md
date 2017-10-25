@@ -286,7 +286,9 @@ deviceController.getFeatureARDrone3().sendPilotingUserTakeOff((byte)state);
 ```
 
 Prepare the drone to take off.<br/>
-This is the command that initiates the take off process on the fixed wings.<br/>
+On copters: initiates the thrown takeoff. Note that the drone will do the thrown take off even if it is steady.<br/>
+On fixed wings: initiates the take off process on the fixed wings.<br/>
+<br/>
 Setting the state to 0 will cancel the preparation. You can cancel it before that the drone takes off.<br/>
 
 
@@ -305,6 +307,7 @@ Then user can throw the drone to make it take off.<br/>
 *Supported by <br/>*
 
 - *Disco*<br/>
+- *Bebop 2 since 4.3.0*<br/>
 
 
 <br/>
@@ -814,41 +817,6 @@ Only available for fixed wings.<br/>
 Result:<br/>
 The circling direction is set.<br/>
 Then, event [DefaultCirclingDirection](#ARDrone3-PilotingSettingsState-CirclingDirectionChanged) is triggered.<br/>
-
-
-*Supported by <br/>*
-
-- *Disco*<br/>
-
-
-<br/>
-
-<!-- ARDrone3-PilotingSettings-CirclingRadius-->
-### <a name="ARDrone3-PilotingSettings-CirclingRadius">Set circling radius</a><br/>
-> Set circling radius:
-
-```c
-deviceController->aRDrone3->sendPilotingSettingsCirclingRadius(deviceController->aRDrone3, (uint16_t)value);
-```
-
-```objective_c
-deviceController->aRDrone3->sendPilotingSettingsCirclingRadius(deviceController->aRDrone3, (uint16_t)value);
-```
-
-```java
-deviceController.getFeatureARDrone3().sendPilotingSettingsCirclingRadius((short)value);
-```
-
-Set circling radius.<br/>
-Only available for fixed wings.<br/>
-
-
-* value (u16): The circling radius in meter<br/>
-
-
-Result:<br/>
-The circling radius is set.<br/>
-Then, event [CirclingRadius](#ARDrone3-PilotingSettingsState-CirclingRadiusChanged) is triggered.<br/>
 
 
 *Supported by <br/>*
@@ -1441,32 +1409,34 @@ Then, event [VideoStreamState](#ARDrone3-MediaStreamingState-VideoEnableChanged)
 
 <br/>
 
-<!-- ARDrone3-GPSSettings-ResetHome-->
-### <a name="ARDrone3-GPSSettings-ResetHome">Reset home position (deprecated)</a><br/>
-> Reset home position (deprecated):
+<!-- ARDrone3-MediaStreaming-VideoStreamMode-->
+### <a name="ARDrone3-MediaStreaming-VideoStreamMode">Set the stream mode</a><br/>
+> Set the stream mode:
 
 ```c
-deviceController->aRDrone3->sendGPSSettingsResetHome(deviceController->aRDrone3);
+deviceController->aRDrone3->sendMediaStreamingVideoStreamMode(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_MEDIASTREAMING_VIDEOSTREAMMODE_MODE)mode);
 ```
 
 ```objective_c
-deviceController->aRDrone3->sendGPSSettingsResetHome(deviceController->aRDrone3);
+deviceController->aRDrone3->sendMediaStreamingVideoStreamMode(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_MEDIASTREAMING_VIDEOSTREAMMODE_MODE)mode);
 ```
 
 ```java
-deviceController.getFeatureARDrone3().sendGPSSettingsResetHome();
+deviceController.getFeatureARDrone3().sendMediaStreamingVideoStreamMode((ARCOMMANDS_ARDRONE3_MEDIASTREAMING_VIDEOSTREAMMODE_MODE_ENUM)mode);
 ```
 
-*This message is deprecated.*<br/>
-
-Reset home position.<br/>
+Set the stream mode.<br/>
 
 
+* mode (enum): stream mode<br/>
+   * low_latency: Minimize latency with average reliability (best for piloting).<br/>
+   * high_reliability: Maximize the reliability with an average latency (best when streaming quality is important but not the latency).<br/>
+   * high_reliability_low_framerate: Maximize the reliability using a framerate decimation with an average latency (best when streaming quality is important but not the latency).<br/>
 
 
 Result:<br/>
-The home position is reset.<br/>
-Then, event [HomeLocationReset](#ARDrone3-GPSSettingsState-ResetHomeChanged) is triggered.<br/>
+The stream mode is set.<br/>
+Then, event [VideoStreamMode](#ARDrone3-MediaStreamingState-VideoStreamModeChanged) is triggered.<br/>
 
 
 *Supported by <br/>*
@@ -1585,87 +1555,6 @@ Set the delay after which the drone will automatically try to return home after 
 Result:<br/>
 The delay of the return home is set.<br/>
 Then, event [ReturnHomeDelay](#ARDrone3-GPSSettingsState-ReturnHomeDelayChanged) is triggered.<br/>
-
-
-*Supported by <br/>*
-
-- *Bebop*<br/>
-- *Bebop 2*<br/>
-- *Disco*<br/>
-
-
-<br/>
-
-<!-- ARDrone3-Antiflickering-electricFrequency-->
-### <a name="ARDrone3-Antiflickering-electricFrequency">Set the electric frequency</a><br/>
-> Set the electric frequency:
-
-```c
-deviceController->aRDrone3->sendAntiflickeringElectricFrequency(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_ANTIFLICKERING_ELECTRICFREQUENCY_FREQUENCY)frequency);
-```
-
-```objective_c
-deviceController->aRDrone3->sendAntiflickeringElectricFrequency(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_ANTIFLICKERING_ELECTRICFREQUENCY_FREQUENCY)frequency);
-```
-
-```java
-deviceController.getFeatureARDrone3().sendAntiflickeringElectricFrequency((ARCOMMANDS_ARDRONE3_ANTIFLICKERING_ELECTRICFREQUENCY_FREQUENCY_ENUM)frequency);
-```
-
-Set the electric frequency of the surrounding lights.<br/>
-This is used to avoid the video flickering in auto mode. You can get the current antiflickering mode with the event [AntiflickeringModeChanged](#ARDrone3-AntiflickeringState-modeChanged).<br/>
-
-
-* frequency (enum): Type of the electric frequency<br/>
-   * fiftyHertz: Electric frequency of the country is 50hz<br/>
-   * sixtyHertz: Electric frequency of the country is 60hz<br/>
-
-
-Result:<br/>
-The electric frequency is set.<br/>
-Then, event [ElectricFrequency](#ARDrone3-AntiflickeringState-electricFrequencyChanged) is triggered.<br/>
-
-
-*Supported by <br/>*
-
-- *Bebop*<br/>
-- *Bebop 2*<br/>
-- *Disco*<br/>
-
-
-<br/>
-
-<!-- ARDrone3-Antiflickering-setMode-->
-### <a name="ARDrone3-Antiflickering-setMode">Set the antiflickering mode</a><br/>
-> Set the antiflickering mode:
-
-```c
-deviceController->aRDrone3->sendAntiflickeringSetMode(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_ANTIFLICKERING_SETMODE_MODE)mode);
-```
-
-```objective_c
-deviceController->aRDrone3->sendAntiflickeringSetMode(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_ANTIFLICKERING_SETMODE_MODE)mode);
-```
-
-```java
-deviceController.getFeatureARDrone3().sendAntiflickeringSetMode((ARCOMMANDS_ARDRONE3_ANTIFLICKERING_SETMODE_MODE_ENUM)mode);
-```
-
-Set the antiflickering mode.<br/>
-If auto, the drone will detect when flickers appears on the video and trigger the antiflickering.<br/>
-In this case, this electric frequency it will use will be the one specified in the event [ElectricFrequency](#ARDrone3-Antiflickering-electricFrequency).<br/>
-Forcing the antiflickering (FixedFiftyHertz or FixedFiftyHertz) can reduce luminosity of the video.<br/>
-
-
-* mode (enum): Mode of the anti flickering functionnality<br/>
-   * auto: Anti flickering based on the electric frequency previously sent<br/>
-   * FixedFiftyHertz: Anti flickering based on a fixed frequency of 50Hz<br/>
-   * FixedSixtyHertz: Anti flickering based on a fixed frequency of 60Hz<br/>
-
-
-Result:<br/>
-The antiflickering mode is set.<br/>
-Then, event [AntiflickeringMode](#ARDrone3-AntiflickeringState-modeChanged) is triggered.<br/>
 
 
 *Supported by <br/>*

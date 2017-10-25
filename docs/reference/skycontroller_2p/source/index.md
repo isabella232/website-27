@@ -1,5 +1,5 @@
 ---
-title: libARController reference for Mambo
+title: libARController reference for SkyController 2P
 
 language_tabs:
   - objective_c: Objective C
@@ -15,13 +15,13 @@ includes:
   - title
   - description
   - commands
-  - commands_common
-  - commands_mapper_mini
-  - commands_minidrone
+  - commands_drone_manager
+  - commands_mapper
+  - commands_skyctrl
   - events
-  - events_common
-  - events_mapper_mini
-  - events_minidrone
+  - events_drone_manager
+  - events_mapper
+  - events_skyctrl
 
 search: true
 ---

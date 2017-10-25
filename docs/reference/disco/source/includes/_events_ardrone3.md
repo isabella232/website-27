@@ -502,7 +502,7 @@ Flying state.<br/>
    * landing: Landing state<br/>
    * emergency: Emergency state<br/>
    * usertakeoff: User take off state. Waiting for user action to take off.<br/>
-   * motor_ramping: Motor ramping state (for fixed wings).<br/>
+   * motor_ramping: Motor ramping state.<br/>
    * emergency_landing: Emergency landing state.<br/>
 Drone autopilot has detected defective sensor(s).<br/>
 Only Yaw argument in PCMD is taken into account.<br/>
@@ -1149,6 +1149,81 @@ Triggered when the landing state changes.<br/>
 *Supported by <br/>*
 
 - *Disco*<br/>
+
+
+<br/>
+
+<!-- ARDrone3-PilotingState-AirSpeedChanged-->
+### <a name="ARDrone3-PilotingState-AirSpeedChanged">Drone's air speed changed</a><br/>
+> Drone's air speed changed:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_AIRSPEEDCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_AIRSPEEDCHANGED_AIRSPEED, arg);
+            if (arg != NULL)
+            {
+                float airSpeed = arg->value.Float;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_AIRSPEEDCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_AIRSPEEDCHANGED_AIRSPEED, arg);
+            if (arg != NULL)
+            {
+                float airSpeed = arg->value.Float;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_AIRSPEEDCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            float airSpeed = (float)((Double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_AIRSPEEDCHANGED_AIRSPEED)).doubleValue();
+        }
+    }
+}
+```
+
+Drone's air speed changed<br/>
+Expressed in the drone's referential.<br/>
+
+
+* airSpeed (float): Speed relative to air on x axis<br/>
+(speed is always > 0) (in m/s)<br/>
+
+
+Triggered regularly.<br/>
+
+
+
+*Supported by <br/>*
+
+- *Disco since 1.2.0*<br/>
 
 
 <br/>
@@ -1954,104 +2029,6 @@ Only sent by fixed wings.<br/>
 
 
 Triggered by [SetCirclingDirection](#ARDrone3-PilotingSettings-CirclingDirection).<br/>
-
-
-
-*Supported by <br/>*
-
-- *Disco*<br/>
-
-
-<br/>
-
-<!-- ARDrone3-PilotingSettingsState-CirclingRadiusChanged-->
-### <a name="ARDrone3-PilotingSettingsState-CirclingRadiusChanged">Circling radius</a><br/>
-> Circling radius:
-
-```c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_CURRENT, arg);
-            if (arg != NULL)
-            {
-                uint16_t current = arg->value.U16;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_MIN, arg);
-            if (arg != NULL)
-            {
-                uint16_t min = arg->value.U16;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_MAX, arg);
-            if (arg != NULL)
-            {
-                uint16_t max = arg->value.U16;
-            }
-        }
-    }
-}
-```
-
-```objective_c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_CURRENT, arg);
-            if (arg != NULL)
-            {
-                uint16_t current = arg->value.U16;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_MIN, arg);
-            if (arg != NULL)
-            {
-                uint16_t min = arg->value.U16;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_MAX, arg);
-            if (arg != NULL)
-            {
-                uint16_t max = arg->value.U16;
-            }
-        }
-    }
-}
-```
-
-```java
-@Override
-public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED) && (elementDictionary != null)){
-        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
-        if (args != null) {
-            short current = (short)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_CURRENT)).intValue();
-            short min = (short)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_MIN)).intValue();
-            short max = (short)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_CIRCLINGRADIUSCHANGED_MAX)).intValue();
-        }
-    }
-}
-```
-
-Circling radius.<br/>
-Only sent by fixed wings.<br/>
-
-
-* current (u16): The current circling radius in meter<br/>
-* min (u16): Range min of circling radius in meter<br/>
-* max (u16): Range max of circling radius in meter<br/>
-
-
-Triggered by [SetCirclingRadius](#ARDrone3-PilotingSettings-CirclingRadius).<br/>
 
 
 
@@ -3873,107 +3850,6 @@ Triggered when [HomeType](#ARDrone3-GPSState-HomeTypeChosenChanged) changes. Or 
 
 <br/>
 
-<!-- ARDrone3-GPSSettingsState-ResetHomeChanged-->
-### <a name="ARDrone3-GPSSettingsState-ResetHomeChanged">Home location has been reset (deprecated)</a><br/>
-> Home location has been reset (deprecated):
-
-```c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_LATITUDE, arg);
-            if (arg != NULL)
-            {
-                double latitude = arg->value.Double;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_LONGITUDE, arg);
-            if (arg != NULL)
-            {
-                double longitude = arg->value.Double;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_ALTITUDE, arg);
-            if (arg != NULL)
-            {
-                double altitude = arg->value.Double;
-            }
-        }
-    }
-}
-```
-
-```objective_c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_LATITUDE, arg);
-            if (arg != NULL)
-            {
-                double latitude = arg->value.Double;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_LONGITUDE, arg);
-            if (arg != NULL)
-            {
-                double longitude = arg->value.Double;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_ALTITUDE, arg);
-            if (arg != NULL)
-            {
-                double altitude = arg->value.Double;
-            }
-        }
-    }
-}
-```
-
-```java
-@Override
-public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED) && (elementDictionary != null)){
-        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
-        if (args != null) {
-            double latitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_LATITUDE);
-            double longitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_LONGITUDE);
-            double altitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_GPSSETTINGSSTATE_RESETHOMECHANGED_ALTITUDE);
-        }
-    }
-}
-```
-
-*This message is deprecated.*<br/>
-
-Home location has been reset.<br/>
-
-
-* latitude (double): Home latitude in decimal degrees<br/>
-* longitude (double): Home longitude in decimal degrees<br/>
-* altitude (double): Home altitude in meters<br/>
-
-
-Triggered by [ResetHomeLocation](#ARDrone3-GPSSettings-ResetHome).<br/>
-
-
-
-*Supported by <br/>*
-
-- *Bebop*<br/>
-- *Bebop 2*<br/>
-- *Disco*<br/>
-
-
-<br/>
-
 <!-- ARDrone3-GPSSettingsState-GPSFixStateChanged-->
 ### <a name="ARDrone3-GPSSettingsState-GPSFixStateChanged">Gps fix info</a><br/>
 > Gps fix info:
@@ -4724,162 +4600,6 @@ Triggered at connection.<br/>
 
 <br/>
 
-<!-- ARDrone3-AntiflickeringState-electricFrequencyChanged-->
-### <a name="ARDrone3-AntiflickeringState-electricFrequencyChanged">Electric frequency</a><br/>
-> Electric frequency:
-
-```c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_ELECTRICFREQUENCYCHANGED) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY, arg);
-            if (arg != NULL)
-            {
-                eARCOMMANDS_ARDRONE3_ANTIFLICKERINGSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY frequency = arg->value.I32;
-            }
-        }
-    }
-}
-```
-
-```objective_c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_ELECTRICFREQUENCYCHANGED) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY, arg);
-            if (arg != NULL)
-            {
-                eARCOMMANDS_ARDRONE3_ANTIFLICKERINGSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY frequency = arg->value.I32;
-            }
-        }
-    }
-}
-```
-
-```java
-@Override
-public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_ELECTRICFREQUENCYCHANGED) && (elementDictionary != null)){
-        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
-        if (args != null) {
-            ARCOMMANDS_ARDRONE3_ANTIFLICKERINGSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY_ENUM frequency = ARCOMMANDS_ARDRONE3_ANTIFLICKERINGSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY));
-        }
-    }
-}
-```
-
-Electric frequency.<br/>
-This piece of information is used for the antiflickering when the [AntiflickeringMode](#ARDrone3-AntiflickeringState-modeChanged) is set to *auto*.<br/>
-
-
-* frequency (enum): Type of the electric frequency<br/>
-   * fiftyHertz: Electric frequency of the country is 50hz<br/>
-   * sixtyHertz: Electric frequency of the country is 60hz<br/>
-
-
-Triggered by [SetElectricFrequency](#ARDrone3-Antiflickering-electricFrequency).<br/>
-
-
-
-*Supported by <br/>*
-
-- *Bebop*<br/>
-- *Bebop 2*<br/>
-- *Disco*<br/>
-
-
-<br/>
-
-<!-- ARDrone3-AntiflickeringState-modeChanged-->
-### <a name="ARDrone3-AntiflickeringState-modeChanged">Antiflickering mode</a><br/>
-> Antiflickering mode:
-
-```c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_MODECHANGED) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_MODECHANGED_MODE, arg);
-            if (arg != NULL)
-            {
-                eARCOMMANDS_ARDRONE3_ANTIFLICKERINGSTATE_MODECHANGED_MODE mode = arg->value.I32;
-            }
-        }
-    }
-}
-```
-
-```objective_c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_MODECHANGED) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_MODECHANGED_MODE, arg);
-            if (arg != NULL)
-            {
-                eARCOMMANDS_ARDRONE3_ANTIFLICKERINGSTATE_MODECHANGED_MODE mode = arg->value.I32;
-            }
-        }
-    }
-}
-```
-
-```java
-@Override
-public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_MODECHANGED) && (elementDictionary != null)){
-        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
-        if (args != null) {
-            ARCOMMANDS_ARDRONE3_ANTIFLICKERINGSTATE_MODECHANGED_MODE_ENUM mode = ARCOMMANDS_ARDRONE3_ANTIFLICKERINGSTATE_MODECHANGED_MODE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_ANTIFLICKERINGSTATE_MODECHANGED_MODE));
-        }
-    }
-}
-```
-
-Antiflickering mode.<br/>
-
-
-* mode (enum): Mode of the anti flickering functionnality<br/>
-   * auto: Anti flickering based on the electric frequency previously sent<br/>
-   * FixedFiftyHertz: Anti flickering based on a fixed frequency of 50Hz<br/>
-   * FixedSixtyHertz: Anti flickering based on a fixed frequency of 60Hz<br/>
-
-
-Triggered by [SetAntiflickeringMode](#ARDrone3-Antiflickering-setMode).<br/>
-
-
-
-*Supported by <br/>*
-
-- *Bebop*<br/>
-- *Bebop 2*<br/>
-- *Disco*<br/>
-
-
-<br/>
-
 <!-- ARDrone3-GPSState-NumberOfSatelliteChanged-->
 ### <a name="ARDrone3-GPSState-NumberOfSatelliteChanged">Number of GPS satellites</a><br/>
 > Number of GPS satellites:
@@ -5270,7 +4990,7 @@ List of all connected accessories. This event presents the list of all connected
 * id (u8): Id of the accessory for the session.<br/>
 * accessory_type (enum): Accessory type<br/>
    * sequoia: Parrot Sequoia (multispectral camera for agriculture)<br/>
-   * unknownaccessory_1: UNKNOWNACCESSORY_1 camera (thermal+rgb camera)<br/>
+   * flir: FLIR camera (thermal+rgb camera)<br/>
 * uid (string): Unique Id of the accessory.<br/>
 This id is unique by accessory_type.<br/>
 * swVersion (string): Software Version of the accessory.<br/>

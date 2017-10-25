@@ -198,6 +198,7 @@ The controller will trigger all settings events and will finally trigger [AllSet
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -231,6 +232,7 @@ The controller will trigger all states events and will finally trigger [AllState
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -861,6 +863,7 @@ The SkyController will sent a [pilotingSource](#SkyController-CoPilotingState-pi
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>

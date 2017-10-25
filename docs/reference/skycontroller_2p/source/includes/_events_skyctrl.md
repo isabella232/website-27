@@ -783,39 +783,24 @@ Triggered by a [setPilotingSource](#SkyController-CoPiloting-setPilotingSource) 
 
 <br/>
 
-<!-- SkyController-CalibrationState-MagnetoCalibrationState-->
-### <a name="SkyController-CalibrationState-MagnetoCalibrationState">Magneto calibration state</a><br/>
+<!-- SkyController-CalibrationState-MagnetoCalibrationStateV2-->
+### <a name="SkyController-CalibrationState-MagnetoCalibrationStateV2">Magneto calibration state</a><br/>
 > Magneto calibration state:
 
 ```c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE) && (elementDictionary != NULL))
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2) && (elementDictionary != NULL))
     {
         ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
         ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
         HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
         if (element != NULL)
         {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_STATUS, arg);
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE, arg);
             if (arg != NULL)
             {
-                eARCOMMANDS_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_STATUS status = arg->value.I32;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_X_QUALITY, arg);
-            if (arg != NULL)
-            {
-                uint8_t X_Quality = arg->value.U8;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_Y_QUALITY, arg);
-            if (arg != NULL)
-            {
-                uint8_t Y_Quality = arg->value.U8;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_Z_QUALITY, arg);
-            if (arg != NULL)
-            {
-                uint8_t Z_Quality = arg->value.U8;
+                eARCOMMANDS_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE state = arg->value.I32;
             }
         }
     }
@@ -825,32 +810,17 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```objective_c
 void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
 {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE) && (elementDictionary != NULL))
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2) && (elementDictionary != NULL))
     {
         ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
         ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
         HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
         if (element != NULL)
         {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_STATUS, arg);
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE, arg);
             if (arg != NULL)
             {
-                eARCOMMANDS_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_STATUS status = arg->value.I32;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_X_QUALITY, arg);
-            if (arg != NULL)
-            {
-                uint8_t X_Quality = arg->value.U8;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_Y_QUALITY, arg);
-            if (arg != NULL)
-            {
-                uint8_t Y_Quality = arg->value.U8;
-            }
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_Z_QUALITY, arg);
-            if (arg != NULL)
-            {
-                uint8_t Z_Quality = arg->value.U8;
+                eARCOMMANDS_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE state = arg->value.I32;
             }
         }
     }
@@ -860,119 +830,35 @@ void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DI
 ```java
 @Override
 public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE) && (elementDictionary != null)){
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2) && (elementDictionary != null)){
         ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
         if (args != null) {
-            ARCOMMANDS_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_STATUS_ENUM status = ARCOMMANDS_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_STATUS_ENUM.getFromValue((Integer)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_STATUS));
-            byte X_Quality = (byte)((Integer)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_X_QUALITY)).intValue();
-            byte Y_Quality = (byte)((Integer)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_Y_QUALITY)).intValue();
-            byte Z_Quality = (byte)((Integer)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATE_Z_QUALITY)).intValue();
+            ARCOMMANDS_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE_ENUM state = ARCOMMANDS_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONSTATEV2_STATE));
         }
     }
 }
 ```
 
-The current state of the magnetometer calibration.<br/>
-If the calibration quality updates are enabled, this event is sent at every calibration quality update. This is useful for calibration screens, but creates a lot of traffic on network.\ When the calibration quality updates are disabled, this event is only sent when the status parameter changes.<br/>
+The current state of magnetometer calibration.<br/>
+This event is used by products which does require a step-by-step calibration.<br/>
+When calibrating, the product will go, in order, through X, Y and Z axis calibration, then into calibrated state. If at any point it goes back to not-calibrated, it means that the calibration process failed and should be manually restarted with the [StartCalibration](#SkyController-Calibration-StartCalibration) command.<br/>
 
 
-* status (enum): The global status of the calibration<br/>
-   * Unreliable: A calibration is needed<br/>
-   * Assessing: A calibration is applied, but still need to be checked<br/>
-   * Calibrated: The sensor is properly calibrated<br/>
-* X_Quality (u8): Calibration quality on X axis.<br/>
-0 is bad, 255 is perfect<br/>
-* Y_Quality (u8): Calibration quality on Y axis.<br/>
-0 is bad, 255 is perfect<br/>
-* Z_Quality (u8): Calibration quality on Z axis.<br/>
-0 is bad, 255 is perfect<br/>
+* state (enum): The calibration state<br/>
+   * NotCalibrated: A calibration is needed<br/>
+   * CalibratingX: A calibration is in progress on the X axis<br/>
+   * CalibratingY: A calibration is in progress on the Y axis<br/>
+   * CalibratingZ: A calibration is in progress on the Z axis<br/>
+   * Calibrated: The sensor is calibrated<br/>
 
 
-Triggered when the magnetometer calibration state has changed.<br/>
+Triggered when the magnetometer calibration state has changed, or by a [StartCalibration](#SkyController-Calibration-StartCalibration) or [AbortCalibration](#SkyController-Calibration-AbortCalibration) command<br/>
 
 
 
 *Supported by <br/>*
 
-- *SkyController*<br/>
-- *SkyController 2*<br/>
-
-
-<br/>
-
-<!-- SkyController-CalibrationState-MagnetoCalibrationQualityUpdatesState-->
-### <a name="SkyController-CalibrationState-MagnetoCalibrationQualityUpdatesState">Magnetometer Calibration Quality Update State</a><br/>
-> Magnetometer Calibration Quality Update State:
-
-```c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONQUALITYUPDATESSTATE) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONQUALITYUPDATESSTATE_ENABLED, arg);
-            if (arg != NULL)
-            {
-                uint8_t enabled = arg->value.U8;
-            }
-        }
-    }
-}
-```
-
-```objective_c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONQUALITYUPDATESSTATE) && (elementDictionary != NULL))
-    {
-        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
-        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
-        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
-        if (element != NULL)
-        {
-            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONQUALITYUPDATESSTATE_ENABLED, arg);
-            if (arg != NULL)
-            {
-                uint8_t enabled = arg->value.U8;
-            }
-        }
-    }
-}
-```
-
-```java
-@Override
-public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONQUALITYUPDATESSTATE) && (elementDictionary != null)){
-        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
-        if (args != null) {
-            byte enabled = (byte)((Integer)args.get(ARFeatureSkyController.ARCONTROLLER_DICTIONARY_KEY_SKYCONTROLLER_CALIBRATIONSTATE_MAGNETOCALIBRATIONQUALITYUPDATESSTATE_ENABLED)).intValue();
-        }
-    }
-}
-```
-
-State of the magnetometer calibration quality sender.<br/>
-This determines the trigger of the [MagnetoCalibrationState](#SkyController-CalibrationState-MagnetoCalibrationState) event.<br/>
-
-
-* enabled (u8): Flag (is the feature enabled).<br/>
-1 = The skycontroller sends updated when quality is updated<br/>
-0 = The skycontroller only sent updated when state is updated<br/>
-
-
-Triggered by an [enableMagnetoCalibrationQualityUpdates](#SkyController-Calibration-enableMagnetoCalibrationQualityUpdates) command.<br/>
-
-
-
-*Supported by <br/>*
-
-- *SkyController*<br/>
-- *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>

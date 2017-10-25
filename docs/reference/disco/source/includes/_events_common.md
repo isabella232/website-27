@@ -1833,6 +1833,81 @@ Triggered by [StartFlightPlan](#common-Mavlink-Start) if an error occurs.<br/>
 
 <br/>
 
+<!-- common-MavlinkState-MissionItemExecuted-->
+### <a name="common-MavlinkState-MissionItemExecuted">Mission item executed</a><br/>
+> Mission item executed:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MISSIONITEMEXECUTED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MISSIONITEMEXECUTED_IDX, arg);
+            if (arg != NULL)
+            {
+                uint32_t idx = arg->value.U32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MISSIONITEMEXECUTED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MISSIONITEMEXECUTED_IDX, arg);
+            if (arg != NULL)
+            {
+                uint32_t idx = arg->value.U32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MISSIONITEMEXECUTED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            int idx = (int)args.get(ARFeatureCommon.ARCONTROLLER_DICTIONARY_KEY_COMMON_MAVLINKSTATE_MISSIONITEMEXECUTED_IDX);
+        }
+    }
+}
+```
+
+Mission item has been executed.<br/>
+
+
+* idx (u32): Index of the mission item. This is the place of the mission item in the list of the items of the mission.<br/>
+Begins at 0.<br/>
+
+
+Triggered when a mission item has been executed during a flight plan.<br/>
+
+
+
+*Supported by <br/>*
+
+- *Bebop 2 since 4.2.0*<br/>
+- *Disco since 1.4.0*<br/>
+
+
+<br/>
+
 <!-- common-FlightPlanSettingsState-ReturnHomeOnDisconnectChanged-->
 ### <a name="common-FlightPlanSettingsState-ReturnHomeOnDisconnectChanged">ReturnHome behavior during FlightPlan</a><br/>
 > ReturnHome behavior during FlightPlan:
@@ -2705,60 +2780,6 @@ FlightPlan start error.<br/>
 
 
 Triggered on an error after a [StartFlightPlan](#common-Mavlink-Start).<br/>
-
-
-
-*Supported by <br/>*
-
-- *Bebop since 2.0.29*<br/>
-- *Bebop 2*<br/>
-- *Disco*<br/>
-
-
-<br/>
-
-<!-- common-FlightPlanEvent-SpeedBridleEvent-->
-### <a name="common-FlightPlanEvent-SpeedBridleEvent">FlightPlan speed clamping</a><br/>
-> FlightPlan speed clamping:
-
-```c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANEVENT_SPEEDBRIDLEEVENT) && (elementDictionary != NULL))
-    {
-
-    }
-}
-```
-
-```objective_c
-void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
-{
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANEVENT_SPEEDBRIDLEEVENT) && (elementDictionary != NULL))
-    {
-
-    }
-}
-```
-
-```java
-@Override
-public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
-    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_COMMON_FLIGHTPLANEVENT_SPEEDBRIDLEEVENT) && (elementDictionary != null)){
-
-    }
-}
-```
-
-FlightPlan speed clamping.<br/>
-Sent when a speed specified in the FlightPlan file is considered too high by the drone.<br/>
-<br/>
-**This event is a notification, you can't retrieve it in the cache of the device controller.**<br/>
-
-
-
-
-Triggered on an speed related clamping after a [StartFlightPlan](#common-Mavlink-Start).<br/>
 
 
 

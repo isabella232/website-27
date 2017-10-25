@@ -310,6 +310,199 @@ If you send a second relative move command, the drone will trigger a [RelativeMo
 
 <br/>
 
+<!-- ARDrone3-Piloting-UserTakeOff-->
+### <a name="ARDrone3-Piloting-UserTakeOff">Prepare the drone to take off</a><br/>
+> Prepare the drone to take off:
+
+```c
+deviceController->aRDrone3->sendPilotingUserTakeOff(deviceController->aRDrone3, (uint8_t)state);
+```
+
+```objective_c
+deviceController->aRDrone3->sendPilotingUserTakeOff(deviceController->aRDrone3, (uint8_t)state);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendPilotingUserTakeOff((byte)state);
+```
+
+Prepare the drone to take off.<br/>
+On copters: initiates the thrown takeoff. Note that the drone will do the thrown take off even if it is steady.<br/>
+On fixed wings: initiates the take off process on the fixed wings.<br/>
+<br/>
+Setting the state to 0 will cancel the preparation. You can cancel it before that the drone takes off.<br/>
+
+
+* state (u8): State of user take off mode<br/>
+- 1 to enter in user take off.<br/>
+- 0 to exit from user take off.<br/>
+
+
+Result:<br/>
+The drone will arm its motors if not already armed.<br/>
+Then, event [FlyingState](#ARDrone3-PilotingState-FlyingStateChanged) is triggered with state set at motor ramping.<br/>
+Then, event [FlyingState](#ARDrone3-PilotingState-FlyingStateChanged) is triggered with state set at userTakeOff.<br/>
+Then user can throw the drone to make it take off.<br/>
+
+
+*Supported by <br/>*
+
+- *Disco*<br/>
+- *Bebop 2 since 4.3.0*<br/>
+
+
+<br/>
+
+<!-- ARDrone3-Piloting-moveTo-->
+### <a name="ARDrone3-Piloting-moveTo">Move to a location</a><br/>
+> Move to a location:
+
+```c
+deviceController->aRDrone3->sendPilotingMoveTo(deviceController->aRDrone3, (double)latitude, (double)longitude, (double)altitude, (eARCOMMANDS_ARDRONE3_PILOTING_MOVETO_ORIENTATION_MODE)orientation_mode, (float)heading);
+```
+
+```objective_c
+deviceController->aRDrone3->sendPilotingMoveTo(deviceController->aRDrone3, (double)latitude, (double)longitude, (double)altitude, (eARCOMMANDS_ARDRONE3_PILOTING_MOVETO_ORIENTATION_MODE)orientation_mode, (float)heading);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendPilotingMoveTo((double)latitude, (double)longitude, (double)altitude, (ARCOMMANDS_ARDRONE3_PILOTING_MOVETO_ORIENTATION_MODE_ENUM)orientation_mode, (float)heading);
+```
+
+Move the drone to a specified location.<br/>
+If a new command moveTo is sent, the drone will immediatly run it (no cancel will be issued).<br/>
+If a [CancelMoveTo](#ARDrone3-Piloting-CancelMoveTo) command is sent, the moveTo is stopped.<br/>
+During the moveTo, all pitch, roll and gaz values of the piloting command will be ignored by the drone.<br/>
+However, the yaw value can be used.<br/>
+
+
+* latitude (double): Latitude of the location (in degrees) to reach<br/>
+* longitude (double): Longitude of the location (in degrees) to reach<br/>
+* altitude (double): Altitude above sea level (in m) to reach<br/>
+* orientation_mode (enum): Orientation mode of the move to<br/>
+   * NONE: The drone won't change its orientation<br/>
+   * TO_TARGET: The drone will make a rotation to look in direction of the given location<br/>
+   * HEADING_START: The drone will orientate itself to the given heading before moving to the location<br/>
+   * HEADING_DURING: The drone will orientate itself to the given heading while moving to the location<br/>
+* heading (float): Heading (relative to the North in degrees).<br/>
+This value is only used if the orientation mode is HEADING_START or HEADING_DURING<br/>
+
+
+Result:<br/>
+Event [MovingTo](#ARDrone3-PilotingState-moveToChanged) is triggered with state running. Then, the drone will move to the given location.<br/>
+Then, event [MoveToChanged](#ARDrone3-PilotingState-moveToChanged) is triggered with state succeed.<br/>
+
+
+*Supported by <br/>*
+
+- *Bebop 2 since 4.3.0*<br/>
+
+
+<br/>
+
+<!-- ARDrone3-Piloting-CancelMoveTo-->
+### <a name="ARDrone3-Piloting-CancelMoveTo">Cancel the moveTo</a><br/>
+> Cancel the moveTo:
+
+```c
+deviceController->aRDrone3->sendPilotingCancelMoveTo(deviceController->aRDrone3);
+```
+
+```objective_c
+deviceController->aRDrone3->sendPilotingCancelMoveTo(deviceController->aRDrone3);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendPilotingCancelMoveTo();
+```
+
+Cancel the current moveTo.<br/>
+If there is no current moveTo, this command has no effect.<br/>
+
+
+
+
+Result:<br/>
+Event [MoveToChanged](#ARDrone3-PilotingState-moveToChanged) is triggered with state canceled.<br/>
+
+
+*Supported by <br/>*
+
+- *Bebop 2 since 4.3.0*<br/>
+
+
+<br/>
+
+<!-- ARDrone3-Piloting-StartPilotedPOI-->
+### <a name="ARDrone3-Piloting-StartPilotedPOI">Start a piloted POI</a><br/>
+> Start a piloted POI:
+
+```c
+deviceController->aRDrone3->sendPilotingStartPilotedPOI(deviceController->aRDrone3, (double)latitude, (double)longitude, (double)altitude);
+```
+
+```objective_c
+deviceController->aRDrone3->sendPilotingStartPilotedPOI(deviceController->aRDrone3, (double)latitude, (double)longitude, (double)altitude);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendPilotingStartPilotedPOI((double)latitude, (double)longitude, (double)altitude);
+```
+
+Start a piloted Point Of Interest.<br/>
+During a piloted POI, the drone will always look at the given POI but can be piloted normally. However, yaw value is ignored. Camera tilt and pan command is also ignored.<br/>
+Ignored if [PilotedPOI](#ARDrone3-PilotingState-PilotedPOI) state is UNAVAILABLE.<br/>
+
+
+* latitude (double): Latitude of the location (in degrees) to look at<br/>
+* longitude (double): Longitude of the location (in degrees) to look at<br/>
+* altitude (double): Altitude above sea level (in m) to look at<br/>
+
+
+Result:<br/>
+If the drone is hovering, event [PilotedPOI](#ARDrone3-PilotingState-PilotedPOI) is triggered with state RUNNING. If the drone is not hovering, event [PilotedPOI](#ARDrone3-PilotingState-PilotedPOI) is triggered with state PENDING, waiting to hover. When the drone hovers, the state will change to RUNNING. If the drone does not hover for a given time, piloted POI is canceled by the drone and state will change to AVAILABLE. Then, the drone will look at the given location.<br/>
+
+
+*Supported by <br/>*
+
+- *Bebop 2 since 4.3.0*<br/>
+
+
+<br/>
+
+<!-- ARDrone3-Piloting-StopPilotedPOI-->
+### <a name="ARDrone3-Piloting-StopPilotedPOI">Stop the piloted POI</a><br/>
+> Stop the piloted POI:
+
+```c
+deviceController->aRDrone3->sendPilotingStopPilotedPOI(deviceController->aRDrone3);
+```
+
+```objective_c
+deviceController->aRDrone3->sendPilotingStopPilotedPOI(deviceController->aRDrone3);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendPilotingStopPilotedPOI();
+```
+
+Stop the piloted Point Of Interest.<br/>
+If [PilotedPOI](#ARDrone3-PilotingState-PilotedPOI) state is RUNNING or PENDING, stop it.<br/>
+
+
+
+
+Result:<br/>
+Event [PilotedPOI](#ARDrone3-PilotingState-PilotedPOI) is triggered with state AVAILABLE.<br/>
+
+
+*Supported by <br/>*
+
+- *Bebop 2 since 4.3.0*<br/>
+
+
+<br/>
+
 <!-- ARDrone3-Animations-Flip-->
 ### <a name="ARDrone3-Animations-Flip">Make a flip</a><br/>
 > Make a flip:
@@ -1005,6 +1198,41 @@ Then, event [BankedTurnMode](#ARDrone3-PilotingSettingsState-BankedTurnChanged) 
 
 <br/>
 
+<!-- ARDrone3-PilotingSettings-SetMotionDetectionMode-->
+### <a name="ARDrone3-PilotingSettings-SetMotionDetectionMode">Enable/disable the motion detection</a><br/>
+> Enable/disable the motion detection:
+
+```c
+deviceController->aRDrone3->sendPilotingSettingsSetMotionDetectionMode(deviceController->aRDrone3, (uint8_t)enable);
+```
+
+```objective_c
+deviceController->aRDrone3->sendPilotingSettingsSetMotionDetectionMode(deviceController->aRDrone3, (uint8_t)enable);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendPilotingSettingsSetMotionDetectionMode((byte)enable);
+```
+
+Enable/disable the motion detection.<br/>
+If the motion detection is enabled, the drone will send its [MotionState](#ARDrone3-PilotingState-MotionState) when its [FlyingState](#ARDrone3-PilotingState-FlyingStateChanged) is landed. If the motion detection is disabled, [MotionState](#ARDrone3-PilotingState-MotionState) is steady.<br/>
+
+
+* enable (u8): 1 to enable the motion detection, 0 to disable it.<br/>
+
+
+Result:<br/>
+The motion detection is enabled or disabled.<br/>
+Then, event [MotionDetection](#ARDrone3-PilotingSettingsState-MotionDetection) is triggered. After that, if enabled and [FlyingState](#ARDrone3-PilotingState-FlyingStateChanged) is landed, the [MotionState](#ARDrone3-PilotingState-MotionState) is triggered upon changes.<br/>
+
+
+*Supported by <br/>*
+
+- *Bebop 2 since 4.3.0*<br/>
+
+
+<br/>
+
 <!-- ARDrone3-SpeedSettings-MaxVerticalSpeed-->
 ### <a name="ARDrone3-SpeedSettings-MaxVerticalSpeed">Set max vertical speed</a><br/>
 > Set max vertical speed:
@@ -1653,6 +1881,45 @@ Then, event [VideoStreamState](#ARDrone3-MediaStreamingState-VideoEnableChanged)
 
 <br/>
 
+<!-- ARDrone3-MediaStreaming-VideoStreamMode-->
+### <a name="ARDrone3-MediaStreaming-VideoStreamMode">Set the stream mode</a><br/>
+> Set the stream mode:
+
+```c
+deviceController->aRDrone3->sendMediaStreamingVideoStreamMode(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_MEDIASTREAMING_VIDEOSTREAMMODE_MODE)mode);
+```
+
+```objective_c
+deviceController->aRDrone3->sendMediaStreamingVideoStreamMode(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_MEDIASTREAMING_VIDEOSTREAMMODE_MODE)mode);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendMediaStreamingVideoStreamMode((ARCOMMANDS_ARDRONE3_MEDIASTREAMING_VIDEOSTREAMMODE_MODE_ENUM)mode);
+```
+
+Set the stream mode.<br/>
+
+
+* mode (enum): stream mode<br/>
+   * low_latency: Minimize latency with average reliability (best for piloting).<br/>
+   * high_reliability: Maximize the reliability with an average latency (best when streaming quality is important but not the latency).<br/>
+   * high_reliability_low_framerate: Maximize the reliability using a framerate decimation with an average latency (best when streaming quality is important but not the latency).<br/>
+
+
+Result:<br/>
+The stream mode is set.<br/>
+Then, event [VideoStreamMode](#ARDrone3-MediaStreamingState-VideoStreamModeChanged) is triggered.<br/>
+
+
+*Supported by <br/>*
+
+- *Bebop*<br/>
+- *Bebop 2*<br/>
+- *Disco*<br/>
+
+
+<br/>
+
 <!-- ARDrone3-GPSSettings-ResetHome-->
 ### <a name="ARDrone3-GPSSettings-ResetHome">Reset home position (deprecated)</a><br/>
 > Reset home position (deprecated):
@@ -1685,7 +1952,6 @@ Then, event [HomeLocationReset](#ARDrone3-GPSSettingsState-ResetHomeChanged) is 
 
 - *Bebop*<br/>
 - *Bebop 2*<br/>
-- *Disco*<br/>
 
 
 <br/>
@@ -1842,7 +2108,6 @@ Then, event [ElectricFrequency](#ARDrone3-AntiflickeringState-electricFrequencyC
 
 - *Bebop*<br/>
 - *Bebop 2*<br/>
-- *Disco*<br/>
 
 
 <br/>
@@ -1884,7 +2149,6 @@ Then, event [AntiflickeringMode](#ARDrone3-AntiflickeringState-modeChanged) is t
 
 - *Bebop*<br/>
 - *Bebop 2*<br/>
-- *Disco*<br/>
 
 
 <br/>

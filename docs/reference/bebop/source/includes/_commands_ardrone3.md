@@ -1653,6 +1653,45 @@ Then, event [VideoStreamState](#ARDrone3-MediaStreamingState-VideoEnableChanged)
 
 <br/>
 
+<!-- ARDrone3-MediaStreaming-VideoStreamMode-->
+### <a name="ARDrone3-MediaStreaming-VideoStreamMode">Set the stream mode</a><br/>
+> Set the stream mode:
+
+```c
+deviceController->aRDrone3->sendMediaStreamingVideoStreamMode(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_MEDIASTREAMING_VIDEOSTREAMMODE_MODE)mode);
+```
+
+```objective_c
+deviceController->aRDrone3->sendMediaStreamingVideoStreamMode(deviceController->aRDrone3, (eARCOMMANDS_ARDRONE3_MEDIASTREAMING_VIDEOSTREAMMODE_MODE)mode);
+```
+
+```java
+deviceController.getFeatureARDrone3().sendMediaStreamingVideoStreamMode((ARCOMMANDS_ARDRONE3_MEDIASTREAMING_VIDEOSTREAMMODE_MODE_ENUM)mode);
+```
+
+Set the stream mode.<br/>
+
+
+* mode (enum): stream mode<br/>
+   * low_latency: Minimize latency with average reliability (best for piloting).<br/>
+   * high_reliability: Maximize the reliability with an average latency (best when streaming quality is important but not the latency).<br/>
+   * high_reliability_low_framerate: Maximize the reliability using a framerate decimation with an average latency (best when streaming quality is important but not the latency).<br/>
+
+
+Result:<br/>
+The stream mode is set.<br/>
+Then, event [VideoStreamMode](#ARDrone3-MediaStreamingState-VideoStreamModeChanged) is triggered.<br/>
+
+
+*Supported by <br/>*
+
+- *Bebop*<br/>
+- *Bebop 2*<br/>
+- *Disco*<br/>
+
+
+<br/>
+
 <!-- ARDrone3-GPSSettings-ResetHome-->
 ### <a name="ARDrone3-GPSSettings-ResetHome">Reset home position (deprecated)</a><br/>
 > Reset home position (deprecated):
@@ -1685,7 +1724,6 @@ Then, event [HomeLocationReset](#ARDrone3-GPSSettingsState-ResetHomeChanged) is 
 
 - *Bebop*<br/>
 - *Bebop 2*<br/>
-- *Disco*<br/>
 
 
 <br/>
@@ -1842,7 +1880,6 @@ Then, event [ElectricFrequency](#ARDrone3-AntiflickeringState-electricFrequencyC
 
 - *Bebop*<br/>
 - *Bebop 2*<br/>
-- *Disco*<br/>
 
 
 <br/>
@@ -1884,7 +1921,6 @@ Then, event [AntiflickeringMode](#ARDrone3-AntiflickeringState-modeChanged) is t
 
 - *Bebop*<br/>
 - *Bebop 2*<br/>
-- *Disco*<br/>
 
 
 <br/>

@@ -502,7 +502,7 @@ Flying state.<br/>
    * landing: Landing state<br/>
    * emergency: Emergency state<br/>
    * usertakeoff: User take off state. Waiting for user action to take off.<br/>
-   * motor_ramping: Motor ramping state (for fixed wings).<br/>
+   * motor_ramping: Motor ramping state.<br/>
    * emergency_landing: Emergency landing state.<br/>
 Drone autopilot has detected defective sensor(s).<br/>
 Only Yaw argument in PCMD is taken into account.<br/>
@@ -1073,6 +1073,561 @@ Triggered regularly.<br/>
 - *Bebop*<br/>
 - *Bebop 2*<br/>
 - *Disco*<br/>
+
+
+<br/>
+
+<!-- ARDrone3-PilotingState-GpsLocationChanged-->
+### <a name="ARDrone3-PilotingState-GpsLocationChanged">Drone's location changed</a><br/>
+> Drone's location changed:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LATITUDE, arg);
+            if (arg != NULL)
+            {
+                double latitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LONGITUDE, arg);
+            if (arg != NULL)
+            {
+                double longitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_ALTITUDE, arg);
+            if (arg != NULL)
+            {
+                double altitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LATITUDE_ACCURACY, arg);
+            if (arg != NULL)
+            {
+                int8_t latitude_accuracy = arg->value.I8;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LONGITUDE_ACCURACY, arg);
+            if (arg != NULL)
+            {
+                int8_t longitude_accuracy = arg->value.I8;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_ALTITUDE_ACCURACY, arg);
+            if (arg != NULL)
+            {
+                int8_t altitude_accuracy = arg->value.I8;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LATITUDE, arg);
+            if (arg != NULL)
+            {
+                double latitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LONGITUDE, arg);
+            if (arg != NULL)
+            {
+                double longitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_ALTITUDE, arg);
+            if (arg != NULL)
+            {
+                double altitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LATITUDE_ACCURACY, arg);
+            if (arg != NULL)
+            {
+                int8_t latitude_accuracy = arg->value.I8;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LONGITUDE_ACCURACY, arg);
+            if (arg != NULL)
+            {
+                int8_t longitude_accuracy = arg->value.I8;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_ALTITUDE_ACCURACY, arg);
+            if (arg != NULL)
+            {
+                int8_t altitude_accuracy = arg->value.I8;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            double latitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LATITUDE);
+            double longitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LONGITUDE);
+            double altitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_ALTITUDE);
+            byte latitude_accuracy = (byte)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LATITUDE_ACCURACY)).intValue();
+            byte longitude_accuracy = (byte)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_LONGITUDE_ACCURACY)).intValue();
+            byte altitude_accuracy = (byte)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_GPSLOCATIONCHANGED_ALTITUDE_ACCURACY)).intValue();
+        }
+    }
+}
+```
+
+Drone's location changed.<br/>
+This event is meant to replace [PositionChanged](#ARDrone3-PilotingState-PositionChanged).<br/>
+
+
+* latitude (double): Latitude location in decimal degrees (500.0 if not available)<br/>
+* longitude (double): Longitude location in decimal degrees (500.0 if not available)<br/>
+* altitude (double): Altitude location in meters.<br/>
+* latitude_accuracy (i8): Latitude location error in meters (1 sigma/standard deviation)<br/>
+-1 if not available.<br/>
+* longitude_accuracy (i8): Longitude location error in meters (1 sigma/standard deviation)<br/>
+-1 if not available.<br/>
+* altitude_accuracy (i8): Altitude location error in meters (1 sigma/standard deviation)<br/>
+-1 if not available.<br/>
+
+
+Triggered regularly.<br/>
+
+
+
+*Supported by <br/>*
+
+- *Bebop since 4.0.0*<br/>
+- *Bebop 2 since 4.0.0*<br/>
+
+
+<br/>
+
+<!-- ARDrone3-PilotingState-moveToChanged-->
+### <a name="ARDrone3-PilotingState-moveToChanged">Move to changed</a><br/>
+> Move to changed:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_LATITUDE, arg);
+            if (arg != NULL)
+            {
+                double latitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_LONGITUDE, arg);
+            if (arg != NULL)
+            {
+                double longitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ALTITUDE, arg);
+            if (arg != NULL)
+            {
+                double altitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE orientation_mode = arg->value.I32;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_HEADING, arg);
+            if (arg != NULL)
+            {
+                float heading = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS status = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_LATITUDE, arg);
+            if (arg != NULL)
+            {
+                double latitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_LONGITUDE, arg);
+            if (arg != NULL)
+            {
+                double longitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ALTITUDE, arg);
+            if (arg != NULL)
+            {
+                double altitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE orientation_mode = arg->value.I32;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_HEADING, arg);
+            if (arg != NULL)
+            {
+                float heading = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS status = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            double latitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_LATITUDE);
+            double longitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_LONGITUDE);
+            double altitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ALTITUDE);
+            ARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE_ENUM orientation_mode = ARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_ORIENTATION_MODE));
+            float heading = (float)((Double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_HEADING)).doubleValue();
+            ARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS_ENUM status = ARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOVETOCHANGED_STATUS));
+        }
+    }
+}
+```
+
+The drone moves or moved to a given location.<br/>
+
+
+* latitude (double): Latitude of the location (in degrees) to reach<br/>
+* longitude (double): Longitude of the location (in degrees) to reach<br/>
+* altitude (double): Altitude above sea level (in m) to reach<br/>
+* orientation_mode (enum): Orientation mode of the move to<br/>
+   * NONE: The drone won't change its orientation<br/>
+   * TO_TARGET: The drone will make a rotation to look in direction of the given location<br/>
+   * HEADING_START: The drone will orientate itself to the given heading before moving to the location<br/>
+   * HEADING_DURING: The drone will orientate itself to the given heading while moving to the location<br/>
+* heading (float): Heading (relative to the North in degrees).<br/>
+This value is only used if the orientation mode is HEADING_START or HEADING_DURING<br/>
+* status (enum): Status of the move to<br/>
+   * RUNNING: The drone is actually flying to the given position<br/>
+   * DONE: The drone has reached the target<br/>
+   * CANCELED: The move to has been canceled, either by a CancelMoveTo command<br/>
+or when a disconnection appears.<br/>
+   * ERROR: The move to has not been finished or started because of an error.<br/>
+
+
+Triggered by [MoveTo](#ARDrone3-Piloting-moveTo) or when the drone did reach the given position.<br/>
+
+
+
+*Supported by <br/>*
+
+- *Bebop 2 since 4.3.0*<br/>
+
+
+<br/>
+
+<!-- ARDrone3-PilotingState-MotionState-->
+### <a name="ARDrone3-PilotingState-MotionState">Motion state</a><br/>
+> Motion state:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOTIONSTATE) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOTIONSTATE_STATE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOTIONSTATE_STATE state = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOTIONSTATE) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOTIONSTATE_STATE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOTIONSTATE_STATE state = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOTIONSTATE) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOTIONSTATE_STATE_ENUM state = ARCOMMANDS_ARDRONE3_PILOTINGSTATE_MOTIONSTATE_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_MOTIONSTATE_STATE));
+        }
+    }
+}
+```
+
+Motion state.<br/>
+If [MotionDetection](#ARDrone3-PilotingSettingsState-MotionDetection) is disabled, motion is steady.<br/>
+This information is only valid when the drone is not flying.<br/>
+
+
+* state (enum): Motion state<br/>
+   * steady: Drone is steady<br/>
+   * moving: Drone is moving<br/>
+
+
+Triggered when the [FlyingState](#ARDrone3-PilotingState-FlyingStateChanged) is landed and the [MotionDetection](#ARDrone3-PilotingSettingsState-MotionDetection) is enabled and the motion state changes.<br/>
+
+This event is triggered at a filtered rate.<br/>
+
+
+
+*Supported by <br/>*
+
+- *Bebop 2 since 4.3.0*<br/>
+
+
+<br/>
+
+<!-- ARDrone3-PilotingState-PilotedPOI-->
+### <a name="ARDrone3-PilotingState-PilotedPOI">Piloted POI state</a><br/>
+> Piloted POI state:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_LATITUDE, arg);
+            if (arg != NULL)
+            {
+                double latitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_LONGITUDE, arg);
+            if (arg != NULL)
+            {
+                double longitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_ALTITUDE, arg);
+            if (arg != NULL)
+            {
+                double altitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_STATUS, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_STATUS status = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_LATITUDE, arg);
+            if (arg != NULL)
+            {
+                double latitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_LONGITUDE, arg);
+            if (arg != NULL)
+            {
+                double longitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_ALTITUDE, arg);
+            if (arg != NULL)
+            {
+                double altitude = arg->value.Double;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_STATUS, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_STATUS status = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            double latitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_LATITUDE);
+            double longitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_LONGITUDE);
+            double altitude = (double)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_ALTITUDE);
+            ARCOMMANDS_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_STATUS_ENUM status = ARCOMMANDS_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_STATUS_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_PILOTEDPOI_STATUS));
+        }
+    }
+}
+```
+
+Piloted POI state.<br/>
+
+
+* latitude (double): Latitude of the location (in degrees) to look at.<br/>
+This information is only valid when the state is pending or running.<br/>
+* longitude (double): Longitude of the location (in degrees) to look at.<br/>
+This information is only valid when the state is pending or running.<br/>
+* altitude (double): Altitude above sea level (in m) to look at.<br/>
+This information is only valid when the state is pending or running.<br/>
+* status (enum): Status of the move to<br/>
+   * UNAVAILABLE: The piloted POI is not available<br/>
+   * AVAILABLE: The piloted POI is available<br/>
+   * PENDING: Piloted POI has been requested. Waiting to be in state that allow the piloted POI to start<br/>
+   * RUNNING: Piloted POI is running<br/>
+
+
+Triggered by [StartPilotedPOI](#ARDrone3-Piloting-StartPilotedPOI) or [StopPilotedPOI](#ARDrone3-Piloting-StopPilotedPOI) or when piloted POI becomes unavailable.<br/>
+
+
+
+*Supported by <br/>*
+
+- *Bebop 2 since 4.3.0*<br/>
+
+
+<br/>
+
+<!-- ARDrone3-PilotingState-ReturnHomeBatteryCapacity-->
+### <a name="ARDrone3-PilotingState-ReturnHomeBatteryCapacity">Return home battery capacity</a><br/>
+> Return home battery capacity:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_RETURNHOMEBATTERYCAPACITY) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_RETURNHOMEBATTERYCAPACITY_STATUS, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_RETURNHOMEBATTERYCAPACITY_STATUS status = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_RETURNHOMEBATTERYCAPACITY) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_RETURNHOMEBATTERYCAPACITY_STATUS, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_ARDRONE3_PILOTINGSTATE_RETURNHOMEBATTERYCAPACITY_STATUS status = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_RETURNHOMEBATTERYCAPACITY) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_ARDRONE3_PILOTINGSTATE_RETURNHOMEBATTERYCAPACITY_STATUS_ENUM status = ARCOMMANDS_ARDRONE3_PILOTINGSTATE_RETURNHOMEBATTERYCAPACITY_STATUS_ENUM.getFromValue((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSTATE_RETURNHOMEBATTERYCAPACITY_STATUS));
+        }
+    }
+}
+```
+
+Battery capacity status to return home.<br/>
+
+
+* status (enum): Status of battery to return home<br/>
+   * OK: The battery is full enough to do a return home<br/>
+   * WARNING: The battery is about to be too discharged to do a return home<br/>
+   * CRITICAL: The battery level is too low to return to the home position<br/>
+   * UNKNOWN: Battery capacity to do a return home is unknown.<br/>
+This can be either because the home is unknown or the position of the drone is unknown,<br/>
+or the drone has not enough information to determine how long it takes to fly home.<br/>
+
+
+Triggered when the status of the battery capacity to do a return home changes. This means that it is triggered either when the battery level changes, when the distance to the home changes or when the position of the home changes.<br/>
+
+
+
+*Supported by <br/>*
+
+- *Bebop 2 since 4.3.0*<br/>
 
 
 <br/>
@@ -2382,6 +2937,79 @@ Triggered by [SetBankedTurnMode](#ARDrone3-PilotingSettings-BankedTurn).<br/>
 
 - *Bebop since 3.2.0*<br/>
 - *Bebop 2 since 3.2.0*<br/>
+
+
+<br/>
+
+<!-- ARDrone3-PilotingSettingsState-MotionDetection-->
+### <a name="ARDrone3-PilotingSettingsState-MotionDetection">State of the motion detection</a><br/>
+> State of the motion detection:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MOTIONDETECTION) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MOTIONDETECTION_ENABLED, arg);
+            if (arg != NULL)
+            {
+                uint8_t enabled = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MOTIONDETECTION) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MOTIONDETECTION_ENABLED, arg);
+            if (arg != NULL)
+            {
+                uint8_t enabled = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MOTIONDETECTION) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            byte enabled = (byte)((Integer)args.get(ARFeatureARDrone3.ARCONTROLLER_DICTIONARY_KEY_ARDRONE3_PILOTINGSETTINGSSTATE_MOTIONDETECTION_ENABLED)).intValue();
+        }
+    }
+}
+```
+
+State of the motion detection.<br/>
+
+
+* enabled (u8): 1 if motion detection is enabled, 0 otherwise.<br/>
+
+
+Triggered by [SetMotionDetectionMode](#ARDrone3-PilotingSettings-SetMotionDetectionMode)<br/>
+
+
+
+*Supported by <br/>*
+
+- *Bebop 2 since 4.3.0*<br/>
 
 
 <br/>
@@ -4484,7 +5112,6 @@ Triggered by [ResetHomeLocation](#ARDrone3-GPSSettings-ResetHome).<br/>
 
 - *Bebop*<br/>
 - *Bebop 2*<br/>
-- *Disco*<br/>
 
 
 <br/>
@@ -5312,7 +5939,6 @@ Triggered by [SetElectricFrequency](#ARDrone3-Antiflickering-electricFrequency).
 
 - *Bebop*<br/>
 - *Bebop 2*<br/>
-- *Disco*<br/>
 
 
 <br/>
@@ -5390,7 +6016,6 @@ Triggered by [SetAntiflickeringMode](#ARDrone3-Antiflickering-setMode).<br/>
 
 - *Bebop*<br/>
 - *Bebop 2*<br/>
-- *Disco*<br/>
 
 
 <br/>

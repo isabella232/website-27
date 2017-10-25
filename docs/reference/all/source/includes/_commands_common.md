@@ -702,8 +702,8 @@ It will also trigger [MagnetoCalibrationAxisToCalibrateChanged](#common-Calibrat
 <br/>
 
 <!-- common-Calibration-PitotCalibration-->
-### <a name="common-Calibration-PitotCalibration">Sent when a calibration of the pitot is asked or is aborted</a><br/>
-> Sent when a calibration of the pitot is asked or is aborted:
+### <a name="common-Calibration-PitotCalibration">Start/Abort Pitot calibration</a><br/>
+> Start/Abort Pitot calibration:
 
 ```c
 deviceController->common->sendCalibrationPitotCalibration(deviceController->common, (uint8_t)calibrate);
@@ -717,10 +717,22 @@ deviceController->common->sendCalibrationPitotCalibration(deviceController->comm
 deviceController.getFeatureCommon().sendCalibrationPitotCalibration((byte)calibrate);
 ```
 
-Sent when a calibration of the pitot is asked or is aborted<br/>
+Start or abort Pitot tube calibration process.<br/>
+<br/>
 
 
 * calibrate (u8): 1 if the calibration should be started, 0 if it should be aborted<br/>
+
+
+Result:<br/>
+The pitot calibration process is started or aborted. Then, event [PitotCalibrationStateChanged](#common-CalibrationState-PitotCalibrationStateChanged) is triggered with the current calibration state.<br/>
+
+
+*Supported by <br/>*
+
+- *Disco since 1.1.0*<br/>
+
+
 <br/>
 
 <!-- common-GPS-ControllerPositionForRun-->
@@ -1088,7 +1100,7 @@ deviceController->common->sendFactoryReset(deviceController->common);
 deviceController.getFeatureCommon().sendFactoryReset();
 ```
 
-This command will request a factory reset from the prodcut. *The factory reset procedure implies an automatic reboot*, which will be done immediately after recieving this command.<br/>
+This command will request a factory reset from the prodcut. *The factory reset procedure implies an automatic reboot*, which will be done immediately after receiving this command.<br/>
 
 
 

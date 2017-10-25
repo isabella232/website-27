@@ -365,6 +365,84 @@ Plane Gear Box changed. Only supported by WingX<br/>
    * gear_3: Gear 3. High speed<br/>
 <br/>
 
+<!-- MiniDrone-PilotingState-PilotingModeChanged-->
+### <a name="MiniDrone-PilotingState-PilotingModeChanged">Event informing about the piloting mode.</a><br/>
+> Event informing about the piloting mode.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_PILOTINGMODECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_PILOTINGMODECHANGED_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_PILOTINGSTATE_PILOTINGMODECHANGED_MODE mode = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_PILOTINGMODECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_PILOTINGMODECHANGED_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_PILOTINGSTATE_PILOTINGMODECHANGED_MODE mode = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_PILOTINGMODECHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_MINIDRONE_PILOTINGSTATE_PILOTINGMODECHANGED_MODE_ENUM mode = ARCOMMANDS_MINIDRONE_PILOTINGSTATE_PILOTINGMODECHANGED_MODE_ENUM.getFromValue((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSTATE_PILOTINGMODECHANGED_MODE));
+        }
+    }
+}
+```
+
+Event informing about the piloting mode.<br/>
+
+
+* mode (enum): <br/>
+   * easy: The flight envelope of Mambo FPV has been divided in three piloting modes.<br/>
+The first one corresponds to the well-known flying mode currently used for<br/>
+Mambo, which is based in an horizontal stabilisation (performed via the<br/>
+vertical camera and the acceleration information) and a vertical acceleration<br/>
+(by means of the ultrasound, the barometer and the vertical accelerometer) in<br/>
+order for the drone to stay in fixed point position when no piloting commands<br/>
+are sent by the user.<br/>
+   * medium: The second piloting mode consists of deactivating the horizontal stabilisation.<br/>
+Thus, in this flying mode, when no piloting command is received, the drone will<br/>
+try to stay at 0° tilt angle instead of responding to a 0 m/s horizontal speed<br/>
+reference. This behaviour will result in a slight horizontal drift.<br/>
+   * difficult: The third piloting mode also adds the vertical stabilisation deactivation and,<br/>
+therefore, a slight vertical drift. When flying in the third mode, a closed<br/>
+loop height control is no longer performed in order for the drone to keep a<br/>
+certain height and vertical speed. Instead, the vertical command coming from<br/>
+the user will directly generate an open loop acceleration command.<br/>
+<br/>
+
 <!-- MiniDrone-MediaRecordState-PictureStateChanged-->
 ### <a name="MiniDrone-MediaRecordState-PictureStateChanged">@deprecated</a><br/>
 > @deprecated:
@@ -845,9 +923,149 @@ Triggered by [SetBankedTurnMode](#MiniDrone-PilotingSettings-BankedTurn).<br/>
 
 *Supported by <br/>*
 
-- *no product*<br/>
+- *Mambo since 3.0.6*<br/>
 
 
+<br/>
+
+<!-- MiniDrone-PilotingSettingsState-MaxThrottleChanged-->
+### <a name="MiniDrone-PilotingSettingsState-MaxThrottleChanged">Event informing about the max throttle.</a><br/>
+> Event informing about the max throttle.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXTHROTTLECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXTHROTTLECHANGED_MAX, arg);
+            if (arg != NULL)
+            {
+                float max = arg->value.Float;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXTHROTTLECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXTHROTTLECHANGED_MAX, arg);
+            if (arg != NULL)
+            {
+                float max = arg->value.Float;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXTHROTTLECHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            float max = (float)((Double)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_MAXTHROTTLECHANGED_MAX)).doubleValue();
+        }
+    }
+}
+```
+
+Event informing about the max throttle.<br/>
+
+
+* max (float): Max throttle, between 0 and 1.<br/>
+<br/>
+
+<!-- MiniDrone-PilotingSettingsState-PreferredPilotingModeChanged-->
+### <a name="MiniDrone-PilotingSettingsState-PreferredPilotingModeChanged">Event informing about the preferred piloting mode.</a><br/>
+> Event informing about the preferred piloting mode.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_PREFERREDPILOTINGMODECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_PREFERREDPILOTINGMODECHANGED_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_PILOTINGSETTINGSSTATE_PREFERREDPILOTINGMODECHANGED_MODE mode = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_PREFERREDPILOTINGMODECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_PREFERREDPILOTINGMODECHANGED_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_PILOTINGSETTINGSSTATE_PREFERREDPILOTINGMODECHANGED_MODE mode = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_PREFERREDPILOTINGMODECHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_MINIDRONE_PILOTINGSETTINGSSTATE_PREFERREDPILOTINGMODECHANGED_MODE_ENUM mode = ARCOMMANDS_MINIDRONE_PILOTINGSETTINGSSTATE_PREFERREDPILOTINGMODECHANGED_MODE_ENUM.getFromValue((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_PILOTINGSETTINGSSTATE_PREFERREDPILOTINGMODECHANGED_MODE));
+        }
+    }
+}
+```
+
+Event informing about the preferred piloting mode.<br/>
+
+
+* mode (enum): <br/>
+   * easy: The flight envelope of Mambo FPV has been divided in three piloting modes.<br/>
+The first one corresponds to the well-known flying mode currently used for<br/>
+Mambo, which is based in an horizontal stabilisation (performed via the<br/>
+vertical camera and the acceleration information) and a vertical acceleration<br/>
+(by means of the ultrasound, the barometer and the vertical accelerometer) in<br/>
+order for the drone to stay in fixed point position when no piloting commands<br/>
+are sent by the user.<br/>
+   * medium: The second piloting mode consists of deactivating the horizontal stabilisation.<br/>
+Thus, in this flying mode, when no piloting command is received, the drone will<br/>
+try to stay at 0° tilt angle instead of responding to a 0 m/s horizontal speed<br/>
+reference. This behaviour will result in a slight horizontal drift.<br/>
+   * difficult: The third piloting mode also adds the vertical stabilisation deactivation and,<br/>
+therefore, a slight vertical drift. When flying in the third mode, a closed<br/>
+loop height control is no longer performed in order for the drone to keep a<br/>
+certain height and vertical speed. Instead, the vertical command coming from<br/>
+the user will directly generate an open loop acceleration command.<br/>
 <br/>
 
 <!-- MiniDrone-SpeedSettingsState-MaxVerticalSpeedChanged-->
@@ -1976,5 +2194,1050 @@ oriented the following way :<br/>
 * posz (i16): Position on Z axis, relative to take off position (cm).<br/>
 * psi (i16): Psi angle [-180; 180], relative to take off orientation.<br/>
 * ts (i16): Time elapsed since last data send (ms).<br/>
+<br/>
+
+<!-- MiniDrone-NavigationDataState-DroneSpeed-->
+### <a name="MiniDrone-NavigationDataState-DroneSpeed">Event informing about the estimated drone speed in horizontal frame.</a><br/>
+> Event informing about the estimated drone speed in horizontal frame.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED_SPEED_X, arg);
+            if (arg != NULL)
+            {
+                float speed_x = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED_SPEED_Y, arg);
+            if (arg != NULL)
+            {
+                float speed_y = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED_SPEED_Z, arg);
+            if (arg != NULL)
+            {
+                float speed_z = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED_TS, arg);
+            if (arg != NULL)
+            {
+                uint16_t ts = arg->value.U16;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED_SPEED_X, arg);
+            if (arg != NULL)
+            {
+                float speed_x = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED_SPEED_Y, arg);
+            if (arg != NULL)
+            {
+                float speed_y = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED_SPEED_Z, arg);
+            if (arg != NULL)
+            {
+                float speed_z = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED_TS, arg);
+            if (arg != NULL)
+            {
+                uint16_t ts = arg->value.U16;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            float speed_x = (float)((Double)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED_SPEED_X)).doubleValue();
+            float speed_y = (float)((Double)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED_SPEED_Y)).doubleValue();
+            float speed_z = (float)((Double)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED_SPEED_Z)).doubleValue();
+            short ts = (short)((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONESPEED_TS)).intValue();
+        }
+    }
+}
+```
+
+Event informing about the estimated drone speed in horizontal frame.<br/>
+It is similar to NED frame but with drone heading.<br/>
+Down speed is positive when the drone is going down.<br/>
+Speed is in m/s.<br/>
+
+
+* speed_x (float): Speed on the x axis (when drone moves forward, speed is > 0).<br/>
+* speed_y (float): Speed on the y axis (when drone moves right, speed is > 0).<br/>
+* speed_z (float): Speed on the z axis (when drone moves down, speed is > 0).<br/>
+* ts (u16): Acquisition timestamp (ms).<br/>
+<br/>
+
+<!-- MiniDrone-NavigationDataState-DroneAltitude-->
+### <a name="MiniDrone-NavigationDataState-DroneAltitude">Event informing about the estimated altitude above takeoff level.</a><br/>
+> Event informing about the estimated altitude above takeoff level.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEALTITUDE) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEALTITUDE_ALTITUDE, arg);
+            if (arg != NULL)
+            {
+                float altitude = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEALTITUDE_TS, arg);
+            if (arg != NULL)
+            {
+                uint16_t ts = arg->value.U16;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEALTITUDE) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEALTITUDE_ALTITUDE, arg);
+            if (arg != NULL)
+            {
+                float altitude = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEALTITUDE_TS, arg);
+            if (arg != NULL)
+            {
+                uint16_t ts = arg->value.U16;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEALTITUDE) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            float altitude = (float)((Double)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEALTITUDE_ALTITUDE)).doubleValue();
+            short ts = (short)((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEALTITUDE_TS)).intValue();
+        }
+    }
+}
+```
+
+Event informing about the estimated altitude above takeoff level.<br/>
+
+
+* altitude (float): Altitude in meters.<br/>
+* ts (u16): Acquisition timestamp (ms).<br/>
+<br/>
+
+<!-- MiniDrone-NavigationDataState-DroneQuaternion-->
+### <a name="MiniDrone-NavigationDataState-DroneQuaternion">Event informing about the estimated quaternion.</a><br/>
+> Event informing about the estimated quaternion.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_Q_W, arg);
+            if (arg != NULL)
+            {
+                float q_w = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_Q_X, arg);
+            if (arg != NULL)
+            {
+                float q_x = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_Q_Y, arg);
+            if (arg != NULL)
+            {
+                float q_y = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_Q_Z, arg);
+            if (arg != NULL)
+            {
+                float q_z = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_TS, arg);
+            if (arg != NULL)
+            {
+                uint16_t ts = arg->value.U16;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_Q_W, arg);
+            if (arg != NULL)
+            {
+                float q_w = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_Q_X, arg);
+            if (arg != NULL)
+            {
+                float q_x = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_Q_Y, arg);
+            if (arg != NULL)
+            {
+                float q_y = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_Q_Z, arg);
+            if (arg != NULL)
+            {
+                float q_z = arg->value.Float;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_TS, arg);
+            if (arg != NULL)
+            {
+                uint16_t ts = arg->value.U16;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            float q_w = (float)((Double)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_Q_W)).doubleValue();
+            float q_x = (float)((Double)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_Q_X)).doubleValue();
+            float q_y = (float)((Double)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_Q_Y)).doubleValue();
+            float q_z = (float)((Double)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_Q_Z)).doubleValue();
+            short ts = (short)((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_NAVIGATIONDATASTATE_DRONEQUATERNION_TS)).intValue();
+        }
+    }
+}
+```
+
+Event informing about the estimated quaternion.<br/>
+They represent the rotation from the NED frame (determined at drone startup) to the estimated drone body frame.<br/>
+Its elements are between -1 and 1.<br/>
+
+
+* q_w (float): Element w.<br/>
+* q_x (float): Element x.<br/>
+* q_y (float): Element y.<br/>
+* q_z (float): Element z.<br/>
+* ts (u16): Acquisition timestamp (ms).<br/>
+<br/>
+
+<!-- MiniDrone-MinicamState-PowerModeChanged-->
+### <a name="MiniDrone-MinicamState-PowerModeChanged">Event informing about the minicam power mode.</a><br/>
+> Event informing about the minicam power mode.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_POWERMODECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_POWERMODECHANGED_POWER_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_MINICAMSTATE_POWERMODECHANGED_POWER_MODE power_mode = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_POWERMODECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_POWERMODECHANGED_POWER_MODE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_MINICAMSTATE_POWERMODECHANGED_POWER_MODE power_mode = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_POWERMODECHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_MINIDRONE_MINICAMSTATE_POWERMODECHANGED_POWER_MODE_ENUM power_mode = ARCOMMANDS_MINIDRONE_MINICAMSTATE_POWERMODECHANGED_POWER_MODE_ENUM.getFromValue((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_POWERMODECHANGED_POWER_MODE));
+        }
+    }
+}
+```
+
+Event informing about the minicam power mode.<br/>
+
+
+* power_mode (enum): Power mode of the camera.<br/>
+   * low: Low power: most hardware is powered off, wake up via USB resume.<br/>
+<br/>
+Used when charging.<br/>
+   * medium: Medium power: video hardware is powered off.<br/>
+<br/>
+Used when drone is not flying during more than 3 minutes.<br/>
+Note that it can still stream the SD content.<br/>
+   * normal: Normal power: all features are available.<br/>
+<br/>
+Used when flying.<br/>
+<br/>
+
+<!-- MiniDrone-MinicamState-ProductSerialChanged-->
+### <a name="MiniDrone-MinicamState-ProductSerialChanged">Event informing about the minicam product serial number.</a><br/>
+> Event informing about the minicam product serial number.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PRODUCTSERIALCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PRODUCTSERIALCHANGED_SERIAL_NUMBER, arg);
+            if (arg != NULL)
+            {
+                char * serial_number = arg->value.String;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PRODUCTSERIALCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PRODUCTSERIALCHANGED_SERIAL_NUMBER, arg);
+            if (arg != NULL)
+            {
+                char * serial_number = arg->value.String;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PRODUCTSERIALCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            String serial_number = (String)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PRODUCTSERIALCHANGED_SERIAL_NUMBER);
+        }
+    }
+}
+```
+
+Event informing about the minicam product serial number.<br/>
+
+
+* serial_number (string): Serial number.<br/>
+<br/>
+
+<!-- MiniDrone-MinicamState-StateChanged-->
+### <a name="MiniDrone-MinicamState-StateChanged">Event informing about the state of the camera.</a><br/>
+> Event informing about the state of the camera.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_STATECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_STATECHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_MINICAMSTATE_STATECHANGED_STATE state = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_STATECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_STATECHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_MINICAMSTATE_STATECHANGED_STATE state = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_STATECHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_MINIDRONE_MINICAMSTATE_STATECHANGED_STATE_ENUM state = ARCOMMANDS_MINIDRONE_MINICAMSTATE_STATECHANGED_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_STATECHANGED_STATE));
+        }
+    }
+}
+```
+
+Event informing about the state of the camera.<br/>
+
+
+* state (enum): State of the camera.<br/>
+   * unplugged: Minicam is unplugged.<br/>
+   * plugged: Minicam is plugged, but not ready.<br/>
+   * ready: Minicam is ready.<br/>
+<br/>
+
+<!-- MiniDrone-MinicamState-VersionChanged-->
+### <a name="MiniDrone-MinicamState-VersionChanged">Get the accessory Version.</a><br/>
+> Get the accessory Version.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VERSIONCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VERSIONCHANGED_SOFTWARE, arg);
+            if (arg != NULL)
+            {
+                char * software = arg->value.String;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VERSIONCHANGED_HARDWARE, arg);
+            if (arg != NULL)
+            {
+                char * hardware = arg->value.String;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VERSIONCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VERSIONCHANGED_SOFTWARE, arg);
+            if (arg != NULL)
+            {
+                char * software = arg->value.String;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VERSIONCHANGED_HARDWARE, arg);
+            if (arg != NULL)
+            {
+                char * hardware = arg->value.String;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VERSIONCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            String software = (String)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VERSIONCHANGED_SOFTWARE);
+            String hardware = (String)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VERSIONCHANGED_HARDWARE);
+        }
+    }
+}
+```
+
+Get the accessory Version.<br/>
+
+
+* software (string): Accessory software version.<br/>
+* hardware (string): Accessory hardware version.<br/>
+<br/>
+
+<!-- MiniDrone-MinicamState-PictureChanged-->
+### <a name="MiniDrone-MinicamState-PictureChanged">Event informing that the picture has been taken.</a><br/>
+> Event informing that the picture has been taken.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PICTURECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PICTURECHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_MINICAMSTATE_PICTURECHANGED_STATE state = arg->value.I32;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PICTURECHANGED_RESULT, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_MINICAMSTATE_PICTURECHANGED_RESULT result = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PICTURECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PICTURECHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_MINICAMSTATE_PICTURECHANGED_STATE state = arg->value.I32;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PICTURECHANGED_RESULT, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_MINICAMSTATE_PICTURECHANGED_RESULT result = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PICTURECHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_MINIDRONE_MINICAMSTATE_PICTURECHANGED_STATE_ENUM state = ARCOMMANDS_MINIDRONE_MINICAMSTATE_PICTURECHANGED_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PICTURECHANGED_STATE));
+            ARCOMMANDS_MINIDRONE_MINICAMSTATE_PICTURECHANGED_RESULT_ENUM result = ARCOMMANDS_MINIDRONE_MINICAMSTATE_PICTURECHANGED_RESULT_ENUM.getFromValue((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_PICTURECHANGED_RESULT));
+        }
+    }
+}
+```
+
+Event informing that the picture has been taken.<br/>
+
+
+* state (enum): State of device picture recording.<br/>
+   * ready: Picture recording is ready.<br/>
+   * busy: Picture recording is busy.<br/>
+   * not_available: Picture recording is not available.<br/>
+* result (enum): Result of device picture recording.<br/>
+   * success: Success.<br/>
+   * full_device: Device is full.<br/>
+   * continuous_shooting: Continuous shooting is already running.<br/>
+   * full_queue: Over snapshot max queue size.<br/>
+   * error: Couldn't take picture.<br/>
+   * no_sd: SD card doesn't exist.<br/>
+   * sd_bad_format: SD card format error.<br/>
+   * sd_formatting: SD card is formatting.<br/>
+<br/>
+
+<!-- MiniDrone-MinicamState-VideoStateChanged-->
+### <a name="MiniDrone-MinicamState-VideoStateChanged">Event informing about the video recording state.</a><br/>
+> Event informing about the video recording state.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_STATE state = arg->value.I32;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_ERROR, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_ERROR error = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_STATE state = arg->value.I32;
+            }
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_ERROR, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_ERROR error = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_STATE_ENUM state = ARCOMMANDS_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_STATE_ENUM.getFromValue((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_STATE));
+            ARCOMMANDS_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_ERROR_ENUM error = ARCOMMANDS_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_ERROR_ENUM.getFromValue((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_VIDEOSTATECHANGED_ERROR));
+        }
+    }
+}
+```
+
+Event informing about the video recording state.<br/>
+
+
+* state (enum): State of device video recording.<br/>
+   * stopped: Video is stopped.<br/>
+   * started: Video is started.<br/>
+   * notAvailable: The video recording is not available.<br/>
+* error (enum): Error to explain the state.<br/>
+   * ok: No Error.<br/>
+   * unknown: Unknown generic error.<br/>
+   * camera_ko: Video camera is out of order.<br/>
+   * memoryFull: Memory full ; cannot save one additional video.<br/>
+   * lowBattery: Battery is too low to start/keep recording.<br/>
+   * no_sd: SD card doesn't exist.<br/>
+<br/>
+
+<!-- MiniDrone-MinicamState-MassStorageFormatChanged-->
+### <a name="MiniDrone-MinicamState-MassStorageFormatChanged">Event informing that the mass storage has been formatted.</a><br/>
+> Event informing that the mass storage has been formatted.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_MASSSTORAGEFORMATCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_MASSSTORAGEFORMATCHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                uint8_t state = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_MASSSTORAGEFORMATCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_MASSSTORAGEFORMATCHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                uint8_t state = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_MASSSTORAGEFORMATCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            byte state = (byte)((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_MINICAMSTATE_MASSSTORAGEFORMATCHANGED_STATE)).intValue();
+        }
+    }
+}
+```
+
+Event informing that the mass storage has been formatted.<br/>
+
+
+* state (u8): 1 if Mass Storage has been formatted, 0 otherwise.<br/>
+<br/>
+
+<!-- MiniDrone-VideoSettingsState-AutorecordChanged-->
+### <a name="MiniDrone-VideoSettingsState-AutorecordChanged">Event informing about the video automatic recording status.</a><br/>
+> Event informing about the video automatic recording status.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_AUTORECORDCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_AUTORECORDCHANGED_ENABLED, arg);
+            if (arg != NULL)
+            {
+                uint8_t enabled = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_AUTORECORDCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_AUTORECORDCHANGED_ENABLED, arg);
+            if (arg != NULL)
+            {
+                uint8_t enabled = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_AUTORECORDCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            byte enabled = (byte)((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_AUTORECORDCHANGED_ENABLED)).intValue();
+        }
+    }
+}
+```
+
+Event informing about the video automatic recording status.<br/>
+
+
+* enabled (u8): 0: disabled<br/>
+1: enabled<br/>
+<br/>
+
+<!-- MiniDrone-VideoSettingsState-ElectricFrequencyChanged-->
+### <a name="MiniDrone-VideoSettingsState-ElectricFrequencyChanged">Event informing about the electric frequency (Anti-flickering).</a><br/>
+> Event informing about the electric frequency (Anti-flickering).:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_ELECTRICFREQUENCYCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_VIDEOSETTINGSSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY frequency = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_ELECTRICFREQUENCYCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_VIDEOSETTINGSSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY frequency = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_ELECTRICFREQUENCYCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_MINIDRONE_VIDEOSETTINGSSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY_ENUM frequency = ARCOMMANDS_MINIDRONE_VIDEOSETTINGSSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY_ENUM.getFromValue((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_ELECTRICFREQUENCYCHANGED_FREQUENCY));
+        }
+    }
+}
+```
+
+Event informing about the electric frequency (Anti-flickering).<br/>
+
+
+* frequency (enum): Type of the electric frequency.<br/>
+   * fifty_hertz: Electric frequency of the country is 50hz.<br/>
+   * sixty_hertz: Electric frequency of the country is 60hz.<br/>
+<br/>
+
+<!-- MiniDrone-VideoSettingsState-VideoResolutionChanged-->
+### <a name="MiniDrone-VideoSettingsState-VideoResolutionChanged">Event informing about the streaming resolution.</a><br/>
+> Event informing about the streaming resolution.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_VIDEORESOLUTIONCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_VIDEORESOLUTIONCHANGED_TYPE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_VIDEOSETTINGSSTATE_VIDEORESOLUTIONCHANGED_TYPE type = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_VIDEORESOLUTIONCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_VIDEORESOLUTIONCHANGED_TYPE, arg);
+            if (arg != NULL)
+            {
+                eARCOMMANDS_MINIDRONE_VIDEOSETTINGSSTATE_VIDEORESOLUTIONCHANGED_TYPE type = arg->value.I32;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_VIDEORESOLUTIONCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            ARCOMMANDS_MINIDRONE_VIDEOSETTINGSSTATE_VIDEORESOLUTIONCHANGED_TYPE_ENUM type = ARCOMMANDS_MINIDRONE_VIDEOSETTINGSSTATE_VIDEORESOLUTIONCHANGED_TYPE_ENUM.getFromValue((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_VIDEOSETTINGSSTATE_VIDEORESOLUTIONCHANGED_TYPE));
+        }
+    }
+}
+```
+
+Event informing about the streaming resolution.<br/>
+
+
+* type (enum): Video resolution type.<br/>
+   * vga: 16/9 VGA streaming (640 x 360).<br/>
+   * hd: HD streaming (1280 x 720).<br/>
+<br/>
+
+<!-- MiniDrone-RemoteControllerState-ConnectionChanged-->
+### <a name="MiniDrone-RemoteControllerState-ConnectionChanged">State of the connection to the remote controller changed.</a><br/>
+> State of the connection to the remote controller changed.:
+
+```c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_REMOTECONTROLLERSTATE_CONNECTIONCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_REMOTECONTROLLERSTATE_CONNECTIONCHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                uint8_t state = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```objective_c
+void onCommandReceived (eARCONTROLLER_DICTIONARY_KEY commandKey, ARCONTROLLER_DICTIONARY_ELEMENT_t *elementDictionary, void *customData)
+{
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_REMOTECONTROLLERSTATE_CONNECTIONCHANGED) && (elementDictionary != NULL))
+    {
+        ARCONTROLLER_DICTIONARY_ARG_t *arg = NULL;
+        ARCONTROLLER_DICTIONARY_ELEMENT_t *element = NULL;
+        HASH_FIND_STR (elementDictionary, ARCONTROLLER_DICTIONARY_SINGLE_KEY, element);
+        if (element != NULL)
+        {
+            HASH_FIND_STR (element->arguments, ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_REMOTECONTROLLERSTATE_CONNECTIONCHANGED_STATE, arg);
+            if (arg != NULL)
+            {
+                uint8_t state = arg->value.U8;
+            }
+        }
+    }
+}
+```
+
+```java
+@Override
+public void onCommandReceived (ARDeviceController deviceController, ARCONTROLLER_DICTIONARY_KEY_ENUM commandKey, ARControllerDictionary elementDictionary) {
+    if ((commandKey == ARCONTROLLER_DICTIONARY_KEY_ENUM.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_REMOTECONTROLLERSTATE_CONNECTIONCHANGED) && (elementDictionary != null)){
+        ARControllerArgumentDictionary<Object> args = elementDictionary.get(ARControllerDictionary.ARCONTROLLER_DICTIONARY_SINGLE_KEY);
+        if (args != null) {
+            byte state = (byte)((Integer)args.get(ARFeatureMiniDrone.ARCONTROLLER_DICTIONARY_KEY_MINIDRONE_REMOTECONTROLLERSTATE_CONNECTIONCHANGED_STATE)).intValue();
+        }
+    }
+}
+```
+
+State of the connection to the remote controller changed.<br/>
+
+
+* state (u8): New connection state.<br/>
+0=disconnected<br/>
+1=connected<br/>
 <br/>
 

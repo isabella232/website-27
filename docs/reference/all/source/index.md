@@ -16,6 +16,7 @@ includes:
   - description
   - commands
   - commands_generic
+  - commands_animation
   - commands_ardrone3
   - commands_common
   - commands_controller_info
@@ -29,8 +30,10 @@ includes:
   - commands_powerup
   - commands_rc
   - commands_skyctrl
+  - commands_thermal_cam
   - commands_wifi
   - events
+  - events_animation
   - events_ardrone3
   - events_common
   - events_debug
@@ -43,6 +46,7 @@ includes:
   - events_powerup
   - events_rc
   - events_skyctrl
+  - events_thermal_cam
   - events_wifi
 
 search: true

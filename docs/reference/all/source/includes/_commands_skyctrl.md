@@ -302,6 +302,7 @@ The controller will trigger all settings events and will finally trigger [AllSet
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -322,18 +323,19 @@ deviceController->skyController->sendSettingsReset(deviceController->skyControll
 deviceController.getFeatureSkyController().sendSettingsReset();
 ```
 
-This command is not implemented.<br/>
+Reset all settings (i.e. everything except drone pairing).<br/>
 
 
 
 
 Result:<br/>
-All settings are reset, then a [ResetChanged](#SkyController-SettingsState-ResetChanged) event is fired.<br/>
+All settings are reset.<br/>
 
 
 *Supported by <br/>*
 
-- *no product*<br/>
+- *SkyController 2 since 1.0.5*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -367,6 +369,7 @@ The controller will trigger all states events and will finally trigger [AllState
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -1030,6 +1033,7 @@ The SkyController will sent a [pilotingSource](#SkyController-CoPilotingState-pi
 
 - *SkyController*<br/>
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>
@@ -1071,6 +1075,72 @@ The SkyController will send a [MagnetoCalibrationQualityUpdatesState](#SkyContro
 
 <br/>
 
+<!-- SkyController-Calibration-StartCalibration-->
+### <a name="SkyController-Calibration-StartCalibration">Start magneto calibration</a><br/>
+> Start magneto calibration:
+
+```c
+deviceController->skyController->sendCalibrationStartCalibration(deviceController->skyController);
+```
+
+```objective_c
+deviceController->skyController->sendCalibrationStartCalibration(deviceController->skyController);
+```
+
+```java
+deviceController.getFeatureSkyController().sendCalibrationStartCalibration();
+```
+
+Asks the SkyController to start a magneto calibration.<br/>
+If the calibration is already started, this command has no effect.<br/>
+
+
+
+
+Result:<br/>
+The SkyController will send a [MagnetoCalibrationStateV2](#SkyController-CalibrationState-MagnetoCalibrationStateV2) event.<br/>
+
+
+*Supported by <br/>*
+
+- *SkyController 2P*<br/>
+
+
+<br/>
+
+<!-- SkyController-Calibration-AbortCalibration-->
+### <a name="SkyController-Calibration-AbortCalibration">Abort a running magneto calibration</a><br/>
+> Abort a running magneto calibration:
+
+```c
+deviceController->skyController->sendCalibrationAbortCalibration(deviceController->skyController);
+```
+
+```objective_c
+deviceController->skyController->sendCalibrationAbortCalibration(deviceController->skyController);
+```
+
+```java
+deviceController.getFeatureSkyController().sendCalibrationAbortCalibration();
+```
+
+Asks the SkyController to abort an in-progress magneto calibration.<br/>
+If no calibration is in progress, this command has no effect.<br/>
+
+
+
+
+Result:<br/>
+The SkyController will send a [MagnetoCalibrationStateV2](#SkyController-CalibrationState-MagnetoCalibrationStateV2) event.<br/>
+
+
+*Supported by <br/>*
+
+- *SkyController 2P*<br/>
+
+
+<br/>
+
 <!-- SkyController-Factory-Reset-->
 ### <a name="SkyController-Factory-Reset">Reset the SkyController to its factory settings</a><br/>
 > Reset the SkyController to its factory settings:
@@ -1101,6 +1171,7 @@ SkyController 1 will lose **ALL** pairing, including factory ones.<br/>
 *Supported by <br/>*
 
 - *SkyController 2*<br/>
+- *SkyController 2P*<br/>
 
 
 <br/>

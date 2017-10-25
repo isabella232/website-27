@@ -139,39 +139,68 @@ The SkyController will sent a [pilotingSource](#SkyController-CoPilotingState-pi
 
 <br/>
 
-<!-- SkyController-Calibration-enableMagnetoCalibrationQualityUpdates-->
-### <a name="SkyController-Calibration-enableMagnetoCalibrationQualityUpdates">Enable Magneto calibration quality updates</a><br/>
-> Enable Magneto calibration quality updates:
+<!-- SkyController-Calibration-StartCalibration-->
+### <a name="SkyController-Calibration-StartCalibration">Start magneto calibration</a><br/>
+> Start magneto calibration:
 
 ```c
-deviceController->skyController->sendCalibrationEnableMagnetoCalibrationQualityUpdates(deviceController->skyController, (uint8_t)enable);
+deviceController->skyController->sendCalibrationStartCalibration(deviceController->skyController);
 ```
 
 ```objective_c
-deviceController->skyController->sendCalibrationEnableMagnetoCalibrationQualityUpdates(deviceController->skyController, (uint8_t)enable);
+deviceController->skyController->sendCalibrationStartCalibration(deviceController->skyController);
 ```
 
 ```java
-deviceController.getFeatureSkyController().sendCalibrationEnableMagnetoCalibrationQualityUpdates((byte)enable);
+deviceController.getFeatureSkyController().sendCalibrationStartCalibration();
 ```
 
-Asks the SkyController to send (or not) the magneto calibration quality updates.<br/>
-The [MagnetoCalibrationState](#SkyController-CalibrationState-MagnetoCalibrationState) event will always be sent when the status parameters changes, regardless of this setting.<br/>
+Asks the SkyController to start a magneto calibration.<br/>
+If the calibration is already started, this command has no effect.<br/>
 
 
-* enable (u8): Flag to enable the feature:<br/>
-1 = Enable quality updates<br/>
-0 = Disable quality updates<br/>
 
 
 Result:<br/>
-The SkyController will send a [MagnetoCalibrationQualityUpdatesState](#SkyController-CalibrationState-MagnetoCalibrationQualityUpdatesState) event.<br/>
+The SkyController will send a [MagnetoCalibrationStateV2](#SkyController-CalibrationState-MagnetoCalibrationStateV2) event.<br/>
 
 
 *Supported by <br/>*
 
-- *SkyController*<br/>
-- *SkyController 2*<br/>
+- *SkyController 2P*<br/>
+
+
+<br/>
+
+<!-- SkyController-Calibration-AbortCalibration-->
+### <a name="SkyController-Calibration-AbortCalibration">Abort a running magneto calibration</a><br/>
+> Abort a running magneto calibration:
+
+```c
+deviceController->skyController->sendCalibrationAbortCalibration(deviceController->skyController);
+```
+
+```objective_c
+deviceController->skyController->sendCalibrationAbortCalibration(deviceController->skyController);
+```
+
+```java
+deviceController.getFeatureSkyController().sendCalibrationAbortCalibration();
+```
+
+Asks the SkyController to abort an in-progress magneto calibration.<br/>
+If no calibration is in progress, this command has no effect.<br/>
+
+
+
+
+Result:<br/>
+The SkyController will send a [MagnetoCalibrationStateV2](#SkyController-CalibrationState-MagnetoCalibrationStateV2) event.<br/>
+
+
+*Supported by <br/>*
+
+- *SkyController 2P*<br/>
 
 
 <br/>
