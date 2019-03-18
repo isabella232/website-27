@@ -1,6 +1,9 @@
-# Summary
+# Table of contents
+
+* [Introduction](README.md)
 
 ## Use headings to create page groups like this one
 
-* [General Info](./source/includes/_general_info.md)
-    * [How to use](./source/includes/_how_to_use.md)
+* [General Info](use-headings-to-create-page-groups-like-this-one/_general_info/README.md)
+  * [How to use](use-headings-to-create-page-groups-like-this-one/_general_info/_how_to_use.md)
+
