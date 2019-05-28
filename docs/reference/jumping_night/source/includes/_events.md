@@ -1,1 +1,0 @@
-## Jumping Night events

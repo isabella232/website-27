@@ -1,2 +1,0 @@
-# Jumping Sumo reference
-

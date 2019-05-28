@@ -1,2 +1,0 @@
-# SkyController reference
-

@@ -1,2 +1,0 @@
-# Airborne Night reference
-
